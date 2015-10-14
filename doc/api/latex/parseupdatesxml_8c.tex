@@ -1,0 +1,462 @@
+\section{parseupdatesxml.c File Reference}
+\label{parseupdatesxml_8c}\index{parseupdatesxml.c@{parseupdatesxml.c}}
+{\tt \#include $<$stdlib.h$>$}\par
+{\tt \#include $<$ctype.h$>$}\par
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include $<$libxml/xmlmemory.h$>$}\par
+{\tt \#include $<$libxml/parser.h$>$}\par
+{\tt \#include $<$glib.h$>$}\par
+{\tt \#include \char`\"{}libuau.h\char`\"{}}\par
+{\tt \#include \char`\"{}util.h\char`\"{}}\par
+{\tt \#include \char`\"{}error.h\char`\"{}}\par
+{\tt \#include \char`\"{}parse.h\char`\"{}}\par
+{\tt \#include \char`\"{}parseupdates.h\char`\"{}}\par
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct {\bf AMirror\-List}
+\item 
+struct {\bf AMirror}
+\item 
+struct {\bf ASet\-Attributes}
+\item 
+struct {\bf ASing\-Attribute}
+\item 
+struct {\bf AMult\-Attribute}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+{\bf G\_\-LOCK\_\-DEFINE\_\-STATIC} (parse)
+\item 
+void {\bf parse\-Updates} (xml\-Doc\-Ptr doc, xml\-Node\-Ptr node)
+\item 
+void {\bf parse\-Update} (xml\-Doc\-Ptr doc, xml\-Node\-Ptr node, xml\-Char $\ast$type, {\bf ASet\-Attributes} $\ast$attributes)
+\item 
+void {\bf parse\-Prog\-Info} ({\bf AProg\-Info} $\ast$prog\-Info, xml\-Doc\-Ptr doc, xml\-Node\-Ptr node, GError $\ast$$\ast$err)
+\item 
+void {\bf parse\-Prog\-Info\-Tag} ({\bf AProg\-Info} $\ast$prog\-Info, xml\-Doc\-Ptr doc, xml\-Node\-Ptr node)
+\item 
+void {\bf parse\-Mirror\-List} (xml\-Doc\-Ptr doc, xml\-Node\-Ptr node, {\bf ASet\-Attributes} $\ast$attributes)
+\item 
+void {\bf parse\-Mirror\-Def} (xml\-Doc\-Ptr doc, xml\-Node\-Ptr node, {\bf ASet\-Attributes} $\ast$attributes, char $\ast$list\_\-id)
+\item 
+void {\bf add\-To\-Mirror\-List} ({\bf ASet\-Attributes} $\ast$attributes, const char $\ast$list\_\-id, const char $\ast$mirror\_\-id)
+\item 
+void {\bf parse\-Software} (xml\-Doc\-Ptr doc, xml\-Node\-Ptr node, {\bf ASet\-Attributes} $\ast$attributes)
+\item 
+void {\bf parse\-Package} (xml\-Doc\-Ptr doc, xml\-Node\-Ptr node, {\bf ASet\-Attributes} $\ast$attributes)
+\item 
+void {\bf parse\-Message} (xml\-Doc\-Ptr doc, xml\-Node\-Ptr node, {\bf ASet\-Attributes} $\ast$attributes)
+\item 
+void {\bf parse\-Libupdate} (xml\-Doc\-Ptr doc, xml\-Node\-Ptr node, {\bf ASet\-Attributes} $\ast$attributes)
+\item 
+void {\bf parse\-Generic\-Info} (xml\-Doc\-Ptr doc, xml\-Node\-Ptr node, {\bf ASet\-Attributes} $\ast$attributes)
+\item 
+void {\bf parse\-Update\-Info} (xml\-Doc\-Ptr doc, xml\-Node\-Ptr node, {\bf AUpdate\-Type} type, {\bf ASet\-Attributes} $\ast$attributes)
+\item 
+void {\bf parse\-Pkg\-Group} (xml\-Doc\-Ptr doc, xml\-Node\-Ptr node, {\bf ASet\-Attributes} $\ast$attributes)
+\item 
+{\bf GContainer} $\ast$ {\bf parse\-Package\-Properties} (xml\-Node\-Ptr node, {\bf APackage} $\ast$pkg, {\bf ASet\-Attributes} $\ast$attributes)
+\item 
+int {\bf parse\-Package\-Attr\-Mirrors} ({\bf APackage} $\ast$pkg, {\bf ASet\-Attributes} $\ast$attributes, const char $\ast$suffix, const char $\ast$loc)
+\item 
+int {\bf parse\-Package\-Child\-Mirrors} (xml\-Doc\-Ptr doc, xml\-Node\-Ptr node, {\bf APackage} $\ast$pkg, const char $\ast$suffix)
+\item 
+gboolean {\bf parse\-Quant\-Data} (void $\ast$$\ast$data, char $\ast$str, {\bf AQuant\-Data\-Type} quant\-Data\-Type)
+\item 
+{\bf AMult\-Attribute} $\ast$ {\bf append\-String\-To\-Attribute\-List} ({\bf ASet\-Attributes} $\ast$attributes, const char $\ast$id, const char $\ast$value)
+\item 
+{\bf ASing\-Attribute} $\ast$ {\bf set\-Attribute\-Value} ({\bf ASet\-Attributes} $\ast$attributes, const char $\ast$id, const char $\ast$value)
+\item 
+{\bf GContainer} $\ast$ {\bf get\-Attribute\-List} ({\bf ASet\-Attributes} $\ast$attributes, const char $\ast$id)
+\item 
+char $\ast$ {\bf get\-Attribute\-String} ({\bf ASet\-Attributes} $\ast$attributes, const char $\ast$id)
+\item 
+{\bf GContainer} $\ast$ {\bf parse\-Mirror\-IDs} ({\bf GContainer} $\ast$ids, {\bf ASet\-Attributes} $\ast$attributes)
+\item 
+void {\bf initialize\-Set\-Attributes} ({\bf ASet\-Attributes} $\ast$attributes)
+\item 
+void {\bf copy\-Set\-Attributes} ({\bf ASet\-Attributes} $\ast$new\-Set, {\bf ASet\-Attributes} $\ast$attributes, gboolean deep\-Copy)
+\item 
+void {\bf free\-Set\-Attributes} ({\bf ASet\-Attributes} $\ast$attributes, gboolean deep\-Free)
+\item 
+void {\bf free\-Sing\-Attribute} ({\bf ASing\-Attribute} $\ast$attr)
+\item 
+void {\bf free\-Mult\-Attribute} ({\bf AMult\-Attribute} $\ast$attrs)
+\item 
+{\bf GContainer} $\ast$ {\bf luau\_\-parse\-XML\_\-updates} (char $\ast$contents, GError $\ast$$\ast$err)
+\item 
+gboolean {\bf luau\_\-parse\-XML\_\-prog\-Info} (GString $\ast$contents, {\bf AProg\-Info} $\ast$prog\-Info, GError $\ast$$\ast$err)
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+{\bf GContainer} $\ast$ {\bf updates}
+\item 
+{\bf AUpdate} $\ast$ {\bf curr\-Update}
+\end{CompactItemize}
+
+
+\subsection{Function Documentation}
+\index{parseupdatesxml.c@{parseupdatesxml.c}!addToMirrorList@{addToMirrorList}}
+\index{addToMirrorList@{addToMirrorList}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void add\-To\-Mirror\-List ({\bf ASet\-Attributes} $\ast$ {\em attributes}, const char $\ast$ {\em list\_\-id}, const char $\ast$ {\em mirror\_\-id})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a9}
+
+
+
+
+Definition at line 404 of file parseupdatesxml.c.
+
+References ASet\-Attributes::defined\-Mirror\-Lists, g\_\-container\_\-add(), g\_\-container\_\-get\_\-iter(), g\_\-container\_\-new(), g\_\-iterator\_\-has\-Next(), g\_\-iterator\_\-next(), GCONT\_\-LIST, AMirror\-List::id, lutil\_\-streq(), and AMirror\-List::mirrors.
+
+Referenced by parse\-Mirror\-Def().\index{parseupdatesxml.c@{parseupdatesxml.c}!appendStringToAttributeList@{appendStringToAttributeList}}
+\index{appendStringToAttributeList@{appendStringToAttributeList}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf AMult\-Attribute} $\ast$ append\-String\-To\-Attribute\-List ({\bf ASet\-Attributes} $\ast$ {\em attributes}, const char $\ast$ {\em id}, const char $\ast$ {\em value})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a21}
+
+
+
+
+Definition at line 1020 of file parseupdatesxml.c.
+
+References g\_\-container\_\-add(), AMult\-Attribute::id, lutil\_\-gsplit(), ASet\-Attributes::mult\-Attributes, and AMult\-Attribute::values.
+
+Referenced by parse\-Package\-Properties(), and parse\-Pkg\-Group().\index{parseupdatesxml.c@{parseupdatesxml.c}!copySetAttributes@{copySetAttributes}}
+\index{copySetAttributes@{copySetAttributes}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void copy\-Set\-Attributes ({\bf ASet\-Attributes} $\ast$ {\em new\-Set}, {\bf ASet\-Attributes} $\ast$ {\em attributes}, gboolean {\em deep\-Copy})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a27}
+
+
+
+
+Definition at line 1256 of file parseupdatesxml.c.
+
+References ASet\-Attributes::defined\-Mirror\-Lists, ASet\-Attributes::defined\-Mirrors, ERROR, g\_\-container\_\-dup(), ASet\-Attributes::mult\-Attributes, and ASet\-Attributes::sing\-Attributes.
+
+Referenced by parse\-Package(), and parse\-Pkg\-Group().\index{parseupdatesxml.c@{parseupdatesxml.c}!freeMultAttribute@{freeMultAttribute}}
+\index{freeMultAttribute@{freeMultAttribute}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void free\-Mult\-Attribute ({\bf AMult\-Attribute} $\ast$ {\em attrs})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a30}
+
+
+
+
+Definition at line 1339 of file parseupdatesxml.c.
+
+References g\_\-container\_\-destroy(), AMult\-Attribute::id, and AMult\-Attribute::values.
+
+Referenced by free\-Set\-Attributes(), and parse\-Pkg\-Group().\index{parseupdatesxml.c@{parseupdatesxml.c}!freeSetAttributes@{freeSetAttributes}}
+\index{freeSetAttributes@{freeSetAttributes}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void free\-Set\-Attributes ({\bf ASet\-Attributes} $\ast$ {\em attributes}, gboolean {\em deep\-Free})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a28}
+
+
+
+
+Definition at line 1270 of file parseupdatesxml.c.
+
+References ASet\-Attributes::defined\-Mirror\-Lists, ASet\-Attributes::defined\-Mirrors, free\-Mult\-Attribute(), free\-Sing\-Attribute(), g\_\-container\_\-free(), g\_\-container\_\-get\_\-iter(), g\_\-iterator\_\-has\-Next(), g\_\-iterator\_\-next(), ASet\-Attributes::mult\-Attributes, and ASet\-Attributes::sing\-Attributes.
+
+Referenced by parse\-Package(), parse\-Pkg\-Group(), and parse\-Updates().\index{parseupdatesxml.c@{parseupdatesxml.c}!freeSingAttribute@{freeSingAttribute}}
+\index{freeSingAttribute@{freeSingAttribute}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void free\-Sing\-Attribute ({\bf ASing\-Attribute} $\ast$ {\em attr})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a29}
+
+
+
+
+Definition at line 1329 of file parseupdatesxml.c.
+
+References ASing\-Attribute::id, and ASing\-Attribute::value.
+
+Referenced by free\-Set\-Attributes(), and parse\-Pkg\-Group().\index{parseupdatesxml.c@{parseupdatesxml.c}!G_LOCK_DEFINE_STATIC@{G\_\-LOCK\_\-DEFINE\_\-STATIC}}
+\index{G_LOCK_DEFINE_STATIC@{G\_\-LOCK\_\-DEFINE\_\-STATIC}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}G\_\-LOCK\_\-DEFINE\_\-STATIC (parse)}\label{parseupdatesxml_8c_a2}
+
+
+\index{parseupdatesxml.c@{parseupdatesxml.c}!getAttributeList@{getAttributeList}}
+\index{getAttributeList@{getAttributeList}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf GContainer} $\ast$ get\-Attribute\-List ({\bf ASet\-Attributes} $\ast$ {\em attributes}, const char $\ast$ {\em id})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a23}
+
+
+
+
+Definition at line 1102 of file parseupdatesxml.c.
+
+References g\_\-container\_\-concat(), g\_\-container\_\-get\_\-iter(), g\_\-container\_\-new(), g\_\-iterator\_\-has\-Next(), g\_\-iterator\_\-next(), GCONT\_\-LIST, AMult\-Attribute::id, lutil\_\-streq(), ASet\-Attributes::mult\-Attributes, and AMult\-Attribute::values.
+
+Referenced by parse\-Package\-Attr\-Mirrors().\index{parseupdatesxml.c@{parseupdatesxml.c}!getAttributeString@{getAttributeString}}
+\index{getAttributeString@{getAttributeString}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ get\-Attribute\-String ({\bf ASet\-Attributes} $\ast$ {\em attributes}, const char $\ast$ {\em id})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a24}
+
+
+
+
+Definition at line 1152 of file parseupdatesxml.c.
+
+References g\_\-container\_\-get\_\-iter\_\-last(), g\_\-iterator\_\-has\-Prev(), g\_\-iterator\_\-prev(), ASing\-Attribute::id, lutil\_\-streq(), ASet\-Attributes::sing\-Attributes, and ASing\-Attribute::value.
+
+Referenced by parse\-Package(), and parse\-Package\-Properties().\index{parseupdatesxml.c@{parseupdatesxml.c}!initializeSetAttributes@{initializeSetAttributes}}
+\index{initializeSetAttributes@{initializeSetAttributes}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void initialize\-Set\-Attributes ({\bf ASet\-Attributes} $\ast$ {\em attributes})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a26}
+
+
+
+
+Definition at line 1247 of file parseupdatesxml.c.
+
+References ASet\-Attributes::defined\-Mirror\-Lists, ASet\-Attributes::defined\-Mirrors, g\_\-container\_\-new(), GCONT\_\-LIST, ASet\-Attributes::mult\-Attributes, and ASet\-Attributes::sing\-Attributes.
+
+Referenced by parse\-Updates().\index{parseupdatesxml.c@{parseupdatesxml.c}!luau_parseXML_progInfo@{luau\_\-parseXML\_\-progInfo}}
+\index{luau_parseXML_progInfo@{luau\_\-parseXML\_\-progInfo}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-parse\-XML\_\-prog\-Info (GString $\ast$ {\em contents}, {\bf AProg\-Info} $\ast$ {\em prog\-Info}, GError $\ast$$\ast$ {\em err})}\label{parseupdatesxml_8c_a32}
+
+
+
+
+Definition at line 178 of file parseupdatesxml.c.
+
+References DBUGOUT, G\_\-LOCK, G\_\-UNLOCK, LUAU\_\-BASE\_\-ERROR, LUAU\_\-BASE\_\-ERROR\_\-FAILED, luau\_\-parse\-Interface(), luau\_\-satisfies\-Interface(), LUAU\_\-XML\_\-INTERFACE\_\-MAJOR, LUAU\_\-XML\_\-INTERFACE\_\-MINOR, AInterface::major, AInterface::minor, and parse\-Prog\-Info().
+
+Referenced by luau\_\-get\-Prog\-Info\-From\-XML\_\-data(), and luau\_\-get\-Prog\-Info\-From\-XML\_\-url().\index{parseupdatesxml.c@{parseupdatesxml.c}!luau_parseXML_updates@{luau\_\-parseXML\_\-updates}}
+\index{luau_parseXML_updates@{luau\_\-parseXML\_\-updates}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf GContainer}$\ast$ luau\_\-parse\-XML\_\-updates (char $\ast$ {\em contents}, GError $\ast$$\ast$ {\em err})}\label{parseupdatesxml_8c_a31}
+
+
+Given an Luau XML repository file in memory (ie., as a character string), read it in and parse it, returning the results (a list of updates) in a {\bf GContainer}{\rm (p.\,\pageref{structGContainer})} of type GCONT\_\-LIST.
+
+\begin{itemize}
+\item contents is a string representing a Luau XML repository file \item err is a GError which will store any recoverable run-time errors \begin{Desc}
+\item[Returns:]a {\bf GContainer}{\rm (p.\,\pageref{structGContainer})} of type GCONT\_\-LIST of updates. \end{Desc}
+\end{itemize}
+
+
+Definition at line 123 of file parseupdatesxml.c.
+
+References DBUGOUT, g\_\-container\_\-new(), G\_\-LOCK, G\_\-UNLOCK, GCONT\_\-LIST, LUAU\_\-BASE\_\-ERROR, LUAU\_\-BASE\_\-ERROR\_\-FAILED, luau\_\-parse\-Interface(), luau\_\-satisfies\-Interface(), LUAU\_\-XML\_\-INTERFACE\_\-MAJOR, LUAU\_\-XML\_\-INTERFACE\_\-MINOR, AInterface::major, AInterface::minor, parse\-Updates(), and updates.
+
+Referenced by luau\_\-net\_\-query\-Server().\index{parseupdatesxml.c@{parseupdatesxml.c}!parseGenericInfo@{parseGenericInfo}}
+\index{parseGenericInfo@{parseGenericInfo}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void parse\-Generic\-Info (xml\-Doc\-Ptr {\em doc}, xml\-Node\-Ptr {\em node}, {\bf ASet\-Attributes} $\ast$ {\em attributes})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a14}
+
+
+
+
+Definition at line 477 of file parseupdatesxml.c.
+
+References AQuant\-Data\-Type, curr\-Update, AQuantifier::data, AUpdate::date, DBUGOUT, AQuantifier::dtype, AUpdate::full\-Desc, AUpdate::id, AUpdate::keywords, luau\_\-parse\-Date(), luau\_\-parse\-Quant\-Data\-Type(), LUAU\_\-QUANT\_\-DATA\_\-INVALID, LUAU\_\-QUANT\_\-FOR, LUAU\_\-QUANT\_\-FROM, LUAU\_\-QUANT\_\-TO, lutil\_\-parse\_\-delete\-Whitespace(), lutil\_\-parse\_\-parse\-Symbol\-Array(), parse\-Quant\-Data(), AQuantifier::qtype, AUpdate::quantifiers, and AUpdate::short\-Desc.
+
+Referenced by parse\-Update\-Info().\index{parseupdatesxml.c@{parseupdatesxml.c}!parseLibupdate@{parseLibupdate}}
+\index{parseLibupdate@{parseLibupdate}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void parse\-Libupdate (xml\-Doc\-Ptr {\em doc}, xml\-Node\-Ptr {\em node}, {\bf ASet\-Attributes} $\ast$ {\em attributes})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a13}
+
+
+
+
+Definition at line 875 of file parseupdatesxml.c.
+
+References curr\-Update, lutil\_\-parse\_\-parse\-Symbol\-Array(), and AUpdate::new\-URL.
+
+Referenced by parse\-Update\-Info().\index{parseupdatesxml.c@{parseupdatesxml.c}!parseMessage@{parseMessage}}
+\index{parseMessage@{parseMessage}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void parse\-Message (xml\-Doc\-Ptr {\em doc}, xml\-Node\-Ptr {\em node}, {\bf ASet\-Attributes} $\ast$ {\em attributes})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a12}
+
+
+
+
+Definition at line 870 of file parseupdatesxml.c.
+
+Referenced by parse\-Update\-Info().\index{parseupdatesxml.c@{parseupdatesxml.c}!parseMirrorDef@{parseMirrorDef}}
+\index{parseMirrorDef@{parseMirrorDef}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void parse\-Mirror\-Def (xml\-Doc\-Ptr {\em doc}, xml\-Node\-Ptr {\em node}, {\bf ASet\-Attributes} $\ast$ {\em attributes}, char $\ast$ {\em list\_\-id})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a8}
+
+
+
+
+Definition at line 371 of file parseupdatesxml.c.
+
+References add\-To\-Mirror\-List(), DBUGOUT, ASet\-Attributes::defined\-Mirrors, g\_\-container\_\-add(), ASing\-Attribute::id, lutil\_\-parse\_\-delete\-Whitespace(), and ASing\-Attribute::value.
+
+Referenced by parse\-Mirror\-List().\index{parseupdatesxml.c@{parseupdatesxml.c}!parseMirrorIDs@{parseMirrorIDs}}
+\index{parseMirrorIDs@{parseMirrorIDs}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf GContainer} $\ast$ parse\-Mirror\-IDs ({\bf GContainer} $\ast$ {\em ids}, {\bf ASet\-Attributes} $\ast$ {\em attributes})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a25}
+
+
+
+
+Definition at line 1178 of file parseupdatesxml.c.
+
+References DBUGOUT, ASet\-Attributes::defined\-Mirror\-Lists, ASet\-Attributes::defined\-Mirrors, g\_\-container\_\-add(), g\_\-container\_\-concat(), g\_\-container\_\-free(), g\_\-container\_\-get\_\-iter(), g\_\-container\_\-new(), g\_\-iterator\_\-has\-Next(), g\_\-iterator\_\-next(), GCONT\_\-LIST, AMirror\-List::id, AMirror::id, lutil\_\-streq(), AMirror\-List::mirrors, and AMirror::url.
+
+Referenced by parse\-Package\-Attr\-Mirrors().\index{parseupdatesxml.c@{parseupdatesxml.c}!parseMirrorList@{parseMirrorList}}
+\index{parseMirrorList@{parseMirrorList}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void parse\-Mirror\-List (xml\-Doc\-Ptr {\em doc}, xml\-Node\-Ptr {\em node}, {\bf ASet\-Attributes} $\ast$ {\em attributes})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a7}
+
+
+
+
+Definition at line 348 of file parseupdatesxml.c.
+
+References DBUGOUT, and parse\-Mirror\-Def().
+
+Referenced by parse\-Updates().\index{parseupdatesxml.c@{parseupdatesxml.c}!parsePackage@{parsePackage}}
+\index{parsePackage@{parsePackage}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void parse\-Package (xml\-Doc\-Ptr {\em doc}, xml\-Node\-Ptr {\em node}, {\bf ASet\-Attributes} $\ast$ {\em attributes})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a11}
+
+
+
+
+Definition at line 611 of file parseupdatesxml.c.
+
+References copy\-Set\-Attributes(), curr\-Update, DBUGOUT, free\-Set\-Attributes(), g\_\-container\_\-destroy(), get\-Attribute\-String(), lutil\_\-parse\_\-delete\-Whitespace(), APackage::mirrors, AUpdate::packages, parse\-Package\-Attr\-Mirrors(), parse\-Package\-Child\-Mirrors(), and parse\-Package\-Properties().
+
+Referenced by parse\-Pkg\-Group(), and parse\-Software().\index{parseupdatesxml.c@{parseupdatesxml.c}!parsePackageAttrMirrors@{parsePackageAttrMirrors}}
+\index{parsePackageAttrMirrors@{parsePackageAttrMirrors}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int parse\-Package\-Attr\-Mirrors ({\bf APackage} $\ast$ {\em pkg}, {\bf ASet\-Attributes} $\ast$ {\em attributes}, const char $\ast$ {\em suffix}, const char $\ast$ {\em loc})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a18}
+
+
+
+
+Definition at line 747 of file parseupdatesxml.c.
+
+References g\_\-container\_\-concat(), g\_\-container\_\-free(), g\_\-container\_\-get\_\-iter(), g\_\-iterator\_\-has\-Next(), g\_\-iterator\_\-next(), get\-Attribute\-List(), GContainer::len, lutil\_\-vstrcreate(), APackage::mirrors, and parse\-Mirror\-IDs().
+
+Referenced by parse\-Package().\index{parseupdatesxml.c@{parseupdatesxml.c}!parsePackageChildMirrors@{parsePackageChildMirrors}}
+\index{parsePackageChildMirrors@{parsePackageChildMirrors}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int parse\-Package\-Child\-Mirrors (xml\-Doc\-Ptr {\em doc}, xml\-Node\-Ptr {\em node}, {\bf APackage} $\ast$ {\em pkg}, const char $\ast$ {\em suffix})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a19}
+
+
+
+
+Definition at line 819 of file parseupdatesxml.c.
+
+References DBUGOUT, lutil\_\-parse\_\-delete\-Whitespace(), lutil\_\-streq(), lutil\_\-vstrcreate(), and APackage::mirrors.
+
+Referenced by parse\-Package().\index{parseupdatesxml.c@{parseupdatesxml.c}!parsePackageProperties@{parsePackageProperties}}
+\index{parsePackageProperties@{parsePackageProperties}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf GContainer} $\ast$ parse\-Package\-Properties (xml\-Node\-Ptr {\em node}, {\bf APackage} $\ast$ {\em pkg}, {\bf ASet\-Attributes} $\ast$ {\em attributes})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a17}
+
+
+
+
+Definition at line 681 of file parseupdatesxml.c.
+
+References append\-String\-To\-Attribute\-List(), AUpdate::available\-Formats, curr\-Update, g\_\-container\_\-add(), g\_\-container\_\-concat(), g\_\-container\_\-new(), GCONT\_\-LIST, get\-Attribute\-String(), AMult\-Attribute::id, luau\_\-parse\-Pkg\-Type(), LUAU\_\-UNKNOWN, APackage::md5sum, APackage::mirrors, APackage::size, APackage::type, AMult\-Attribute::values, and APackage::version.
+
+Referenced by parse\-Package().\index{parseupdatesxml.c@{parseupdatesxml.c}!parsePkgGroup@{parsePkgGroup}}
+\index{parsePkgGroup@{parsePkgGroup}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void parse\-Pkg\-Group (xml\-Doc\-Ptr {\em doc}, xml\-Node\-Ptr {\em node}, {\bf ASet\-Attributes} $\ast$ {\em attributes})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a16}
+
+
+
+
+Definition at line 912 of file parseupdatesxml.c.
+
+References append\-String\-To\-Attribute\-List(), copy\-Set\-Attributes(), DBUGOUT, free\-Mult\-Attribute(), free\-Set\-Attributes(), free\-Sing\-Attribute(), g\_\-container\_\-add(), g\_\-container\_\-free(), g\_\-container\_\-get\_\-iter(), g\_\-container\_\-new(), g\_\-iterator\_\-has\-Next(), g\_\-iterator\_\-next(), GCONT\_\-LIST, lutil\_\-parse\_\-parse\-Symbol\-Array(), parse\-Package(), and set\-Attribute\-Value().
+
+Referenced by parse\-Software().\index{parseupdatesxml.c@{parseupdatesxml.c}!parseProgInfo@{parseProgInfo}}
+\index{parseProgInfo@{parseProgInfo}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void parse\-Prog\-Info ({\bf AProg\-Info} $\ast$ {\em prog\-Info}, xml\-Doc\-Ptr {\em doc}, xml\-Node\-Ptr {\em node}, GError $\ast$$\ast$ {\em err})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a5}
+
+
+
+
+Definition at line 276 of file parseupdatesxml.c.
+
+References LUAU\_\-BASE\_\-ERROR, LUAU\_\-BASE\_\-ERROR\_\-FAILED, and parse\-Prog\-Info\-Tag().
+
+Referenced by luau\_\-parse\-XML\_\-prog\-Info().\index{parseupdatesxml.c@{parseupdatesxml.c}!parseProgInfoTag@{parseProgInfoTag}}
+\index{parseProgInfoTag@{parseProgInfoTag}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void parse\-Prog\-Info\-Tag ({\bf AProg\-Info} $\ast$ {\em prog\-Info}, xml\-Doc\-Ptr {\em doc}, xml\-Node\-Ptr {\em node})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a6}
+
+
+
+
+Definition at line 294 of file parseupdatesxml.c.
+
+References DBUGOUT, AProg\-Info::desc, AProg\-Info::fullname, AProg\-Info::id, AProg\-Info::interface, AProg\-Info::keywords, lutil\_\-parse\_\-delete\-Whitespace(), lutil\_\-parse\_\-parse\-Symbol\-Array(), AInterface::major, AInterface::minor, AProg\-Info::shortname, and AProg\-Info::url.
+
+Referenced by parse\-Prog\-Info().\index{parseupdatesxml.c@{parseupdatesxml.c}!parseQuantData@{parseQuantData}}
+\index{parseQuantData@{parseQuantData}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean parse\-Quant\-Data (void $\ast$$\ast$ {\em data}, char $\ast$ {\em str}, {\bf AQuant\-Data\-Type} {\em quant\-Data\-Type})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a20}
+
+
+
+
+Definition at line 891 of file parseupdatesxml.c.
+
+References ERROR, luau\_\-parse\-Date(), luau\_\-parse\-Interface(), LUAU\_\-QUANT\_\-DATA\_\-DATE, LUAU\_\-QUANT\_\-DATA\_\-INTERFACE, LUAU\_\-QUANT\_\-DATA\_\-KEYWORD, and LUAU\_\-QUANT\_\-DATA\_\-VERSION.
+
+Referenced by parse\-Generic\-Info().\index{parseupdatesxml.c@{parseupdatesxml.c}!parseSoftware@{parseSoftware}}
+\index{parseSoftware@{parseSoftware}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void parse\-Software (xml\-Doc\-Ptr {\em doc}, xml\-Node\-Ptr {\em node}, {\bf ASet\-Attributes} $\ast$ {\em attributes})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a10}
+
+
+
+
+Definition at line 575 of file parseupdatesxml.c.
+
+References curr\-Update, AUpdate::interface, luau\_\-parse\-Interface(), lutil\_\-parse\_\-delete\-Whitespace(), lutil\_\-parse\_\-parse\-Symbol\-Array(), AUpdate::new\-Display\-Version, parse\-Package(), and parse\-Pkg\-Group().
+
+Referenced by parse\-Update\-Info().\index{parseupdatesxml.c@{parseupdatesxml.c}!parseUpdate@{parseUpdate}}
+\index{parseUpdate@{parseUpdate}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void parse\-Update (xml\-Doc\-Ptr {\em doc}, xml\-Node\-Ptr {\em node}, xml\-Char $\ast$ {\em type}, {\bf ASet\-Attributes} $\ast$ {\em attributes})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a4}
+
+
+
+
+Definition at line 438 of file parseupdatesxml.c.
+
+References curr\-Update, DBUGOUT, g\_\-container\_\-add(), AUpdate::keywords, LUAU\_\-LIBUPDATE, LUAU\_\-MESSAGE, LUAU\_\-SOFTWARE, AUpdate::packages, parse\-Update\-Info(), AUpdate::quantifiers, AUpdate::type, and updates.
+
+Referenced by parse\-Updates().\index{parseupdatesxml.c@{parseupdatesxml.c}!parseUpdateInfo@{parseUpdateInfo}}
+\index{parseUpdateInfo@{parseUpdateInfo}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void parse\-Update\-Info (xml\-Doc\-Ptr {\em doc}, xml\-Node\-Ptr {\em node}, {\bf AUpdate\-Type} {\em type}, {\bf ASet\-Attributes} $\ast$ {\em attributes})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a15}
+
+
+
+
+Definition at line 466 of file parseupdatesxml.c.
+
+References LUAU\_\-LIBUPDATE, LUAU\_\-MESSAGE, LUAU\_\-SOFTWARE, parse\-Generic\-Info(), parse\-Libupdate(), parse\-Message(), and parse\-Software().
+
+Referenced by parse\-Update().\index{parseupdatesxml.c@{parseupdatesxml.c}!parseUpdates@{parseUpdates}}
+\index{parseUpdates@{parseUpdates}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void parse\-Updates (xml\-Doc\-Ptr {\em doc}, xml\-Node\-Ptr {\em node})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a3}
+
+
+
+
+Definition at line 237 of file parseupdatesxml.c.
+
+References curr\-Update, DBUGOUT, free\-Set\-Attributes(), AUpdate::id, initialize\-Set\-Attributes(), AUpdate::new\-Version, parse\-Mirror\-List(), and parse\-Update().
+
+Referenced by luau\_\-parse\-XML\_\-updates().\index{parseupdatesxml.c@{parseupdatesxml.c}!setAttributeValue@{setAttributeValue}}
+\index{setAttributeValue@{setAttributeValue}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf ASing\-Attribute} $\ast$ set\-Attribute\-Value ({\bf ASet\-Attributes} $\ast$ {\em attributes}, const char $\ast$ {\em id}, const char $\ast$ {\em value})\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a22}
+
+
+
+
+Definition at line 1134 of file parseupdatesxml.c.
+
+References g\_\-container\_\-add(), ASing\-Attribute::id, ASet\-Attributes::sing\-Attributes, and ASing\-Attribute::value.
+
+Referenced by parse\-Pkg\-Group().
+
+\subsection{Variable Documentation}
+\index{parseupdatesxml.c@{parseupdatesxml.c}!currUpdate@{currUpdate}}
+\index{currUpdate@{currUpdate}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf AUpdate}$\ast$ {\bf curr\-Update}\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a1}
+
+
+
+
+Definition at line 72 of file parseupdatesxml.c.
+
+Referenced by parse\-Generic\-Info(), parse\-Libupdate(), parse\-Package(), parse\-Package\-Properties(), parse\-Software(), parse\-Update(), and parse\-Updates().\index{parseupdatesxml.c@{parseupdatesxml.c}!updates@{updates}}
+\index{updates@{updates}!parseupdatesxml.c@{parseupdatesxml.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf GContainer}$\ast$ {\bf updates}\hspace{0.3cm}{\tt  [static]}}\label{parseupdatesxml_8c_a0}
+
+
+
+
+Definition at line 71 of file parseupdatesxml.c.
+
+Referenced by luau\_\-parse\-XML\_\-updates(), and parse\-Update().

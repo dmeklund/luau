@@ -1,0 +1,135 @@
+Overview of Changes from 0.1.8 to 0.1.9 (15 Jan 2005)
+=====================================================
+* Full support for luau-repository interface version 1.2 (see DTD)
+* Several fixed double-free bugs and memory leaks
+* New methods for the internally used GContainer object
+* Converted some unimportant error messages to debugging messages
+* Several minor bugs fixed
+
+Overview of Changes from 0.1.7 to 0.1.8 (6 Jan 2005)
+====================================================
+* XML comments are now recognized and ignored.
+* Unrecognizable tags in an XML file now lead to a debugging message rather
+  than an error message.  They are still skipped.
+* Support for systems without GNU extension function get_current_dir_name.
+* Preliminary support for luau-repository DTD version 1.2 (not yet complete).
+
+Overview of Changes from 0.1.6 to 0.1.7 (12 Jun 2004)
+=====================================================
+* The XML format has been updated to interface version 1.1 with the addition
+  of the <program-info> tag, which is used to describe the program that the
+  XML file is listing packages/messages for.
+* Added --from-file and --from-url options to luau-register, which can be used
+  to register a new program by feeding in the local location or URL
+  (respectively) of its corresponding Luau XML repository file.
+* Changed date format from MM/DD/YYYY to YYYY-MM-DD to conform with ISO-8601
+  standard.
+* Revamped error output framework to work with GLib's error and message
+  reporting services.
+* Disabled gthread support by default due to unpredictable behavior.
+* Updated autoconf scripts to be cleaner and work better.
+* Several minor bugs were fixed.
+
+Overview of Changes from 0.1.5 to 0.1.6 (14 Mar 2004)
+=====================================================
+* The XML format has changed significantly with this release.  The only
+  significant change is in the XML parsing algorithms in order to accomodate
+  these changes.
+* Some bugs have also been fixed.
+
+Overview of Changes from 0.1.4 to 0.1.5 (22 Feb 2004)
+=====================================================
+* The database code has been separated from the main libuau library into a
+  new "libuau-db" library.  This means that binaries depending on libuau don't
+  have to depend on libdb.  It also means the libuau library by itself can be
+  installed without the database support (though this is not recommended).
+* libuau now supports gthreads, meaning it should be usable in a threaded
+  environment.  This is still under heavy testing, however.
+* Software repository XML files can now be compressed using gzip to reduce
+  bandwidth usage (on the server's side) and download time (on the client
+  side).  zlib is required to uncompress gzipped files on the client side.
+* A serious bug has been fixed in luau_db_setKeyword which previously could
+  lead to a segmentation fault.  Many other minor bugs have also been fixed.
+* Due to the separation of libuau and libuau-db, the public API has undergone
+  several changes.  Any programs or libraries depending on libuau/libuau-db
+  will have to be updated.
+* Several updates have been made to the configure/Makefile.am scripts, which
+  makes them more flexible and should make them more portable.
+
+Overview of Changes from 0.1.3 to 0.1.4 (8 Jan 2004)
+=====================================================
+* The database code has been revamped to allow local users to override values
+  set in the global databases.  This means that users can hide updates and
+  even register their own programs with Luau without needing root access.
+* Version comparison is now supported, meaning that one can use other types
+  than just the release date (currently supported: version, keyword, and
+  interface version) to test if an update is "valid."
+* A testing suite has been added to ensure that changes between versions don't
+  break features.  You can expect it to grow significantly over the next
+  couple of versions.
+* Several memory leaks and other memory allocation bugs that could cause
+  segmentation faults have been fixed.
+* There have been several internal changes that won't be visible to the
+  end-user but should facilitate further development (such as the quantifier
+  model and a new GContainer wrapper class).
+* Autopackage file installation is now supported.
+* Error checking has been enhanced to help catch both user input errors and
+  internal problems.
+* The "md5" and "size" attributes of the <package> tag are now optional and
+  therefore may be omitted.
+* Updates for versions older than or equal to the current version are
+  automatically hidden, making obsolete the need to include something like
+  '<valid type="version" to="1.2.3" />' (for version 1.2.3) to do so.
+
+Overview of Changes from 0.1.2 to 0.1.3 (22 Dec 2003)
+=====================================================
+* The libuau API has undergone significant changes to avoid unnecessary dynamic
+  allocation
+* Multiple mirrors of provided packages is now supported by the XML software
+  repository format
+* luau_register has been changed to "luau-register" to match the format of the
+  other command line tools
+* Many options have been added to the program registration process in order to
+  make the interface more friendly to users, including - a description field, a
+  short-name field, a long-name field, and an interface version field (used by
+  autopackage to determine appropriate software versions)
+* Support has been added to work smoothly with the Autopackage project
+  (www.autopackage.org) - Luau is being used as their means for providing
+  automatic dependency retrieval
+* Documentation has been greatly expanded to cover all the new functions and
+  interfaces - debugging output has also been improved
+* Many, many bugs have been fixed
+
+Overview of Changes from 0.1.1 to 0.1.2 (21 Oct 2003)
+=====================================================
+* A new XML format for updates files has been adopted
+* Fixed segmentation fault when retrieving program info
+* Fixed some major bugs in interactive mode
+* Added --email option to luau - this is very significant, since it allows the
+  user to be automatically informed of updates using cron
+
+Overview of Changes from 0.1.0 to 0.1.1 (11 Oct 2003)
+=====================================================
+* Interactive mode for 'luau' now works
+* Program keywords are now supported
+* luau_register now supports --keywords command-line opt
+* Various minor bug fixes
+
+Overview of Changes from 0.1.0pre2 to 0.1.0 (5 Oct 2003)
+========================================================
+* Package installation now works
+* Fixed downloading bug (downloaded packages got truncated before)
+* Fixed memory leak and memory overflow bug in luau_strjoin
+* Program deletion now works
+* Can now use VALIDTO and VALIDROM directives for any kind of update (not just
+  software updates, like before)
+* Fixed luau_register bug that didn't register null keywords correctly
+
+Overview of Changes from 0.1.0pre1 to 0.1.0pre2 (3 Oct 2003)
+============================================================
+* Finished documenting libuau.h interface through doxygen comments
+* Cleaned up and fixed Makefile.am and configure.in autoconfiguration and
+  compilation files.
+* Miscellaneous code clean-ups
+* Added basic documentation files (README, NEWS, ChangeLog, etc.)
+* Minor interface updates

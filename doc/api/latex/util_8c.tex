@@ -1,0 +1,418 @@
+\section{util.c File Reference}
+\label{util_8c}\index{util.c@{util.c}}
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include $<$stdlib.h$>$}\par
+{\tt \#include $<$stdarg.h$>$}\par
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include $<$math.h$>$}\par
+{\tt \#include $<$errno.h$>$}\par
+{\tt \#include $<$sys/types.h$>$}\par
+{\tt \#include $<$sys/stat.h$>$}\par
+{\tt \#include $<$unistd.h$>$}\par
+{\tt \#include $<$ctype.h$>$}\par
+{\tt \#include $<$glib.h$>$}\par
+{\tt \#include \char`\"{}gcontainer.h\char`\"{}}\par
+{\tt \#include \char`\"{}error.h\char`\"{}}\par
+{\tt \#include \char`\"{}util.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int {\bf lutil\_\-streq} (const char $\ast$str1, const char $\ast$str2)
+\begin{CompactList}\small\item\em Check if two strings are equal. \item\end{CompactList}\item 
+int {\bf lutil\_\-strcaseeq} (const char $\ast$str1, const char $\ast$str2)
+\begin{CompactList}\small\item\em Check if two strings are equal, ignoring case. \item\end{CompactList}\item 
+char $\ast$ {\bf lutil\_\-create\-String} (int length)
+\begin{CompactList}\small\item\em Create a new string. \item\end{CompactList}\item 
+char $\ast$ {\bf lutil\_\-vstrcreate} (const char $\ast$src1,...)
+\begin{CompactList}\small\item\em Append any number of strings together into one. \item\end{CompactList}\item 
+char $\ast$ {\bf lutil\_\-mprintf} (const char $\ast$template,...)
+\begin{CompactList}\small\item\em Like sprintf, but allocate memory for and return the string. \item\end{CompactList}\item 
+char $\ast$ {\bf lutil\_\-strjoin} (const char $\ast$delim, const {\bf GContainer} $\ast$strings)
+\begin{CompactList}\small\item\em Join an array of strings together separated by the given delimiter. \item\end{CompactList}\item 
+{\bf GContainer} $\ast$ {\bf lutil\_\-gsplit} (const char $\ast$delim, const char $\ast$str)
+\begin{CompactList}\small\item\em Split a string by character delim into a {\bf GContainer}{\rm (p.\,\pageref{structGContainer})}. \item\end{CompactList}\item 
+char $\ast$ {\bf lutil\_\-valist\-To\-String} (const char $\ast$template, va\_\-list args)
+\item 
+gboolean {\bf lutil\_\-find\-String} (const {\bf GContainer} $\ast$array, const char $\ast$string)
+\begin{CompactList}\small\item\em See if a string exists in a {\bf GContainer}{\rm (p.\,\pageref{structGContainer})} of strings (char $\ast$). \item\end{CompactList}\item 
+void {\bf lutil\_\-print\-Indented} (int indent, int length, const char $\ast$string)
+\begin{CompactList}\small\item\em Print a string to STDOUT indented and limited in per-line length. \item\end{CompactList}\item 
+gboolean {\bf lutil\_\-is\-Completely\-Blank} (const char $\ast$input)
+\begin{CompactList}\small\item\em Check if a string is completely whitespace. \item\end{CompactList}\item 
+void {\bf lutil\_\-str\-To\-Lower} (char $\ast$str)
+\begin{CompactList}\small\item\em Convert all upper case letters to lower case in a string. \item\end{CompactList}\item 
+void {\bf lutil\_\-str\-To\-Upper} (char $\ast$str)
+\item 
+gboolean {\bf lutil\_\-contains\-Alpha} (const char $\ast$str)
+\item 
+gboolean {\bf lutil\_\-contains\-Digit} (const char $\ast$str)
+\item 
+GString $\ast$ {\bf lutil\_\-uncompress} (GString $\ast$data, GError $\ast$$\ast$err)
+\item 
+char $\ast$ {\bf lutil\_\-get\-Temp\-Filename} (void)
+\begin{CompactList}\small\item\em Create a valid temporary filename. \item\end{CompactList}\item 
+gboolean {\bf lutil\_\-file\-Exists} (const char $\ast$path)
+\begin{CompactList}\small\item\em Check if a file exists. \item\end{CompactList}\item 
+gboolean {\bf lutil\_\-is\-Directory} (const char $\ast$path)
+\begin{CompactList}\small\item\em Check if a \char`\"{}file\char`\"{} is actually a directory. \item\end{CompactList}\item 
+gint {\bf lutil\_\-gint\-Compare} (gpointer p1, gpointer p2)
+\begin{CompactList}\small\item\em Compare two gint pointers. \item\end{CompactList}\item 
+int {\bf lutil\_\-intcmp} (int i1, int i2)
+\begin{CompactList}\small\item\em Compare two ints. \item\end{CompactList}\item 
+char $\ast$ {\bf lutil\_\-size\-To\-String} (int size, int sigfig)
+\item 
+char $\ast$ {\bf get\_\-current\_\-dir\_\-name} (void)
+\end{CompactItemize}
+
+
+\subsection{Function Documentation}
+\index{util.c@{util.c}!get_current_dir_name@{get\_\-current\_\-dir\_\-name}}
+\index{get_current_dir_name@{get\_\-current\_\-dir\_\-name}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ get\_\-current\_\-dir\_\-name (void)}\label{util_8c_a22}
+
+
+get\_\-current\_\-dir\_\-name will malloc(3) an array big enough to hold the current directory name. If the environment variable PWD is set, and its value is correct, then that value will be returned.
+
+\begin{Desc}
+\item[Returns:]a dynamically allocated buffer containing the current directory; {\bf must} be free'd \end{Desc}
+
+
+Definition at line 662 of file util.c.\index{util.c@{util.c}!lutil_containsAlpha@{lutil\_\-containsAlpha}}
+\index{lutil_containsAlpha@{lutil\_\-containsAlpha}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean lutil\_\-contains\-Alpha (const char $\ast$ {\em str})}\label{util_8c_a13}
+
+
+
+
+Definition at line 419 of file util.c.
+
+Referenced by luau\_\-versioncmp().\index{util.c@{util.c}!lutil_containsDigit@{lutil\_\-containsDigit}}
+\index{lutil_containsDigit@{lutil\_\-containsDigit}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean lutil\_\-contains\-Digit (const char $\ast$ {\em str})}\label{util_8c_a14}
+
+
+
+
+Definition at line 434 of file util.c.\index{util.c@{util.c}!lutil_createString@{lutil\_\-createString}}
+\index{lutil_createString@{lutil\_\-createString}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ lutil\_\-create\-String (int {\em length})}\label{util_8c_a2}
+
+
+Create a new string. 
+
+Allocate memory for a string of length {\tt length+1}. One is added to account for the NIL character at the end of a string.
+
+\begin{itemize}
+\item {\em length\/} is the length of the new string \begin{Desc}
+\item[Returns:]a newly allocated string (must be {\tt free}'d) \end{Desc}
+\end{itemize}
+
+
+Definition at line 92 of file util.c.
+
+Referenced by luau\_\-mult\-Package\-Type\-String(), lutil\_\-size\-To\-String(), lutil\_\-strjoin(), and lutil\_\-valist\-To\-String().\index{util.c@{util.c}!lutil_fileExists@{lutil\_\-fileExists}}
+\index{lutil_fileExists@{lutil\_\-fileExists}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean lutil\_\-file\-Exists (const char $\ast$ {\em path})}\label{util_8c_a17}
+
+
+Check if a file exists. 
+
+Use stat(2) to check if the given file exists. Note that this function will return TRUE if the path is actually a directory, but FALSE if an error such as \char`\"{}permission denied\char`\"{} or \char`\"{}too many symlinks\char`\"{} is returned, or if the file in question is a symlink to a non-existent file. Use stat(2) directly if more precision is necessary.
+
+\begin{itemize}
+\item path is the path to check for existence \begin{Desc}
+\item[Returns:]whether the file in question exists \end{Desc}
+\end{itemize}
+
+
+Definition at line 543 of file util.c.
+
+Referenced by lutil\_\-get\-Temp\-Filename().\index{util.c@{util.c}!lutil_findString@{lutil\_\-findString}}
+\index{lutil_findString@{lutil\_\-findString}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean lutil\_\-find\-String (const {\bf GContainer} $\ast$ {\em array}, const char $\ast$ {\em string})}\label{util_8c_a8}
+
+
+See if a string exists in a {\bf GContainer}{\rm (p.\,\pageref{structGContainer})} of strings (char $\ast$). 
+
+Find if a certain string is contained in the given array. Does {\bf not} ignore case, and does {\bf not} ignore whitespace (or anything else).
+
+\begin{itemize}
+\item array is the array to look in \item string is the string to look for \begin{Desc}
+\item[Returns:]whether the string could be found \end{Desc}
+\end{itemize}
+
+
+Definition at line 305 of file util.c.
+
+References g\_\-container\_\-get\_\-iter(), g\_\-iterator\_\-has\-Next(), g\_\-iterator\_\-next(), and lutil\_\-streq().
+
+Referenced by luau\_\-check\-Keyword().\index{util.c@{util.c}!lutil_getTempFilename@{lutil\_\-getTempFilename}}
+\index{lutil_getTempFilename@{lutil\_\-getTempFilename}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ lutil\_\-get\-Temp\-Filename (void)}\label{util_8c_a16}
+
+
+Create a valid temporary filename. 
+
+Create a temporary filename using the current process ID, max 255 characters long.
+
+\begin{Desc}
+\item[Returns:]the new filename (must be {\tt free}'d) \end{Desc}
+
+
+Definition at line 515 of file util.c.
+
+References lutil\_\-file\-Exists(), lutil\_\-mprintf(), and TEMP\_\-DIR.
+
+Referenced by luau\_\-install\-Update().\index{util.c@{util.c}!lutil_gintCompare@{lutil\_\-gintCompare}}
+\index{lutil_gintCompare@{lutil\_\-gintCompare}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gint lutil\_\-gint\-Compare (gpointer {\em p1}, gpointer {\em p2})}\label{util_8c_a19}
+
+
+Compare two gint pointers. 
+
+Compare two gint pointers, returning another gint depending on their relation to one another.
+
+\begin{itemize}
+\item {\em p1\/} and {\em p2\/} are pointers to the gints to compare. \begin{Desc}
+\item[Returns:]\begin{itemize}
+\item 1 if p1 $>$ p2\item 0 if p1 == p2\item -1 if p1 $<$ p1 \end{itemize}
+\end{Desc}
+\end{itemize}
+
+
+Definition at line 585 of file util.c.
+
+References lutil\_\-intcmp().\index{util.c@{util.c}!lutil_gsplit@{lutil\_\-gsplit}}
+\index{lutil_gsplit@{lutil\_\-gsplit}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf GContainer}$\ast$ lutil\_\-gsplit (const char $\ast$ {\em delim}, const char $\ast$ {\em str})}\label{util_8c_a6}
+
+
+Split a string by character delim into a {\bf GContainer}{\rm (p.\,\pageref{structGContainer})}. 
+
+Split a string into an array of strings, separating by {\tt delim} - e.g., passing in the string \char`\"{}John, Mary, and Susan went to the beach\char`\"{} with {\tt delim == \char`\"{}, \char`\"{}} will return (\char`\"{}John\char`\"{}, \char`\"{}Mary\char`\"{}, \char`\"{}and Susan went to the beach\char`\"{}). All of the new strings in the returned arrray are newly allocated and {\bf must} be free'd (along with the pointer array itself.
+
+\begin{itemize}
+\item delim is the string to split with \item str is the string to split \begin{Desc}
+\item[Returns:]a newly allocated array of substrings (which must all be free'd). \end{Desc}
+\end{itemize}
+
+
+Definition at line 247 of file util.c.
+
+References DBUGOUT, g\_\-container\_\-add(), g\_\-container\_\-new(), and GCONT\_\-LIST.
+
+Referenced by append\-String\-To\-Attribute\-List(), and luau\_\-versioncmp().\index{util.c@{util.c}!lutil_intcmp@{lutil\_\-intcmp}}
+\index{lutil_intcmp@{lutil\_\-intcmp}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int lutil\_\-intcmp (int {\em i1}, int {\em i2})}\label{util_8c_a20}
+
+
+Compare two ints. 
+
+Compare two integers, return another integer depending on their relation to one another.
+
+\begin{itemize}
+\item {\em i1\/} and {\em i2\/} are the integers to compare. \begin{Desc}
+\item[Returns:]\begin{itemize}
+\item 1 if p1 $>$ p2\item 0 if p1 == p2\item -1 if p1 $<$ p1 \end{itemize}
+\end{Desc}
+\end{itemize}
+
+
+Definition at line 599 of file util.c.
+
+Referenced by luau\_\-datecmp(), and lutil\_\-gint\-Compare().\index{util.c@{util.c}!lutil_isCompletelyBlank@{lutil\_\-isCompletelyBlank}}
+\index{lutil_isCompletelyBlank@{lutil\_\-isCompletelyBlank}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean lutil\_\-is\-Completely\-Blank (const char $\ast$ {\em input})}\label{util_8c_a10}
+
+
+Check if a string is completely whitespace. 
+
+
+
+Definition at line 380 of file util.c.
+
+Referenced by luau\_\-parse\-Interface().\index{util.c@{util.c}!lutil_isDirectory@{lutil\_\-isDirectory}}
+\index{lutil_isDirectory@{lutil\_\-isDirectory}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean lutil\_\-is\-Directory (const char $\ast$ {\em path})}\label{util_8c_a18}
+
+
+Check if a \char`\"{}file\char`\"{} is actually a directory. 
+
+Use stat(2) to check if the given pathname is a directory. Also returns false if the file doesn't even exist (see {\bf lutil\_\-file\-Exists}{\rm (p.\,\pageref{util_8h_a27})}).
+
+\begin{itemize}
+\item path is the path to check \begin{Desc}
+\item[Returns:]whether the path is a directory \end{Desc}
+\end{itemize}
+
+
+Definition at line 563 of file util.c.\index{util.c@{util.c}!lutil_mprintf@{lutil\_\-mprintf}}
+\index{lutil_mprintf@{lutil\_\-mprintf}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ lutil\_\-mprintf (const char $\ast$ {\em template},  {\em ...})}\label{util_8c_a4}
+
+
+Like sprintf, but allocate memory for and return the string. 
+
+Allocating printf. Takes arguments in same form as printf, but writes them to a newly allocated string, which is then returned. Returned string {\bf must} be free'd.
+
+\begin{itemize}
+\item template is a printf template \begin{Desc}
+\item[Returns:]a newly allocated string ({\bf must} be free'd) \end{Desc}
+\end{itemize}
+
+
+Definition at line 146 of file util.c.
+
+References lutil\_\-valist\-To\-String().
+
+Referenced by luau\_\-date\-String(), luau\_\-install\_\-deb(), luau\_\-install\_\-rpm(), luau\_\-interface\-String(), luau\_\-prog\-Info\-String(), and lutil\_\-get\-Temp\-Filename().\index{util.c@{util.c}!lutil_printIndented@{lutil\_\-printIndented}}
+\index{lutil_printIndented@{lutil\_\-printIndented}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void lutil\_\-print\-Indented (int {\em indent}, int {\em length}, const char $\ast$ {\em string})}\label{util_8c_a9}
+
+
+Print a string to STDOUT indented and limited in per-line length. 
+
+Print a long string to STDOUT using the specified indentation with output no longer than {\tt length}. This function will split the string up into pieces based on {\tt indent} and {\tt length} so that each line will be indented by {\tt indent} spaces and will not exceed {\tt length} characters {\bf unless} there is a word in string that is greater than {\tt length - indent} characters long. In this case, it will still be outputted, but it will exceed the specified length.
+
+This function is useful for outputting long strings to the terminal ({\tt length == 80}).
+
+\begin{itemize}
+\item indent is the number of spaces to indent each line \item length is the maximum length of each line \item string is the string to print out (will {\bf not} be edited by this function) \end{itemize}
+
+
+Definition at line 336 of file util.c.\index{util.c@{util.c}!lutil_sizeToString@{lutil\_\-sizeToString}}
+\index{lutil_sizeToString@{lutil\_\-sizeToString}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ lutil\_\-size\-To\-String (int {\em size}, int {\em sigfig})}\label{util_8c_a21}
+
+
+Convert a size (in bytes) to a human readable format, with {\tt sigfig} significant figures. Depending on the size of {\tt size}, this function will return the string in units of megabytes, kilobytes, or bytes. Returned string is dynamically allocated and {\bf must} be free'd.
+
+{\bf Example:}: lutil\_\-size\-To\-String(1024$\ast$1024, 2) =$>$ 1.0M
+
+\begin{itemize}
+\item size is the size to convert to a string \item sigfig is the number of significant figures to display \begin{Desc}
+\item[Returns:]a newly allocated string representing the size ({\bf must} be free'd). \end{Desc}
+\end{itemize}
+
+
+Definition at line 621 of file util.c.
+
+References lutil\_\-create\-String().\index{util.c@{util.c}!lutil_strcaseeq@{lutil\_\-strcaseeq}}
+\index{lutil_strcaseeq@{lutil\_\-strcaseeq}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int lutil\_\-strcaseeq (const char $\ast$ {\em str1}, const char $\ast$ {\em str2})\hspace{0.3cm}{\tt  [inline]}}\label{util_8c_a1}
+
+
+Check if two strings are equal, ignoring case. 
+
+Compare two strings for case-insensitive equality using strcasecmp.
+
+\begin{itemize}
+\item {\em str1\/} is the first string \item {\em str2\/} is the string to compare it with \begin{Desc}
+\item[Returns:]whether they are equal (regardless of case) \end{Desc}
+\end{itemize}
+
+
+Definition at line 79 of file util.c.
+
+Referenced by luau\_\-parse\-Pkg\-Type(), and luau\_\-parse\-Quant\-Data\-Type().\index{util.c@{util.c}!lutil_streq@{lutil\_\-streq}}
+\index{lutil_streq@{lutil\_\-streq}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int lutil\_\-streq (const char $\ast$ {\em str1}, const char $\ast$ {\em str2})\hspace{0.3cm}{\tt  [inline]}}\label{util_8c_a0}
+
+
+Check if two strings are equal. 
+
+Compare two strings for equality using strcmp.
+
+\begin{itemize}
+\item {\em str1\/} is the first string \item {\em str2\/} is the string to compare it with \begin{Desc}
+\item[Returns:]whether they are equal \end{Desc}
+\end{itemize}
+
+
+Definition at line 63 of file util.c.
+
+Referenced by add\-To\-Mirror\-List(), get\-Attribute\-List(), get\-Attribute\-String(), luau\_\-get\-Update\-Info(), luau\_\-net\_\-download\-Update(), luau\_\-net\_\-query\-Server(), luau\_\-unset\-Keyword(), luau\_\-versioncmp(), lutil\_\-find\-String(), lutil\_\-parse\_\-parse\-Symbol(), lutil\_\-parse\_\-parse\-Symbol\-Array(), parse\-Mirror\-IDs(), and parse\-Package\-Child\-Mirrors().\index{util.c@{util.c}!lutil_strjoin@{lutil\_\-strjoin}}
+\index{lutil_strjoin@{lutil\_\-strjoin}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ lutil\_\-strjoin (const char $\ast$ {\em delim}, const {\bf GContainer} $\ast$ {\em strings})}\label{util_8c_a5}
+
+
+Join an array of strings together separated by the given delimiter. 
+
+Join an array of strings together with {\tt delim} separating them - e.g., passing the array (\char`\"{}John\char`\"{}, \char`\"{}Mary\char`\"{}, \char`\"{}Susan\char`\"{}) with {\tt delim == \char`\"{}, \char`\"{}} will return \char`\"{}John, Mary, Susan\char`\"{}.
+
+\begin{itemize}
+\item delim is the delimiter to place between the strings \item strings is an array of strings to join together \begin{Desc}
+\item[Returns:]a newly allocated string joining the strings together ({\bf must} be free'd). \end{Desc}
+\end{itemize}
+
+
+Definition at line 201 of file util.c.
+
+References g\_\-container\_\-get\_\-iter(), g\_\-container\_\-index(), g\_\-iterator\_\-has\-Next(), g\_\-iterator\_\-next(), GContainer::len, and lutil\_\-create\-String().
+
+Referenced by luau\_\-keywords\-String().\index{util.c@{util.c}!lutil_strToLower@{lutil\_\-strToLower}}
+\index{lutil_strToLower@{lutil\_\-strToLower}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void lutil\_\-str\-To\-Lower (char $\ast$ {\em str})}\label{util_8c_a11}
+
+
+Convert all upper case letters to lower case in a string. 
+
+
+
+Definition at line 401 of file util.c.
+
+Referenced by luau\_\-versioncmp().\index{util.c@{util.c}!lutil_strToUpper@{lutil\_\-strToUpper}}
+\index{lutil_strToUpper@{lutil\_\-strToUpper}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void lutil\_\-str\-To\-Upper (char $\ast$ {\em str})}\label{util_8c_a12}
+
+
+
+
+Definition at line 410 of file util.c.\index{util.c@{util.c}!lutil_uncompress@{lutil\_\-uncompress}}
+\index{lutil_uncompress@{lutil\_\-uncompress}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}GString$\ast$ lutil\_\-uncompress (GString $\ast$ {\em data}, GError $\ast$$\ast$ {\em err})}\label{util_8c_a15}
+
+
+
+
+Definition at line 450 of file util.c.
+
+References LUTIL\_\-BASE\_\-ERROR, and LUTIL\_\-BASE\_\-ERROR\_\-FAILED.
+
+Referenced by luau\_\-net\_\-query\-Server().\index{util.c@{util.c}!lutil_valistToString@{lutil\_\-valistToString}}
+\index{lutil_valistToString@{lutil\_\-valistToString}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ lutil\_\-valist\-To\-String (const char $\ast$ {\em template}, va\_\-list {\em args})}\label{util_8c_a7}
+
+
+Take a va\_\-list of what would be passed to a printf function and turn it into a newly allocated string. The resultant string {\bf must} be free'd. Used by {\bf lutil\_\-mprintf}{\rm (p.\,\pageref{util_8h_a14})}
+
+\begin{itemize}
+\item template is a printf template \item args is a list of args to past to vsnprintf \begin{Desc}
+\item[Returns:]a newly allocated string using the template ({\bf must} be free'd). \end{Desc}
+\end{itemize}
+
+
+Definition at line 285 of file util.c.
+
+References lutil\_\-create\-String().
+
+Referenced by lutil\_\-debug(), lutil\_\-error(), lutil\_\-error\_\-fatal(), and lutil\_\-mprintf().\index{util.c@{util.c}!lutil_vstrcreate@{lutil\_\-vstrcreate}}
+\index{lutil_vstrcreate@{lutil\_\-vstrcreate}!util.c@{util.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ lutil\_\-vstrcreate (const char $\ast$ {\em src1},  {\em ...})}\label{util_8c_a3}
+
+
+Append any number of strings together into one. 
+
+Take a variable list of strings and append them together into one new string.
+
+\begin{itemize}
+\item {\em src1\/} is the first string \begin{Desc}
+\item[Returns:]a newly allocated string concatenating them all together (must be {\tt free}'d) \end{Desc}
+\end{itemize}
+
+
+Definition at line 106 of file util.c.
+
+References ERROR.
+
+Referenced by luau\_\-download\-Update(), parse\-Package\-Attr\-Mirrors(), and parse\-Package\-Child\-Mirrors().

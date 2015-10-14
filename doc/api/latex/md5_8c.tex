@@ -1,0 +1,189 @@
+\section{md5.c File Reference}
+\label{md5_8c}\index{md5.c@{md5.c}}
+{\tt \#include $<$sys/types.h$>$}\par
+{\tt \#include $<$fcntl.h$>$}\par
+{\tt \#include $<$unistd.h$>$}\par
+{\tt \#include $<$errno.h$>$}\par
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include $<$stdlib.h$>$}\par
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include \char`\"{}md5.h\char`\"{}}\par
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define {\bf F1}(x, y, z)\ (z $^\wedge$ (x \& (y $^\wedge$ z)))
+\item 
+\#define {\bf F2}(x, y, z)\ F1(z, x, y)
+\item 
+\#define {\bf F3}(x, y, z)\ (x $^\wedge$ y $^\wedge$ z)
+\item 
+\#define {\bf F4}(x, y, z)\ (y $^\wedge$ (x $|$ $\sim$z))
+\item 
+\#define {\bf MD5STEP}(f, w, x, y, z, data, s)\ ( w += f(x, y, z) + data,  w = w$<$$<$s $|$ w$>$$>$(32-s),  w += x )
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void {\bf MD5Init} ({\bf MD5\_\-CTX} $\ast$context)
+\item 
+void {\bf MD5Update} ({\bf MD5\_\-CTX} $\ast$context, unsigned char const $\ast$buf, unsigned len)
+\item 
+void {\bf MD5Final} (unsigned char digest[MD5\_\-HASHBYTES], {\bf MD5\_\-CTX} $\ast$context)
+\item 
+void {\bf MD5Transform} (u\_\-int32\_\-t buf[4], u\_\-int32\_\-t const in[16])
+\item 
+char $\ast$ {\bf MD5End} ({\bf MD5\_\-CTX} $\ast$, char $\ast$)
+\item 
+void {\bf byte\-Reverse} (unsigned char $\ast$buf, unsigned longs)
+\item 
+char $\ast$ {\bf lutil\_\-md5\_\-file} (const char $\ast$filename, char $\ast$buf, GError $\ast$$\ast$err)
+\begin{CompactList}\small\item\em Compute an md5sum of the given file. \item\end{CompactList}\item 
+char $\ast$ {\bf lutil\_\-md5\_\-data} (const unsigned char $\ast$data, unsigned int len, char $\ast$buf, GError $\ast$$\ast$err)
+\begin{CompactList}\small\item\em Compute an md5sum of the given data. \item\end{CompactList}\item 
+void {\bf MD5Final} (unsigned char digest[16], {\bf MD5\_\-CTX} $\ast$ctx)
+\end{CompactItemize}
+
+
+\subsection{Define Documentation}
+\index{md5.c@{md5.c}!F1@{F1}}
+\index{F1@{F1}!md5.c@{md5.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define F1(x, y, z)\ (z $^\wedge$ (x \& (y $^\wedge$ z)))}\label{md5_8c_a0}
+
+
+
+
+Definition at line 271 of file md5.c.
+
+Referenced by MD5Transform().\index{md5.c@{md5.c}!F2@{F2}}
+\index{F2@{F2}!md5.c@{md5.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define F2(x, y, z)\ F1(z, x, y)}\label{md5_8c_a1}
+
+
+
+
+Definition at line 272 of file md5.c.
+
+Referenced by MD5Transform().\index{md5.c@{md5.c}!F3@{F3}}
+\index{F3@{F3}!md5.c@{md5.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define F3(x, y, z)\ (x $^\wedge$ y $^\wedge$ z)}\label{md5_8c_a2}
+
+
+
+
+Definition at line 273 of file md5.c.
+
+Referenced by MD5Transform().\index{md5.c@{md5.c}!F4@{F4}}
+\index{F4@{F4}!md5.c@{md5.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define F4(x, y, z)\ (y $^\wedge$ (x $|$ $\sim$z))}\label{md5_8c_a3}
+
+
+
+
+Definition at line 274 of file md5.c.
+
+Referenced by MD5Transform().\index{md5.c@{md5.c}!MD5STEP@{MD5STEP}}
+\index{MD5STEP@{MD5STEP}!md5.c@{md5.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define MD5STEP(f, w, x, y, z, data, s)\ ( w += f(x, y, z) + data,  w = w$<$$<$s $|$ w$>$$>$(32-s),  w += x )}\label{md5_8c_a4}
+
+
+
+
+Definition at line 277 of file md5.c.
+
+Referenced by MD5Transform().
+
+\subsection{Function Documentation}
+\index{md5.c@{md5.c}!byteReverse@{byteReverse}}
+\index{byteReverse@{byteReverse}!md5.c@{md5.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void byte\-Reverse (unsigned char $\ast$ {\em buf}, unsigned {\em longs})}\label{md5_8c_a10}
+
+
+
+
+Definition at line 80 of file md5.c.
+
+Referenced by MD5Final(), and MD5Update().\index{md5.c@{md5.c}!lutil_md5_data@{lutil\_\-md5\_\-data}}
+\index{lutil_md5_data@{lutil\_\-md5\_\-data}!md5.c@{md5.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ lutil\_\-md5\_\-data (const unsigned char $\ast$ {\em data}, unsigned int {\em len}, char $\ast$ {\em buf}, GError $\ast$$\ast$ {\em err})}\label{md5_8c_a12}
+
+
+Compute an md5sum of the given data. 
+
+
+
+Definition at line 124 of file md5.c.
+
+References MD5End(), MD5Init(), and MD5Update().\index{md5.c@{md5.c}!lutil_md5_file@{lutil\_\-md5\_\-file}}
+\index{lutil_md5_file@{lutil\_\-md5\_\-file}!md5.c@{md5.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ lutil\_\-md5\_\-file (const char $\ast$ {\em filename}, char $\ast$ {\em buf}, GError $\ast$$\ast$ {\em err})}\label{md5_8c_a11}
+
+
+Compute an md5sum of the given file. 
+
+
+
+Definition at line 96 of file md5.c.
+
+References LUTIL\_\-BASE\_\-ERROR, LUTIL\_\-BASE\_\-ERROR\_\-FAILED, MD5End(), MD5Init(), and MD5Update().
+
+Referenced by luau\_\-net\_\-download\-Update().\index{md5.c@{md5.c}!MD5End@{MD5End}}
+\index{MD5End@{MD5End}!md5.c@{md5.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ MD5End ({\bf MD5\_\-CTX} $\ast$, char $\ast$)\hspace{0.3cm}{\tt  [static]}}\label{md5_8c_a9}
+
+
+
+
+Definition at line 141 of file md5.c.
+
+References MD5\_\-HASHBYTES, and MD5Final().
+
+Referenced by lutil\_\-md5\_\-data(), and lutil\_\-md5\_\-file().\index{md5.c@{md5.c}!MD5Final@{MD5Final}}
+\index{MD5Final@{MD5Final}!md5.c@{md5.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void MD5Final (unsigned char {\em digest}[16], {\bf MD5\_\-CTX} $\ast$ {\em ctx})}\label{md5_8c_a13}
+
+
+
+
+Definition at line 227 of file md5.c.
+
+References MD5Context::bits, MD5Context::buf, byte\-Reverse(), MD5Context::in, and MD5Transform().
+
+Referenced by MD5End().\index{md5.c@{md5.c}!MD5Final@{MD5Final}}
+\index{MD5Final@{MD5Final}!md5.c@{md5.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void MD5Final (unsigned char {\em digest}[MD5\_\-HASHBYTES], {\bf MD5\_\-CTX} $\ast$ {\em context})\hspace{0.3cm}{\tt  [static]}}\label{md5_8c_a7}
+
+
+\index{md5.c@{md5.c}!MD5Init@{MD5Init}}
+\index{MD5Init@{MD5Init}!md5.c@{md5.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void MD5Init ({\bf MD5\_\-CTX} $\ast$ {\em context})\hspace{0.3cm}{\tt  [static]}}\label{md5_8c_a5}
+
+
+
+
+Definition at line 164 of file md5.c.
+
+References MD5Context::bits, and MD5Context::buf.
+
+Referenced by lutil\_\-md5\_\-data(), and lutil\_\-md5\_\-file().\index{md5.c@{md5.c}!MD5Transform@{MD5Transform}}
+\index{MD5Transform@{MD5Transform}!md5.c@{md5.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void MD5Transform (u\_\-int32\_\-t {\em buf}[4], u\_\-int32\_\-t const {\em in}[16])\hspace{0.3cm}{\tt  [static]}}\label{md5_8c_a8}
+
+
+
+
+Definition at line 285 of file md5.c.
+
+References F1, F2, F3, F4, and MD5STEP.
+
+Referenced by MD5Final(), and MD5Update().\index{md5.c@{md5.c}!MD5Update@{MD5Update}}
+\index{MD5Update@{MD5Update}!md5.c@{md5.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void MD5Update ({\bf MD5\_\-CTX} $\ast$ {\em context}, unsigned char const $\ast$ {\em buf}, unsigned {\em len})\hspace{0.3cm}{\tt  [static]}}\label{md5_8c_a6}
+
+
+
+
+Definition at line 179 of file md5.c.
+
+References MD5Context::bits, MD5Context::buf, byte\-Reverse(), MD5Context::in, and MD5Transform().
+
+Referenced by lutil\_\-md5\_\-data(), and lutil\_\-md5\_\-file().

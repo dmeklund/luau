@@ -1,0 +1,993 @@
+\section{libuau.c File Reference}
+\label{libuau_8c}\index{libuau.c@{libuau.c}}
+{\tt \#include $<$unistd.h$>$}\par
+{\tt \#include $<$sys/types.h$>$}\par
+{\tt \#include $<$sys/stat.h$>$}\par
+{\tt \#include $<$fcntl.h$>$}\par
+{\tt \#include $<$errno.h$>$}\par
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include $<$math.h$>$}\par
+{\tt \#include $<$ctype.h$>$}\par
+{\tt \#include $<$glib.h$>$}\par
+{\tt \#include \char`\"{}libuau.h\char`\"{}}\par
+{\tt \#include \char`\"{}network.h\char`\"{}}\par
+{\tt \#include \char`\"{}parseupdates.h\char`\"{}}\par
+{\tt \#include \char`\"{}error.h\char`\"{}}\par
+{\tt \#include \char`\"{}util.h\char`\"{}}\par
+{\tt \#include \char`\"{}install.h\char`\"{}}\par
+{\tt \#include \char`\"{}ftp.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int {\bf compare\-Alpha\-Numeric} (const char $\ast$v1, const char $\ast$v2)
+\item 
+void {\bf categorize\-Updates} ({\bf GContainer} $\ast${\bf updates}, const {\bf AProg\-Info} $\ast$prog\-Info)
+\item 
+void {\bf categorize\-Update} ({\bf AUpdate} $\ast$update, const {\bf AProg\-Info} $\ast$prog\-Info)
+\item 
+gboolean {\bf is\-Incompatible} ({\bf AUpdate} $\ast$update, const {\bf AProg\-Info} $\ast$prog\-Info)
+\item 
+gboolean {\bf is\-Old} ({\bf AUpdate} $\ast$update, const {\bf AProg\-Info} $\ast$prog\-Info)
+\item 
+gboolean {\bf luau\_\-get\-Prog\-Info\-From\-XML\_\-url} ({\bf AProg\-Info} $\ast$prog\-Info, const char $\ast$url, GError $\ast$$\ast$err)
+\begin{CompactList}\small\item\em Read in program information from an XML file at specified URL. \item\end{CompactList}\item 
+gboolean {\bf luau\_\-get\-Prog\-Info\-From\-XML\_\-data} ({\bf AProg\-Info} $\ast$prog\-Info, const char $\ast$data, GError $\ast$$\ast$err)
+\begin{CompactList}\small\item\em Read in program information from an XML file in memory. \item\end{CompactList}\item 
+gboolean {\bf luau\_\-get\-Update\-Info} ({\bf AUpdate} $\ast$update\-Info, const char $\ast$update\-ID, const {\bf AProg\-Info} $\ast$prog\-Info, GError $\ast$$\ast$err)
+\begin{CompactList}\small\item\em Retrieve update info (type, description, etc.) corresponding to the given ID (and program). \item\end{CompactList}\item 
+GList $\ast$ {\bf luau\_\-check\-For\-Updates} (const {\bf AProg\-Info} $\ast$info, GError $\ast$$\ast$err)
+\begin{CompactList}\small\item\em Retrieve any new updates for the specified program. \item\end{CompactList}\item 
+GList $\ast$ {\bf luau\_\-check\-For\-Updates\_\-url} (const char $\ast$url, GError $\ast$$\ast$err)
+\begin{CompactList}\small\item\em Retrieve all updates from the specified URL. \item\end{CompactList}\item 
+gboolean {\bf luau\_\-install\-Update} (const {\bf AProg\-Info} $\ast$info, const {\bf AUpdate} $\ast$new\-Update, const {\bf APkg\-Type} type, GError $\ast$$\ast$err)
+\begin{CompactList}\small\item\em Download and install an update of type {\tt type}. \item\end{CompactList}\item 
+char $\ast$ {\bf luau\_\-download\-Update} (const {\bf AProg\-Info} $\ast$info, const {\bf AUpdate} $\ast$new\-Update, const {\bf APkg\-Type} type, const char $\ast$download\-To, GError $\ast$$\ast$err)
+\begin{CompactList}\small\item\em Download but do not install an update of type {\tt type} to {\tt filename}. \item\end{CompactList}\item 
+gboolean {\bf luau\_\-install\-Package} (const char $\ast$filename, const {\bf APkg\-Type} type, GError $\ast$$\ast$err)
+\begin{CompactList}\small\item\em Install an already downloaded package. \item\end{CompactList}\item 
+void {\bf luau\_\-register\-Prompt\-Func} ({\bf APrompt\-Func} prompt\-Func)
+\begin{CompactList}\small\item\em Set a new function for prompting the user for input with. \item\end{CompactList}\item 
+void {\bf luau\_\-register\-Progress\-Callback} ({\bf AProgress\-Callback} callback)
+\begin{CompactList}\small\item\em Set a new function to callback (in order to show download progress) when downloading. \item\end{CompactList}\item 
+void {\bf luau\_\-reset\-Prompt\-Func} (void)
+\begin{CompactList}\small\item\em Reset the prompting function to the default function. \item\end{CompactList}\item 
+void {\bf luau\_\-reset\-Progress\-Callback} (void)
+\begin{CompactList}\small\item\em Reset the download callback function to the default function. \item\end{CompactList}\item 
+{\bf APackage} $\ast$ {\bf luau\_\-get\-Update\-Package} (const {\bf AUpdate} $\ast$update, {\bf APkg\-Type} pkg\-Type, GError $\ast$$\ast$err)
+\begin{CompactList}\small\item\em Find the package of type {\tt pkg\-Type} in {\tt update}. \item\end{CompactList}\item 
+char $\ast$ {\bf luau\_\-date\-String} (const {\bf ADate} $\ast$date)
+\begin{CompactList}\small\item\em Convert an {\bf ADate}{\rm (p.\,\pageref{structADate})} struct into a string. \item\end{CompactList}\item 
+gboolean {\bf luau\_\-parse\-Date} ({\bf ADate} $\ast$date, const char $\ast$string)
+\begin{CompactList}\small\item\em Convert a date string (\char`\"{}MM/DD/YYYY\char`\"{}) into an {\bf ADate}{\rm (p.\,\pageref{structADate})} struct. \item\end{CompactList}\item 
+int {\bf luau\_\-datecmp} ({\bf ADate} $\ast$d1, {\bf ADate} $\ast$d2)
+\begin{CompactList}\small\item\em Compare two dates (works like {\tt strcmp} but for ADate's). \item\end{CompactList}\item 
+int {\bf luau\_\-versioncmp} (const char $\ast$required, const char $\ast$current)
+\begin{CompactList}\small\item\em Compare two versions (works like {\tt strcmp} but for version strings). \item\end{CompactList}\item 
+gboolean {\bf luau\_\-is\-Of\-Type} ({\bf APkg\-Type} query, {\bf APkg\-Type} type)
+\begin{CompactList}\small\item\em Check if package type {\tt type} is included in package aggregate {\tt query}. \item\end{CompactList}\item 
+char $\ast$ {\bf luau\_\-mult\-Package\-Type\-String} ({\bf APkg\-Type} types)
+\begin{CompactList}\small\item\em Convert an APkg\-Type (of many types) into a string. \item\end{CompactList}\item 
+const char $\ast$ {\bf luau\_\-package\-Type\-String} ({\bf APkg\-Type} type)
+\begin{CompactList}\small\item\em Convert an APkg\-Type (of one type) into a (constant) string. \item\end{CompactList}\item 
+{\bf APkg\-Type} {\bf luau\_\-parse\-Pkg\-Type} (const char $\ast$type\-String)
+\begin{CompactList}\small\item\em Convert a package type string into an APkg\-Type. \item\end{CompactList}\item 
+char $\ast$ {\bf luau\_\-get\-Package\-URL} ({\bf APackage} $\ast$pkg\-Info, GError $\ast$$\ast$err)
+\item 
+GSList $\ast$ {\bf luau\_\-package\-Type\-List} ({\bf APkg\-Type} types)
+\begin{CompactList}\small\item\em Convert an APkg\-Type into a list of APkg\-Type's. \item\end{CompactList}\item 
+const char $\ast$ {\bf luau\_\-update\-Type\-String} ({\bf AUpdate\-Type} type)
+\begin{CompactList}\small\item\em Convert an AUpdate\-Type into a string. \item\end{CompactList}\item 
+char $\ast$ {\bf luau\_\-prog\-Info\-String} (const {\bf AProg\-Info} $\ast$info)
+\begin{CompactList}\small\item\em Convert an {\bf AProg\-Info}{\rm (p.\,\pageref{structAProgInfo})} ptr into a string. \item\end{CompactList}\item 
+char $\ast$ {\bf luau\_\-keywords\-String} (const GPtr\-Array $\ast$keywords)
+\begin{CompactList}\small\item\em Convert an array of keywords into a string. \item\end{CompactList}\item 
+void {\bf luau\_\-set\-Keyword} (GPtr\-Array $\ast$keywords, const char $\ast$new\-Keyword)
+\begin{CompactList}\small\item\em Sets a keyword. \item\end{CompactList}\item 
+gboolean {\bf luau\_\-unset\-Keyword} (GPtr\-Array $\ast$keywords, const char $\ast$old\-Keyword)
+\begin{CompactList}\small\item\em Unsets a keyword. \item\end{CompactList}\item 
+gboolean {\bf luau\_\-check\-Keyword} (const GPtr\-Array $\ast$keywords, const char $\ast$needle)
+\begin{CompactList}\small\item\em Checks to see if a keyword is set. \item\end{CompactList}\item 
+gboolean {\bf luau\_\-is\-Incompatible} ({\bf AUpdate} $\ast$update)
+\begin{CompactList}\small\item\em See if an update has been marked as \char`\"{}Incompatible\char`\"{}. \item\end{CompactList}\item 
+gboolean {\bf luau\_\-is\-Hidden} ({\bf AUpdate} $\ast$update)
+\begin{CompactList}\small\item\em See if an update has been marked as \char`\"{}Hidden\char`\"{}. \item\end{CompactList}\item 
+gboolean {\bf luau\_\-is\-Old} ({\bf AUpdate} $\ast$update)
+\begin{CompactList}\small\item\em See if an update has been marked as \char`\"{}Old\char`\"{}. \item\end{CompactList}\item 
+gboolean {\bf luau\_\-is\-Visible} ({\bf AUpdate} $\ast$update)
+\begin{CompactList}\small\item\em See if an updates is visible (has not been marked as old, hidden, or incompatible). \item\end{CompactList}\item 
+gboolean {\bf luau\_\-satisfies\-Interface} (const {\bf AInterface} $\ast$wanted, const {\bf AInterface} $\ast$needed)
+\begin{CompactList}\small\item\em Check if a given interface matches an interface that is needed. \item\end{CompactList}\item 
+gboolean {\bf luau\_\-satisfies\-Quant} (const {\bf AQuantifier} $\ast$needed, const {\bf AProg\-Info} $\ast$installed)
+\item 
+{\bf AQuant\-Data\-Type} {\bf luau\_\-parse\-Quant\-Data\-Type} (const char $\ast$str)
+\item 
+gboolean {\bf luau\_\-parse\-Interface} ({\bf AInterface} $\ast$interface, const char $\ast$int\-Str)
+\begin{CompactList}\small\item\em Convert an interface string (\char`\"{}x.y\char`\"{}) into an {\bf AInterface}{\rm (p.\,\pageref{structAInterface})}. \item\end{CompactList}\item 
+char $\ast$ {\bf luau\_\-interface\-String} (const {\bf AInterface} $\ast$interface)
+\begin{CompactList}\small\item\em Convert an {\bf AInterface}{\rm (p.\,\pageref{structAInterface})} into a string. \item\end{CompactList}\item 
+void {\bf luau\_\-copy\-Update} ({\bf AUpdate} $\ast$dest, const {\bf AUpdate} $\ast$src)
+\begin{CompactList}\small\item\em Copy an {\bf AUpdate}{\rm (p.\,\pageref{structAUpdate})} struct. \item\end{CompactList}\item 
+void {\bf luau\_\-copy\-Package} ({\bf APackage} $\ast$dest, const {\bf APackage} $\ast$src)
+\begin{CompactList}\small\item\em Copy an {\bf APackage}{\rm (p.\,\pageref{structAPackage})} struct. \item\end{CompactList}\item 
+void {\bf luau\_\-copy\-Prog\-Info} ({\bf AProg\-Info} $\ast$dest, const {\bf AProg\-Info} $\ast$src)
+\begin{CompactList}\small\item\em Copy an {\bf AProg\-Info}{\rm (p.\,\pageref{structAProgInfo})} struct. \item\end{CompactList}\item 
+void {\bf luau\_\-copy\-Interface} ({\bf AInterface} $\ast$dest, const {\bf AInterface} $\ast$src)
+\begin{CompactList}\small\item\em Copy an AInterfacestruct. \item\end{CompactList}\item 
+void {\bf luau\_\-copy\-Date} ({\bf ADate} $\ast$dest, const {\bf ADate} $\ast$src)
+\begin{CompactList}\small\item\em Copy an {\bf ADate}{\rm (p.\,\pageref{structADate})} struct. \item\end{CompactList}\item 
+void {\bf luau\_\-copy\-Quants} (GPtr\-Array $\ast$dest, const GPtr\-Array $\ast$src)
+\begin{CompactList}\small\item\em Copy an array of AQuantifiers. \item\end{CompactList}\item 
+void {\bf luau\_\-copy\-Quant} ({\bf AQuantifier} $\ast$dest, const {\bf AQuantifier} $\ast$src)
+\begin{CompactList}\small\item\em Copy an {\bf AQuantifier}{\rm (p.\,\pageref{structAQuantifier})} struct. \item\end{CompactList}\item 
+void {\bf luau\_\-free\-Update\-List} (GList $\ast${\bf updates})
+\begin{CompactList}\small\item\em Free an array of AUpdate's. \item\end{CompactList}\item 
+void {\bf luau\_\-free\-Prog\-Info} ({\bf AProg\-Info} $\ast$ptr)
+\begin{CompactList}\small\item\em Free an {\bf AProg\-Info}{\rm (p.\,\pageref{structAProgInfo})} struct pointer. \item\end{CompactList}\item 
+void {\bf luau\_\-free\-Update\-Info} ({\bf AUpdate} $\ast$ptr)
+\begin{CompactList}\small\item\em Free an {\bf AUpdate}{\rm (p.\,\pageref{structAUpdate})} struct pointer. \item\end{CompactList}\item 
+void {\bf luau\_\-free\-Pkg\-Info} ({\bf APackage} $\ast$ptr)
+\begin{CompactList}\small\item\em Free an {\bf APackage}{\rm (p.\,\pageref{structAPackage})} struct pointer. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Function Documentation}
+\index{libuau.c@{libuau.c}!categorizeUpdate@{categorizeUpdate}}
+\index{categorizeUpdate@{categorizeUpdate}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void categorize\-Update ({\bf AUpdate} $\ast$ {\em update}, const {\bf AProg\-Info} $\ast$ {\em prog\-Info})\hspace{0.3cm}{\tt  [static]}}\label{libuau_8c_a2}
+
+
+
+
+Definition at line 1629 of file libuau.c.
+
+Referenced by luau\_\-get\-Update\-Info().\index{libuau.c@{libuau.c}!categorizeUpdates@{categorizeUpdates}}
+\index{categorizeUpdates@{categorizeUpdates}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void categorize\-Updates ({\bf GContainer} $\ast$ {\em updates}, const {\bf AProg\-Info} $\ast$ {\em prog\-Info})\hspace{0.3cm}{\tt  [static]}}\label{libuau_8c_a1}
+
+
+Take an updates array and apply the appropriate internal keywords (\char`\"{}\_\-hidden\char`\"{} and/or \char`\"{}\_\-incompatible\char`\"{}) to them.
+
+\begin{itemize}
+\item updates is the updates array to categorize \item prog\-Info describes the program the updates are for \end{itemize}
+
+
+Definition at line 1612 of file libuau.c.
+
+References ERROR.
+
+Referenced by luau\_\-check\-For\-Updates().\index{libuau.c@{libuau.c}!compareAlphaNumeric@{compareAlphaNumeric}}
+\index{compareAlphaNumeric@{compareAlphaNumeric}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int compare\-Alpha\-Numeric (const char $\ast$ {\em v1}, const char $\ast$ {\em v2})\hspace{0.3cm}{\tt  [static]}}\label{libuau_8c_a0}
+
+
+
+
+Definition at line 1528 of file libuau.c.
+
+Referenced by luau\_\-versioncmp().\index{libuau.c@{libuau.c}!isIncompatible@{isIncompatible}}
+\index{isIncompatible@{isIncompatible}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean is\-Incompatible ({\bf AUpdate} $\ast$ {\em update}, const {\bf AProg\-Info} $\ast$ {\em prog\-Info})\hspace{0.3cm}{\tt  [static]}}\label{libuau_8c_a3}
+
+
+Check if an update for the specified program is incompatible with the program in question.
+
+\begin{itemize}
+\item update is the update to check \item prog\-Info is the program version to check against \end{itemize}
+
+
+Definition at line 1644 of file libuau.c.
+
+References luau\_\-satisfies\-Quant(), and AUpdate::quantifiers.\index{libuau.c@{libuau.c}!isOld@{isOld}}
+\index{isOld@{isOld}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean is\-Old ({\bf AUpdate} $\ast$ {\em update}, const {\bf AProg\-Info} $\ast$ {\em prog\-Info})\hspace{0.3cm}{\tt  [static]}}\label{libuau_8c_a4}
+
+
+
+
+Definition at line 1666 of file libuau.c.
+
+References luau\_\-versioncmp(), AUpdate::new\-Version, and AProg\-Info::version.\index{libuau.c@{libuau.c}!luau_checkForUpdates@{luau\_\-checkForUpdates}}
+\index{luau_checkForUpdates@{luau\_\-checkForUpdates}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}GList$\ast$ luau\_\-check\-For\-Updates (const {\bf AProg\-Info} $\ast$ {\em info}, GError $\ast$$\ast$ {\em err})}\label{libuau_8c_a8}
+
+
+Retrieve any new updates for the specified program. 
+
+Check for updates for the given ID by contacting the server for the program and downloading and parsing the updates file. Returned GPtr\-Array {\bf must} be free'd (use luau\_\-free\-Update\-Array).
+
+\begin{itemize}
+\item info describes the program we want to check updates for. \begin{Desc}
+\item[Returns:]an array of updates for the program in question (must be free'd).\end{Desc}
+\begin{Desc}
+\item[See also:]luau\_\-free\-Update\-Array \end{Desc}
+\end{itemize}
+
+
+Definition at line 161 of file libuau.c.
+
+References categorize\-Updates(), DBUGOUT, g\_\-container\_\-free(), AProg\-Info::id, luau\_\-net\_\-query\-Server(), and AProg\-Info::url.
+
+Referenced by luau\_\-check\-For\-Updates\_\-url().\index{libuau.c@{libuau.c}!luau_checkForUpdates_url@{luau\_\-checkForUpdates\_\-url}}
+\index{luau_checkForUpdates_url@{luau\_\-checkForUpdates\_\-url}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}GList$\ast$ luau\_\-check\-For\-Updates\_\-url (const char $\ast$ {\em url}, GError $\ast$$\ast$ {\em err})}\label{libuau_8c_a9}
+
+
+Retrieve all updates from the specified URL. 
+
+
+
+Definition at line 182 of file libuau.c.
+
+References AProg\-Info::id, luau\_\-check\-For\-Updates(), and AProg\-Info::url.\index{libuau.c@{libuau.c}!luau_checkKeyword@{luau\_\-checkKeyword}}
+\index{luau_checkKeyword@{luau\_\-checkKeyword}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-check\-Keyword (const GPtr\-Array $\ast$ {\em keywords}, const char $\ast$ {\em needle})}\label{libuau_8c_a33}
+
+
+Checks to see if a keyword is set. 
+
+See if a keyword exists in a keyword array.
+
+\begin{itemize}
+\item keywords is the array to check \item needle is the keyword to look for \begin{Desc}
+\item[Returns:]if it exists in the array \end{Desc}
+\end{itemize}
+
+
+Definition at line 1003 of file libuau.c.
+
+References g\_\-container\_\-free(), g\_\-container\_\-new\_\-from\_\-data(), GCONT\_\-PTR\_\-ARRAY, and lutil\_\-find\-String().
+
+Referenced by luau\_\-is\-Hidden(), luau\_\-is\-Incompatible(), luau\_\-is\-Old(), and luau\_\-satisfies\-Quant().\index{libuau.c@{libuau.c}!luau_copyDate@{luau\_\-copyDate}}
+\index{luau_copyDate@{luau\_\-copyDate}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void luau\_\-copy\-Date ({\bf ADate} $\ast$ {\em dest}, const {\bf ADate} $\ast$ {\em src})}\label{libuau_8c_a47}
+
+
+Copy an {\bf ADate}{\rm (p.\,\pageref{structADate})} struct. 
+
+Copy an {\bf ADate}{\rm (p.\,\pageref{structADate})} {\tt src} to {\tt dest}. If src or dest is NULL, the operation will be aborted.
+
+\begin{itemize}
+\item dest is the {\bf ADate}{\rm (p.\,\pageref{structADate})} struct to copy {\em into\/}. \item src is the {\bf ADate}{\rm (p.\,\pageref{structADate})} struct to copy {\em from\/}. \end{itemize}
+
+
+Definition at line 1359 of file libuau.c.
+
+References ADate::day, DBUGOUT, ADate::month, and ADate::year.
+
+Referenced by luau\_\-copy\-Prog\-Info(), luau\_\-copy\-Quant(), and luau\_\-copy\-Update().\index{libuau.c@{libuau.c}!luau_copyInterface@{luau\_\-copyInterface}}
+\index{luau_copyInterface@{luau\_\-copyInterface}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void luau\_\-copy\-Interface ({\bf AInterface} $\ast$ {\em dest}, const {\bf AInterface} $\ast$ {\em src})}\label{libuau_8c_a46}
+
+
+Copy an AInterfacestruct. 
+
+Copy an {\bf AInterface}{\rm (p.\,\pageref{structAInterface})} {\tt src} to {\tt dest}. If src or dest is NULL, the operation will be aborted.
+
+\begin{itemize}
+\item dest is the {\bf AInterface}{\rm (p.\,\pageref{structAInterface})} struct to copy {\em into\/}. \item src is the {\bf AInterface}{\rm (p.\,\pageref{structAInterface})} struct to copy {\em from\/}. \end{itemize}
+
+
+Definition at line 1343 of file libuau.c.
+
+References DBUGOUT, AInterface::major, and AInterface::minor.
+
+Referenced by luau\_\-copy\-Prog\-Info(), and luau\_\-copy\-Update().\index{libuau.c@{libuau.c}!luau_copyPackage@{luau\_\-copyPackage}}
+\index{luau_copyPackage@{luau\_\-copyPackage}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void luau\_\-copy\-Package ({\bf APackage} $\ast$ {\em dest}, const {\bf APackage} $\ast$ {\em src})}\label{libuau_8c_a44}
+
+
+Copy an {\bf APackage}{\rm (p.\,\pageref{structAPackage})} struct. 
+
+
+
+Definition at line 1268 of file libuau.c.
+
+References DBUGOUT, APackage::md5sum, APackage::mirrors, APackage::size, and APackage::type.
+
+Referenced by luau\_\-copy\-Update().\index{libuau.c@{libuau.c}!luau_copyProgInfo@{luau\_\-copyProgInfo}}
+\index{luau_copyProgInfo@{luau\_\-copyProgInfo}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void luau\_\-copy\-Prog\-Info ({\bf AProg\-Info} $\ast$ {\em dest}, const {\bf AProg\-Info} $\ast$ {\em src})}\label{libuau_8c_a45}
+
+
+Copy an {\bf AProg\-Info}{\rm (p.\,\pageref{structAProgInfo})} struct. 
+
+Copy an {\bf AProg\-Info}{\rm (p.\,\pageref{structAProgInfo})} {\tt src} to {\tt dest}. If src or dest is NULL, the operation will be aborted.
+
+\begin{itemize}
+\item dest is the {\bf AProg\-Info}{\rm (p.\,\pageref{structAProgInfo})} struct to copy {\em into\/}. \item src is the {\bf AProg\-Info}{\rm (p.\,\pageref{structAProgInfo})} struct to copy {\em from\/}. \end{itemize}
+
+
+Definition at line 1303 of file libuau.c.
+
+References AProg\-Info::date, DBUGOUT, AProg\-Info::desc, AProg\-Info::fullname, g\_\-container\_\-copy(), g\_\-container\_\-free(), g\_\-container\_\-new\_\-from\_\-data(), GCONT\_\-PTR\_\-ARRAY, AProg\-Info::id, AProg\-Info::interface, AProg\-Info::keywords, luau\_\-copy\-Date(), luau\_\-copy\-Interface(), AProg\-Info::shortname, AProg\-Info::url, and AProg\-Info::version.\index{libuau.c@{libuau.c}!luau_copyQuant@{luau\_\-copyQuant}}
+\index{luau_copyQuant@{luau\_\-copyQuant}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void luau\_\-copy\-Quant ({\bf AQuantifier} $\ast$ {\em dest}, const {\bf AQuantifier} $\ast$ {\em src})}\label{libuau_8c_a49}
+
+
+Copy an {\bf AQuantifier}{\rm (p.\,\pageref{structAQuantifier})} struct. 
+
+
+
+Definition at line 1382 of file libuau.c.
+
+References AQuantifier::data, AQuantifier::dtype, ERROR, luau\_\-copy\-Date(), LUAU\_\-QUANT\_\-DATA\_\-DATE, LUAU\_\-QUANT\_\-DATA\_\-INTERFACE, LUAU\_\-QUANT\_\-DATA\_\-KEYWORD, LUAU\_\-QUANT\_\-DATA\_\-VERSION, and AQuantifier::qtype.
+
+Referenced by luau\_\-copy\-Quants().\index{libuau.c@{libuau.c}!luau_copyQuants@{luau\_\-copyQuants}}
+\index{luau_copyQuants@{luau\_\-copyQuants}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void luau\_\-copy\-Quants (GPtr\-Array $\ast$ {\em dest}, const GPtr\-Array $\ast$ {\em src})}\label{libuau_8c_a48}
+
+
+Copy an array of AQuantifiers. 
+
+
+
+Definition at line 1370 of file libuau.c.
+
+References luau\_\-copy\-Quant().
+
+Referenced by luau\_\-copy\-Update().\index{libuau.c@{libuau.c}!luau_copyUpdate@{luau\_\-copyUpdate}}
+\index{luau_copyUpdate@{luau\_\-copyUpdate}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void luau\_\-copy\-Update ({\bf AUpdate} $\ast$ {\em dest}, const {\bf AUpdate} $\ast$ {\em src})}\label{libuau_8c_a43}
+
+
+Copy an {\bf AUpdate}{\rm (p.\,\pageref{structAUpdate})} struct. 
+
+Copy an {\bf AUpdate}{\rm (p.\,\pageref{structAUpdate})} {\tt src} to {\tt dest}. If src or dest is NULL, the operation will be aborted.
+
+\begin{itemize}
+\item dest is the {\bf AUpdate}{\rm (p.\,\pageref{structAUpdate})} struct to copy {\em into\/}. \item src is the {\bf AUpdate}{\rm (p.\,\pageref{structAUpdate})} struct to copy {\em from\/}. \end{itemize}
+
+
+Definition at line 1201 of file libuau.c.
+
+References AUpdate::available\-Formats, AUpdate::date, DBUGOUT, AUpdate::full\-Desc, g\_\-container\_\-copy(), g\_\-container\_\-free(), g\_\-container\_\-new\_\-from\_\-data(), GCONT\_\-PTR\_\-ARRAY, AUpdate::id, AUpdate::interface, AUpdate::keywords, luau\_\-copy\-Date(), luau\_\-copy\-Interface(), luau\_\-copy\-Package(), luau\_\-copy\-Quants(), AUpdate::new\-URL, AUpdate::new\-Version, AUpdate::packages, AUpdate::quantifiers, AUpdate::short\-Desc, and AUpdate::type.
+
+Referenced by luau\_\-get\-Update\-Info().\index{libuau.c@{libuau.c}!luau_datecmp@{luau\_\-datecmp}}
+\index{luau_datecmp@{luau\_\-datecmp}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int luau\_\-datecmp ({\bf ADate} $\ast$ {\em d1}, {\bf ADate} $\ast$ {\em d2})}\label{libuau_8c_a20}
+
+
+Compare two dates (works like {\tt strcmp} but for ADate's). 
+
+Compare two dates and return an integer accordingly (in style of {\tt strcmp}).
+
+\begin{itemize}
+\item d1 is the first date \item d2 is the date to compare {\tt d1} with \begin{Desc}
+\item[Returns:]\begin{itemize}
+\item -1 if d1 is earlier than d2,\item 0 if d1 is the same as d2, or\item +1 if d1 is later than d2. \end{itemize}
+\end{Desc}
+\end{itemize}
+
+
+Definition at line 599 of file libuau.c.
+
+References ADate::day, lutil\_\-intcmp(), ADate::month, and ADate::year.
+
+Referenced by luau\_\-satisfies\-Quant().\index{libuau.c@{libuau.c}!luau_dateString@{luau\_\-dateString}}
+\index{luau_dateString@{luau\_\-dateString}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ luau\_\-date\-String (const {\bf ADate} $\ast$ {\em date})}\label{libuau_8c_a18}
+
+
+Convert an {\bf ADate}{\rm (p.\,\pageref{structADate})} struct into a string. 
+
+Convert an {\bf ADate}{\rm (p.\,\pageref{structADate})} into a string (\char`\"{}YYYY-MM-DD\char`\"{}). Returns \char`\"{}(null)\char`\"{} if {\tt date} == NULL. Returned string {\bf must} be free'd.
+
+\begin{itemize}
+\item date is the date to convert into a string \begin{Desc}
+\item[Returns:]a string representing the date - {\bf must} be free'd. \end{Desc}
+\end{itemize}
+
+
+Definition at line 488 of file libuau.c.
+
+References ADate::day, lutil\_\-mprintf(), ADate::month, and ADate::year.
+
+Referenced by luau\_\-prog\-Info\-String().\index{libuau.c@{libuau.c}!luau_downloadUpdate@{luau\_\-downloadUpdate}}
+\index{luau_downloadUpdate@{luau\_\-downloadUpdate}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ luau\_\-download\-Update (const {\bf AProg\-Info} $\ast$ {\em info}, const {\bf AUpdate} $\ast$ {\em new\-Update}, const {\bf APkg\-Type} {\em type}, const char $\ast$ {\em download\-To}, GError $\ast$$\ast$ {\em err})}\label{libuau_8c_a11}
+
+
+Download but do not install an update of type {\tt type} to {\tt filename}. 
+
+Download an update to the specified location. Returned string {\bf must} be examined and {\bf must} be free'd. Do not assume that the update was downloaded exactly to {\tt download\-To}.
+
+\begin{itemize}
+\item info describes the program we want to download an update for. \item new\-Update describes the update we want to download. \item type is which kind of update (eg. RPM, DEB, ...) we want to download \item download\-To specifies where we want to download this update to. If a directory is specified, it will be downloaded to that directory with the original filename. \begin{Desc}
+\item[Returns:]where this update was actually downloaded (should be == download\-To -unless- download\-To is a directory) ({\bf must} be free'd), or NULL if the operation was unsuccessful.\end{Desc}
+\begin{Desc}
+\item[See also:]{\bf luau\_\-install\-Package}{\rm (p.\,\pageref{libuau_8h_a57})} \end{Desc}
+\end{itemize}
+
+
+Definition at line 246 of file libuau.c.
+
+References DBUGOUT, LUAU\_\-BASE\_\-ERROR, LUAU\_\-BASE\_\-ERROR\_\-ABORTED, LUAU\_\-BASE\_\-ERROR\_\-INVALID\_\-ARG, LUAU\_\-BASE\_\-ERROR\_\-PERMS, luau\_\-get\-Package\-URL(), luau\_\-get\-Update\-Package(), luau\_\-net\_\-download\-Update(), lutil\_\-error\_\-prompt(), and lutil\_\-vstrcreate().
+
+Referenced by luau\_\-install\-Update().\index{libuau.c@{libuau.c}!luau_freePkgInfo@{luau\_\-freePkgInfo}}
+\index{luau_freePkgInfo@{luau\_\-freePkgInfo}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void luau\_\-free\-Pkg\-Info ({\bf APackage} $\ast$ {\em ptr})}\label{libuau_8c_a53}
+
+
+Free an {\bf APackage}{\rm (p.\,\pageref{structAPackage})} struct pointer. 
+
+Free an {\bf APackage}{\rm (p.\,\pageref{structAPackage})} struct.
+
+\begin{itemize}
+\item ptr is the struct to free. \end{itemize}
+
+
+Definition at line 1503 of file libuau.c.
+
+References APackage::mirrors.
+
+Referenced by luau\_\-free\-Update\-Info().\index{libuau.c@{libuau.c}!luau_freeProgInfo@{luau\_\-freeProgInfo}}
+\index{luau_freeProgInfo@{luau\_\-freeProgInfo}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void luau\_\-free\-Prog\-Info ({\bf AProg\-Info} $\ast$ {\em ptr})}\label{libuau_8c_a51}
+
+
+Free an {\bf AProg\-Info}{\rm (p.\,\pageref{structAProgInfo})} struct pointer. 
+
+Free an {\bf AProg\-Info}{\rm (p.\,\pageref{structAProgInfo})} struct.
+
+\begin{itemize}
+\item ptr is the struct to free \end{itemize}
+
+
+Definition at line 1431 of file libuau.c.
+
+References AProg\-Info::date, AProg\-Info::desc, AProg\-Info::display\-Version, AProg\-Info::fullname, AProg\-Info::id, AProg\-Info::keywords, nnull\_\-g\_\-free, AProg\-Info::shortname, AProg\-Info::url, and AProg\-Info::version.\index{libuau.c@{libuau.c}!luau_freeUpdateInfo@{luau\_\-freeUpdateInfo}}
+\index{luau_freeUpdateInfo@{luau\_\-freeUpdateInfo}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void luau\_\-free\-Update\-Info ({\bf AUpdate} $\ast$ {\em ptr})}\label{libuau_8c_a52}
+
+
+Free an {\bf AUpdate}{\rm (p.\,\pageref{structAUpdate})} struct pointer. 
+
+Free an {\bf AUpdate}{\rm (p.\,\pageref{structAUpdate})} struct
+
+\begin{itemize}
+\item ptr is the struct to free \end{itemize}
+
+
+Definition at line 1458 of file libuau.c.
+
+References AQuantifier::data, AUpdate::date, AUpdate::full\-Desc, AUpdate::id, AUpdate::keywords, luau\_\-free\-Pkg\-Info(), AUpdate::new\-URL, AUpdate::new\-Version, nnull\_\-g\_\-free, AUpdate::packages, AUpdate::quantifiers, and AUpdate::short\-Desc.
+
+Referenced by luau\_\-free\-Update\-List().\index{libuau.c@{libuau.c}!luau_freeUpdateList@{luau\_\-freeUpdateList}}
+\index{luau_freeUpdateList@{luau\_\-freeUpdateList}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void luau\_\-free\-Update\-List (GList $\ast$ {\em updates})}\label{libuau_8c_a50}
+
+
+Free an array of AUpdate's. 
+
+Free an update list, as returned by {\bf luau\_\-check\-For\-Updates}{\rm (p.\,\pageref{libuau_8h_a53})}
+
+\begin{itemize}
+\item updates is the updates array to free \end{itemize}
+
+
+Definition at line 1412 of file libuau.c.
+
+References luau\_\-free\-Update\-Info().
+
+Referenced by luau\_\-get\-Update\-Info().\index{libuau.c@{libuau.c}!luau_getPackageURL@{luau\_\-getPackageURL}}
+\index{luau_getPackageURL@{luau\_\-getPackageURL}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ luau\_\-get\-Package\-URL ({\bf APackage} $\ast$ {\em pkg\-Info}, GError $\ast$$\ast$ {\em err})}\label{libuau_8c_a26}
+
+
+
+
+Definition at line 834 of file libuau.c.
+
+References DBUGOUT, LUAU\_\-BASE\_\-ERROR, LUAU\_\-BASE\_\-ERROR\_\-INVALID\_\-ARG, and APackage::mirrors.
+
+Referenced by luau\_\-download\-Update(), and luau\_\-net\_\-download\-Update().\index{libuau.c@{libuau.c}!luau_getProgInfoFromXML_data@{luau\_\-getProgInfoFromXML\_\-data}}
+\index{luau_getProgInfoFromXML_data@{luau\_\-getProgInfoFromXML\_\-data}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-get\-Prog\-Info\-From\-XML\_\-data ({\bf AProg\-Info} $\ast$ {\em prog\-Info}, const char $\ast$ {\em data}, GError $\ast$$\ast$ {\em err})}\label{libuau_8c_a6}
+
+
+Read in program information from an XML file in memory. 
+
+
+
+Definition at line 82 of file libuau.c.
+
+References luau\_\-parse\-XML\_\-prog\-Info().\index{libuau.c@{libuau.c}!luau_getProgInfoFromXML_url@{luau\_\-getProgInfoFromXML\_\-url}}
+\index{luau_getProgInfoFromXML_url@{luau\_\-getProgInfoFromXML\_\-url}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-get\-Prog\-Info\-From\-XML\_\-url ({\bf AProg\-Info} $\ast$ {\em prog\-Info}, const char $\ast$ {\em url}, GError $\ast$$\ast$ {\em err})}\label{libuau_8c_a5}
+
+
+Read in program information from an XML file at specified URL. 
+
+
+
+Definition at line 60 of file libuau.c.
+
+References luau\_\-parse\-XML\_\-prog\-Info(), and lutil\_\-ftp\_\-get\-URL().\index{libuau.c@{libuau.c}!luau_getUpdateInfo@{luau\_\-getUpdateInfo}}
+\index{luau_getUpdateInfo@{luau\_\-getUpdateInfo}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-get\-Update\-Info ({\bf AUpdate} $\ast$ {\em update\-Info}, const char $\ast$ {\em update\-ID}, const {\bf AProg\-Info} $\ast$ {\em prog\-Info}, GError $\ast$$\ast$ {\em err})}\label{libuau_8c_a7}
+
+
+Retrieve update info (type, description, etc.) corresponding to the given ID (and program). 
+
+Retrieve information for update {\tt update\-ID} for program described by {\tt prog\-Info}. Contacts server for program in question to retrieve all updates and then extracts the one matching {\tt update\-ID}. Use {\bf luau\_\-free\-Update\-Info}{\rm (p.\,\pageref{libuau_8h_a97})} to free the data associated with {\tt update\-Info} 
+
+\begin{itemize}
+\item update\-Info is an {\bf AUpdate}{\rm (p.\,\pageref{structAUpdate})} struct pointer where the data will be stored \item update\-ID is the ID for the update wanted. \item prog\-Info describes the program for which we're looking up an update. \begin{Desc}
+\item[Returns:]whether the operation was successful\end{Desc}
+\begin{Desc}
+\item[See also:]{\bf luau\_\-free\-Update\-Info}{\rm (p.\,\pageref{libuau_8h_a97})} \end{Desc}
+\end{itemize}
+
+
+Definition at line 113 of file libuau.c.
+
+References categorize\-Update(), g\_\-container\_\-free(), g\_\-container\_\-get\_\-iter(), g\_\-iterator\_\-has\-Next(), g\_\-iterator\_\-next(), AUpdate::id, AProg\-Info::id, LUAU\_\-BASE\_\-ERROR, LUAU\_\-BASE\_\-ERROR\_\-INVALID\_\-ARG, luau\_\-copy\-Update(), luau\_\-free\-Update\-List(), luau\_\-net\_\-query\-Server(), and lutil\_\-streq().\index{libuau.c@{libuau.c}!luau_getUpdatePackage@{luau\_\-getUpdatePackage}}
+\index{luau_getUpdatePackage@{luau\_\-getUpdatePackage}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf APackage}$\ast$ luau\_\-get\-Update\-Package (const {\bf AUpdate} $\ast$ {\em update}, {\bf APkg\-Type} {\em pkg\-Type}, GError $\ast$$\ast$ {\em err})}\label{libuau_8c_a17}
+
+
+Find the package of type {\tt pkg\-Type} in {\tt update}. 
+
+Find and return an {\bf APackage}{\rm (p.\,\pageref{structAPackage})} struct of the type {\tt pkg\-Type} from an {\bf AUpdate}{\rm (p.\,\pageref{structAUpdate})}. If one does not exist, return NULL.
+
+\begin{itemize}
+\item update is the update to look in. \item pkg\-Type is the package type to find \begin{Desc}
+\item[Returns:]the corresponding {\bf APackage}{\rm (p.\,\pageref{structAPackage})} struct ptr, or NULL otherwise. \end{Desc}
+\end{itemize}
+
+
+Definition at line 446 of file libuau.c.
+
+References LUAU\_\-BASE\_\-ERROR, LUAU\_\-BASE\_\-ERROR\_\-INVALID\_\-ARG, LUAU\_\-EMPTY, luau\_\-package\-Type\-String(), AUpdate::packages, and APackage::type.
+
+Referenced by luau\_\-download\-Update().\index{libuau.c@{libuau.c}!luau_installPackage@{luau\_\-installPackage}}
+\index{luau_installPackage@{luau\_\-installPackage}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-install\-Package (const char $\ast$ {\em filename}, const {\bf APkg\-Type} {\em type}, GError $\ast$$\ast$ {\em err})}\label{libuau_8c_a12}
+
+
+Install an already downloaded package. 
+
+Installs a package that has already been downloaded.
+
+\begin{itemize}
+\item filename is the location where the update package can be found. \item type is the type of update (eg. RPM, DEB, ...) we're installing. \begin{Desc}
+\item[Returns:]whether the operation was successful. \end{Desc}
+\end{itemize}
+
+
+Definition at line 327 of file libuau.c.
+
+References LUAU\_\-AUTOPKG, LUAU\_\-BASE\_\-ERROR, LUAU\_\-BASE\_\-ERROR\_\-INVALID\_\-ARG, LUAU\_\-DEB, LUAU\_\-EXEC, luau\_\-install\_\-autopkg(), luau\_\-install\_\-deb(), luau\_\-install\_\-exec(), luau\_\-install\_\-rpm(), luau\_\-install\_\-src(), LUAU\_\-RPM, and LUAU\_\-SRC.
+
+Referenced by luau\_\-install\-Update().\index{libuau.c@{libuau.c}!luau_installUpdate@{luau\_\-installUpdate}}
+\index{luau_installUpdate@{luau\_\-installUpdate}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-install\-Update (const {\bf AProg\-Info} $\ast$ {\em info}, const {\bf AUpdate} $\ast$ {\em new\-Update}, const {\bf APkg\-Type} {\em type}, GError $\ast$$\ast$ {\em err})}\label{libuau_8c_a10}
+
+
+Download and install an update of type {\tt type}. 
+
+Install an update.
+
+\begin{itemize}
+\item info describes the program we're updating \item new\-Update describes the update we're installing \item type is the type of package (eg, RPM, DEB, ...) we want to install. \begin{Desc}
+\item[Returns:]whether the operation succeeded \end{Desc}
+\end{itemize}
+
+
+Definition at line 205 of file libuau.c.
+
+References luau\_\-download\-Update(), luau\_\-install\-Package(), and lutil\_\-get\-Temp\-Filename().\index{libuau.c@{libuau.c}!luau_interfaceString@{luau\_\-interfaceString}}
+\index{luau_interfaceString@{luau\_\-interfaceString}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ luau\_\-interface\-String (const {\bf AInterface} $\ast$ {\em interface})}\label{libuau_8c_a42}
+
+
+Convert an {\bf AInterface}{\rm (p.\,\pageref{structAInterface})} into a string. 
+
+Take an {\bf AInterface}{\rm (p.\,\pageref{structAInterface})} struct and convert it into a string of form \char`\"{}x.y\char`\"{}, where x is the major and y the minor interface version. If the major and minor values are both -1, then NULL will be returned. The returned string is allocated dynamically and {\bf must} be free'd.
+
+\begin{itemize}
+\item interface is the {\bf AInterface}{\rm (p.\,\pageref{structAInterface})} struct to convert into a string \begin{Desc}
+\item[Returns:]a newly allocated string representing the {\bf AInterface}{\rm (p.\,\pageref{structAInterface})} ({\bf must} be free'd). \end{Desc}
+\end{itemize}
+
+
+Definition at line 1180 of file libuau.c.
+
+References lutil\_\-mprintf(), AInterface::major, and AInterface::minor.\index{libuau.c@{libuau.c}!luau_isHidden@{luau\_\-isHidden}}
+\index{luau_isHidden@{luau\_\-isHidden}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-is\-Hidden ({\bf AUpdate} $\ast$ {\em update})}\label{libuau_8c_a35}
+
+
+See if an update has been marked as \char`\"{}Hidden\char`\"{}. 
+
+Check if an update has been marked as \char`\"{}hidden\char`\"{}
+
+\begin{itemize}
+\item update is the update to check \begin{Desc}
+\item[Returns:]whether it has been marked as hidden \end{Desc}
+\end{itemize}
+
+
+Definition at line 1039 of file libuau.c.
+
+References AUpdate::keywords, and luau\_\-check\-Keyword().
+
+Referenced by luau\_\-is\-Visible().\index{libuau.c@{libuau.c}!luau_isIncompatible@{luau\_\-isIncompatible}}
+\index{luau_isIncompatible@{luau\_\-isIncompatible}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-is\-Incompatible ({\bf AUpdate} $\ast$ {\em update})}\label{libuau_8c_a34}
+
+
+See if an update has been marked as \char`\"{}Incompatible\char`\"{}. 
+
+Check if an update has been marked as \char`\"{}incompatible\char`\"{}
+
+\begin{itemize}
+\item update is the update to check \begin{Desc}
+\item[Returns:]whether it has been marked as incompatible \end{Desc}
+\end{itemize}
+
+
+Definition at line 1025 of file libuau.c.
+
+References AUpdate::keywords, and luau\_\-check\-Keyword().
+
+Referenced by luau\_\-is\-Visible().\index{libuau.c@{libuau.c}!luau_isOfType@{luau\_\-isOfType}}
+\index{luau_isOfType@{luau\_\-isOfType}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-is\-Of\-Type ({\bf APkg\-Type} {\em query}, {\bf APkg\-Type} {\em type})}\label{libuau_8c_a22}
+
+
+Check if package type {\tt type} is included in package aggregate {\tt query}. 
+
+Check to see if {\tt query} contains type {\tt type}.
+
+\begin{itemize}
+\item query is the APkg\-Type to check \item type is the type to see if {\tt query} contains. \begin{Desc}
+\item[Returns:]TRUE if it does, FALSE otherwise \end{Desc}
+\end{itemize}
+
+
+Definition at line 739 of file libuau.c.
+
+Referenced by luau\_\-mult\-Package\-Type\-String(), and luau\_\-package\-Type\-List().\index{libuau.c@{libuau.c}!luau_isOld@{luau\_\-isOld}}
+\index{luau_isOld@{luau\_\-isOld}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-is\-Old ({\bf AUpdate} $\ast$ {\em update})}\label{libuau_8c_a36}
+
+
+See if an update has been marked as \char`\"{}Old\char`\"{}. 
+
+
+
+Definition at line 1047 of file libuau.c.
+
+References AUpdate::keywords, and luau\_\-check\-Keyword().
+
+Referenced by luau\_\-is\-Visible().\index{libuau.c@{libuau.c}!luau_isVisible@{luau\_\-isVisible}}
+\index{luau_isVisible@{luau\_\-isVisible}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-is\-Visible ({\bf AUpdate} $\ast$ {\em update})}\label{libuau_8c_a37}
+
+
+See if an updates is visible (has not been marked as old, hidden, or incompatible). 
+
+
+
+Definition at line 1055 of file libuau.c.
+
+References luau\_\-is\-Hidden(), luau\_\-is\-Incompatible(), and luau\_\-is\-Old().\index{libuau.c@{libuau.c}!luau_keywordsString@{luau\_\-keywordsString}}
+\index{luau_keywordsString@{luau\_\-keywordsString}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ luau\_\-keywords\-String (const GPtr\-Array $\ast$ {\em keywords})}\label{libuau_8c_a30}
+
+
+Convert an array of keywords into a string. 
+
+Convert an array of keywords into a string, separated by commas. Resultant string {\bf must} be free'd.
+
+\begin{itemize}
+\item keywords are the keywords to convert \begin{Desc}
+\item[Returns:]a string representing them ({\bf must} be free'd) \end{Desc}
+\end{itemize}
+
+
+Definition at line 942 of file libuau.c.
+
+References g\_\-container\_\-free(), g\_\-container\_\-new\_\-from\_\-data(), GCONT\_\-PTR\_\-ARRAY, and lutil\_\-strjoin().
+
+Referenced by luau\_\-prog\-Info\-String().\index{libuau.c@{libuau.c}!luau_multPackageTypeString@{luau\_\-multPackageTypeString}}
+\index{luau_multPackageTypeString@{luau\_\-multPackageTypeString}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ luau\_\-mult\-Package\-Type\-String ({\bf APkg\-Type} {\em types})}\label{libuau_8c_a23}
+
+
+Convert an APkg\-Type (of many types) into a string. 
+
+Convert an APkg\-Type of multiple package types into a string. Resultant string {\bf must} be free'd.
+
+\begin{itemize}
+\item types is the APkg\-Type representing multiple types to convert \begin{Desc}
+\item[Returns:]a space-separated string of the types it contains\end{Desc}
+\begin{Desc}
+\item[See also:]{\bf luau\_\-package\-Type\-String}{\rm (p.\,\pageref{libuau_8h_a64})} \end{Desc}
+\end{itemize}
+
+
+Definition at line 753 of file libuau.c.
+
+References ERROR, LUAU\_\-AUTOPKG, LUAU\_\-DEB, LUAU\_\-EMPTY, LUAU\_\-EXEC, luau\_\-is\-Of\-Type(), LUAU\_\-RPM, LUAU\_\-SRC, and lutil\_\-create\-String().\index{libuau.c@{libuau.c}!luau_packageTypeList@{luau\_\-packageTypeList}}
+\index{luau_packageTypeList@{luau\_\-packageTypeList}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}GSList$\ast$ luau\_\-package\-Type\-List ({\bf APkg\-Type} {\em types})}\label{libuau_8c_a27}
+
+
+Convert an APkg\-Type into a list of APkg\-Type's. 
+
+Take an APkg\-Type of multiple types and convert it into a list of single APkg\-Type's.
+
+\begin{itemize}
+\item types is an APkg\-Type of multiple types \begin{Desc}
+\item[Returns:]a GSList of single APkg\-Type's \end{Desc}
+\end{itemize}
+
+
+Definition at line 879 of file libuau.c.
+
+References LUAU\_\-AUTOPKG, LUAU\_\-DEB, LUAU\_\-EXEC, luau\_\-is\-Of\-Type(), LUAU\_\-RPM, and LUAU\_\-SRC.\index{libuau.c@{libuau.c}!luau_packageTypeString@{luau\_\-packageTypeString}}
+\index{luau_packageTypeString@{luau\_\-packageTypeString}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ luau\_\-package\-Type\-String ({\bf APkg\-Type} {\em type})}\label{libuau_8c_a24}
+
+
+Convert an APkg\-Type (of one type) into a (constant) string. 
+
+Convert an APkg\-Type of one package type into a string. Resultant string {\bf should not} be free'd (constant string).
+
+\begin{itemize}
+\item type is an APkg\-Type of only one type \begin{Desc}
+\item[Returns:]a constant string representing it\end{Desc}
+\begin{Desc}
+\item[See also:]{\bf luau\_\-mult\-Package\-Type\-String}{\rm (p.\,\pageref{libuau_8h_a63})} \end{Desc}
+\end{itemize}
+
+
+Definition at line 791 of file libuau.c.
+
+References LUAU\_\-AUTOPKG, LUAU\_\-DEB, LUAU\_\-EMPTY, LUAU\_\-EXEC, LUAU\_\-RPM, and LUAU\_\-SRC.
+
+Referenced by luau\_\-get\-Update\-Package().\index{libuau.c@{libuau.c}!luau_parseDate@{luau\_\-parseDate}}
+\index{luau_parseDate@{luau\_\-parseDate}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-parse\-Date ({\bf ADate} $\ast$ {\em date}, const char $\ast$ {\em string})}\label{libuau_8c_a19}
+
+
+Convert a date string (\char`\"{}MM/DD/YYYY\char`\"{}) into an {\bf ADate}{\rm (p.\,\pageref{structADate})} struct. 
+
+Convert a string of format \char`\"{}YYYY-MM-DD\char`\"{} into an {\bf ADate}{\rm (p.\,\pageref{structADate})}. If {\tt string == NULL} or {\tt string} is the empty string, all the fields of the resultant {\bf ADate}{\rm (p.\,\pageref{structADate})} will be set to 0.
+
+\begin{itemize}
+\item date is the {\bf ADate}{\rm (p.\,\pageref{structADate})} to write the parsed information into \item string is the string to convert to an {\bf ADate}{\rm (p.\,\pageref{structADate})} \begin{Desc}
+\item[Returns:]whether the operation was successful \end{Desc}
+\end{itemize}
+
+
+Definition at line 509 of file libuau.c.
+
+References ADate::day, DBUGOUT, ERROR, ADate::month, and ADate::year.
+
+Referenced by parse\-Generic\-Info(), and parse\-Quant\-Data().\index{libuau.c@{libuau.c}!luau_parseInterface@{luau\_\-parseInterface}}
+\index{luau_parseInterface@{luau\_\-parseInterface}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-parse\-Interface ({\bf AInterface} $\ast$ {\em interface}, const char $\ast$ {\em int\-Str})}\label{libuau_8c_a41}
+
+
+Convert an interface string (\char`\"{}x.y\char`\"{}) into an {\bf AInterface}{\rm (p.\,\pageref{structAInterface})}. 
+
+Take a string (\char`\"{}x.y\char`\"{}, where x is the major and y the minor interface version)and convert it into an {\bf AInterface}{\rm (p.\,\pageref{structAInterface})}, writing the data into {\tt interface}. If {\tt int\-Str == NULL} or there is an error in reading the string, then both {\tt major} and {\tt minor} will be set to -1.
+
+\begin{itemize}
+\item interface is the {\bf AInterface}{\rm (p.\,\pageref{structAInterface})} struct to write data into \item int\-Str is the string to parse (of form \char`\"{}x.y\char`\"{}) \begin{Desc}
+\item[Returns:]whether the operation was successful \end{Desc}
+\end{itemize}
+
+
+Definition at line 1152 of file libuau.c.
+
+References lutil\_\-is\-Completely\-Blank(), AInterface::major, and AInterface::minor.
+
+Referenced by luau\_\-parse\-XML\_\-prog\-Info(), luau\_\-parse\-XML\_\-updates(), parse\-Quant\-Data(), and parse\-Software().\index{libuau.c@{libuau.c}!luau_parsePkgType@{luau\_\-parsePkgType}}
+\index{luau_parsePkgType@{luau\_\-parsePkgType}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf APkg\-Type} luau\_\-parse\-Pkg\-Type (const char $\ast$ {\em type\-String})}\label{libuau_8c_a25}
+
+
+Convert a package type string into an APkg\-Type. 
+
+Take a string representing a package type (\char`\"{}RPM\char`\"{}, \char`\"{}DEB\char`\"{}, etc.) and convert it into an APkg\-Type.
+
+\begin{itemize}
+\item type\-String is the string to convert \begin{Desc}
+\item[Returns:]the corresponding APkg\-Type, or LUAU\_\-UNKNOWN if unrecognized\end{Desc}
+\begin{Desc}
+\item[See also:]{\bf luau\_\-package\-Type\-List}{\rm (p.\,\pageref{libuau_8h_a72})} \end{Desc}
+\end{itemize}
+
+
+Definition at line 822 of file libuau.c.
+
+References APkg\-Type, LUAU\_\-AUTOPKG, LUAU\_\-DEB, LUAU\_\-EXEC, LUAU\_\-RPM, LUAU\_\-SRC, LUAU\_\-UNKNOWN, and lutil\_\-strcaseeq().
+
+Referenced by parse\-Package\-Properties().\index{libuau.c@{libuau.c}!luau_parseQuantDataType@{luau\_\-parseQuantDataType}}
+\index{luau_parseQuantDataType@{luau\_\-parseQuantDataType}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf AQuant\-Data\-Type} luau\_\-parse\-Quant\-Data\-Type (const char $\ast$ {\em str})}\label{libuau_8c_a40}
+
+
+
+
+Definition at line 1124 of file libuau.c.
+
+References AQuant\-Data\-Type, LUAU\_\-QUANT\_\-DATA\_\-DATE, LUAU\_\-QUANT\_\-DATA\_\-INTERFACE, LUAU\_\-QUANT\_\-DATA\_\-INVALID, LUAU\_\-QUANT\_\-DATA\_\-KEYWORD, LUAU\_\-QUANT\_\-DATA\_\-VERSION, and lutil\_\-strcaseeq().
+
+Referenced by parse\-Generic\-Info().\index{libuau.c@{libuau.c}!luau_progInfoString@{luau\_\-progInfoString}}
+\index{luau_progInfoString@{luau\_\-progInfoString}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ luau\_\-prog\-Info\-String (const {\bf AProg\-Info} $\ast$ {\em info})}\label{libuau_8c_a29}
+
+
+Convert an {\bf AProg\-Info}{\rm (p.\,\pageref{structAProgInfo})} ptr into a string. 
+
+Convert an {\bf AProg\-Info}{\rm (p.\,\pageref{structAProgInfo})} struct into a string. Resultant string {\bf must} be free'd.
+
+\begin{itemize}
+\item info is a {\bf AProg\-Info}{\rm (p.\,\pageref{structAProgInfo})} struct to convert \begin{Desc}
+\item[Returns:]a new allocated string representing it ({\bf must} be free'd). \end{Desc}
+\end{itemize}
+
+
+Definition at line 920 of file libuau.c.
+
+References AProg\-Info::date, AProg\-Info::desc, AProg\-Info::fullname, AProg\-Info::id, AProg\-Info::keywords, luau\_\-date\-String(), luau\_\-keywords\-String(), lutil\_\-mprintf(), AProg\-Info::url, and AProg\-Info::version.\index{libuau.c@{libuau.c}!luau_registerProgressCallback@{luau\_\-registerProgressCallback}}
+\index{luau_registerProgressCallback@{luau\_\-registerProgressCallback}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void luau\_\-register\-Progress\-Callback ({\bf AProgress\-Callback} {\em callback})}\label{libuau_8c_a14}
+
+
+Set a new function to callback (in order to show download progress) when downloading. 
+
+Set the function to display download progress with. See the definition of AProgress\-Func for specific function parameters (and maybe the libcurl documentation too while you're at it - specifically the CURLOPT\_\-PROGRESSFUNC option). Default behavior is not to display anything.
+
+\begin{itemize}
+\item callback is the new progress callback to use.\end{itemize}
+\begin{Desc}
+\item[See also:]{\bf AProgress\-Callback}{\rm (p.\,\pageref{libuau_8h_a22})} \end{Desc}
+
+
+Definition at line 395 of file libuau.c.
+
+References AProgress\-Callback, and lutil\_\-ftp\_\-set\-Callback\-Func().\index{libuau.c@{libuau.c}!luau_registerPromptFunc@{luau\_\-registerPromptFunc}}
+\index{luau_registerPromptFunc@{luau\_\-registerPromptFunc}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void luau\_\-register\-Prompt\-Func ({\bf APrompt\-Func} {\em prompt\-Func})}\label{libuau_8c_a13}
+
+
+Set a new function for prompting the user for input with. 
+
+Set the function to prompt the user for input with. See the definition of APrompt\-Func for specific function parameters. Note that the default behavior (if you don't define a new one) is simply not to prompt the user and select the default choice. This is probably not what you want!
+
+\begin{itemize}
+\item prompt\-Func is the new prompting function to use\end{itemize}
+\begin{Desc}
+\item[See also:]{\bf APrompt\-Func}{\rm (p.\,\pageref{libuau_8h_a18})} \end{Desc}
+
+
+Definition at line 380 of file libuau.c.
+
+References APrompt\-Func, and lutil\_\-error\_\-set\-Prompt\-Func().\index{libuau.c@{libuau.c}!luau_resetProgressCallback@{luau\_\-resetProgressCallback}}
+\index{luau_resetProgressCallback@{luau\_\-resetProgressCallback}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void luau\_\-reset\-Progress\-Callback (void)}\label{libuau_8c_a16}
+
+
+Reset the download callback function to the default function. 
+
+Reset the progress callback (which doesn't display anything).
+
+\begin{Desc}
+\item[See also:]{\bf luau\_\-register\-Progress\-Callback}{\rm (p.\,\pageref{libuau_8h_a59})} \end{Desc}
+
+
+Definition at line 427 of file libuau.c.
+
+References lutil\_\-ftp\_\-reset\-Callback\-Func().\index{libuau.c@{libuau.c}!luau_resetPromptFunc@{luau\_\-resetPromptFunc}}
+\index{luau_resetPromptFunc@{luau\_\-resetPromptFunc}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void luau\_\-reset\-Prompt\-Func (void)}\label{libuau_8c_a15}
+
+
+Reset the prompting function to the default function. 
+
+Reset the prompting facilities to their default behavior (that is, don't ask but just select the default option).
+
+\begin{Desc}
+\item[See also:]{\bf luau\_\-register\-Prompt\-Func}{\rm (p.\,\pageref{libuau_8h_a58})} \end{Desc}
+
+
+Definition at line 417 of file libuau.c.
+
+References lutil\_\-error\_\-reset\-Prompt\-Func().\index{libuau.c@{libuau.c}!luau_satisfiesInterface@{luau\_\-satisfiesInterface}}
+\index{luau_satisfiesInterface@{luau\_\-satisfiesInterface}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-satisfies\-Interface (const {\bf AInterface} $\ast$ {\em wanted}, const {\bf AInterface} $\ast$ {\em needed})}\label{libuau_8c_a38}
+
+
+Check if a given interface matches an interface that is needed. 
+
+Check if a given program/update interface satisfies the one needed. Conditions for being satisfactory: \begin{enumerate}
+\item wanted-$>$major == needed-$>$major \item wanted-$>$minor $>$= needed-$>$minor \end{enumerate}
+
+
+\begin{itemize}
+\item wanted is the {\bf AInterface}{\rm (p.\,\pageref{structAInterface})} we want to check \item needed is the {\bf AInterface}{\rm (p.\,\pageref{structAInterface})} to test against (the \char`\"{}needed\char`\"{} interface) \begin{Desc}
+\item[Returns:]whether {\tt wanted} satisfies {\tt needed} \end{Desc}
+\end{itemize}
+
+
+Definition at line 1072 of file libuau.c.
+
+References AInterface::major, and AInterface::minor.
+
+Referenced by luau\_\-parse\-XML\_\-prog\-Info(), luau\_\-parse\-XML\_\-updates(), and luau\_\-satisfies\-Quant().\index{libuau.c@{libuau.c}!luau_satisfiesQuant@{luau\_\-satisfiesQuant}}
+\index{luau_satisfiesQuant@{luau\_\-satisfiesQuant}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-satisfies\-Quant (const {\bf AQuantifier} $\ast$ {\em needed}, const {\bf AProg\-Info} $\ast$ {\em installed})}\label{libuau_8c_a39}
+
+
+
+
+Definition at line 1077 of file libuau.c.
+
+References AQuantifier::data, AProg\-Info::date, AQuantifier::dtype, ERROR, AProg\-Info::interface, AProg\-Info::keywords, luau\_\-check\-Keyword(), luau\_\-datecmp(), LUAU\_\-QUANT\_\-DATA\_\-DATE, LUAU\_\-QUANT\_\-DATA\_\-INTERFACE, LUAU\_\-QUANT\_\-DATA\_\-KEYWORD, LUAU\_\-QUANT\_\-DATA\_\-VERSION, LUAU\_\-QUANT\_\-FOR, LUAU\_\-QUANT\_\-FROM, LUAU\_\-QUANT\_\-TO, luau\_\-satisfies\-Interface(), luau\_\-versioncmp(), AQuantifier::qtype, and AProg\-Info::version.
+
+Referenced by is\-Incompatible().\index{libuau.c@{libuau.c}!luau_setKeyword@{luau\_\-setKeyword}}
+\index{luau_setKeyword@{luau\_\-setKeyword}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void luau\_\-set\-Keyword (GPtr\-Array $\ast$ {\em keywords}, const char $\ast$ {\em new\-Keyword})}\label{libuau_8c_a31}
+
+
+Sets a keyword. 
+
+Add a new keyword to a keyword array.
+
+\begin{itemize}
+\item keywords is the keyword array to add on to \item new\-Keyword is the new keyword to add \end{itemize}
+
+
+Definition at line 964 of file libuau.c.\index{libuau.c@{libuau.c}!luau_unsetKeyword@{luau\_\-unsetKeyword}}
+\index{luau_unsetKeyword@{luau\_\-unsetKeyword}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-unset\-Keyword (GPtr\-Array $\ast$ {\em keywords}, const char $\ast$ {\em old\-Keyword})}\label{libuau_8c_a32}
+
+
+Unsets a keyword. 
+
+Remove a keyword from a keyword array. Return if it was there in the first place.
+
+\begin{itemize}
+\item keywords is the keyword array to edit \item old\-Keyword is the keyword to remove \begin{Desc}
+\item[Returns:]whether the keyword existed in the array at all \end{Desc}
+\end{itemize}
+
+
+Definition at line 978 of file libuau.c.
+
+References lutil\_\-streq().\index{libuau.c@{libuau.c}!luau_updateTypeString@{luau\_\-updateTypeString}}
+\index{luau_updateTypeString@{luau\_\-updateTypeString}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ luau\_\-update\-Type\-String ({\bf AUpdate\-Type} {\em type})}\label{libuau_8c_a28}
+
+
+Convert an AUpdate\-Type into a string. 
+
+Convert an AUpdate\-Type into a constant string. Resultant string {\bf should not} be free'd.
+
+\begin{itemize}
+\item type is an AUpdate\-Type to convert \begin{Desc}
+\item[Returns:]a constant string representing it \end{Desc}
+\end{itemize}
+
+
+Definition at line 904 of file libuau.c.
+
+References LUAU\_\-LIBUPDATE, LUAU\_\-MESSAGE, and LUAU\_\-SOFTWARE.\index{libuau.c@{libuau.c}!luau_versioncmp@{luau\_\-versioncmp}}
+\index{luau_versioncmp@{luau\_\-versioncmp}!libuau.c@{libuau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int luau\_\-versioncmp (const char $\ast$ {\em required}, const char $\ast$ {\em current})}\label{libuau_8c_a21}
+
+
+Compare two versions (works like {\tt strcmp} but for version strings). 
+
+
+
+Definition at line 651 of file libuau.c.
+
+References compare\-Alpha\-Numeric(), g\_\-container\_\-destroy(), g\_\-container\_\-index(), GContainer::len, lutil\_\-contains\-Alpha(), lutil\_\-gsplit(), lutil\_\-streq(), and lutil\_\-str\-To\-Lower().
+
+Referenced by is\-Old(), and luau\_\-satisfies\-Quant().

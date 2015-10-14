@@ -1,0 +1,61 @@
+<!ELEMENT luau-repository (program-info, mirror-list?, (software | update)*)>
+<!ATTLIST luau-repository interface CDATA #REQUIRED>
+
+<!ELEMENT program-info (shortname?, fullname?, desc?, url?, keyword*)> 
+<!ATTLIST program-info id CDATA #REQUIRED>
+
+<!ELEMENT mirror-list (mirror-def+)>
+<!ATTLIST mirror-list id  CDATA  #IMPLIED>
+<!ELEMENT mirror-def  (#PCDATA)>
+<!ATTLIST mirror-def  id  CDATA  #REQUIRED>
+
+<!ELEMENT fullname  (#PCDATA)>
+<!ELEMENT shortname (#PCDATA)>
+<!ELEMENT desc      (#PCDATA)>
+<!ELEMENT url       (#PCDATA)>
+
+<!ELEMENT software (id?, date?, display-version?, interface?, keyword*, short, long, (package | package-group)+, valid*)>
+<!ATTLIST software version CDATA #IMPLIED>
+
+<!ELEMENT update (id, date?, keyword*, short, long, valid*, set?)>
+<!ATTLIST update type (message | luau-config) #REQUIRED>
+
+<!ELEMENT id      (#PCDATA)>
+<!ELEMENT date    (#PCDATA)>
+<!ELEMENT keyword (#PCDATA)>
+<!ELEMENT short   (#PCDATA)>
+<!ELEMENT long    (#PCDATA)>
+
+<!ELEMENT display-version (#PCDATA)>
+<!ELEMENT interface EMPTY>
+<!ATTLIST interface version CDATA #REQUIRED>
+
+<!ELEMENT package (#PCDATA | mirror)*>
+<!ATTLIST package type (RPM | DEB | SRC | AUTOPKG | EXEC) #REQUIRED
+                  version    CDATA                        #IMPLIED
+                  size       CDATA                        #IMPLIED
+                  md5        CDATA                        #IMPLIED
+				  mirror-id  CDATA                        #IMPLIED>
+
+<!ELEMENT package-group (package | package-group)*>
+<!ATTLIST package-group mirror-url  CDATA  #IMPLIED
+                        mirror-id   CDATA  #IMPLIED
+                        option      CDATA  #IMPLIED
+                        type        CDATA  #IMPLIED
+                        size        CDATA  #IMPLIED
+                        md5         CDATA  #IMPLIED
+                        filename    CDATA  #IMPLIED
+                        version     CDATA  #IMPLIED>
+
+<!ELEMENT mirror (#PCDATA)>
+<!ATTLIST mirror weight CDATA #IMPLIED
+                 id     CDATA #IMPLIED>
+
+<!ELEMENT valid EMPTY>
+<!ATTLIST valid type (date | interface | version) #REQUIRED
+                from CDATA                        #IMPLIED
+                to   CDATA                        #IMPLIED
+                for  CDATA                        #IMPLIED>
+
+<!ELEMENT set EMPTY>
+<!ATTLIST set url CDATA #REQUIRED>

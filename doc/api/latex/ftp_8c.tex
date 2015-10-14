@@ -1,0 +1,109 @@
+\section{ftp.c File Reference}
+\label{ftp_8c}\index{ftp.c@{ftp.c}}
+{\tt \#include $<$stdlib.h$>$}\par
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include $<$sys/types.h$>$}\par
+{\tt \#include $<$unistd.h$>$}\par
+{\tt \#include $<$errno.h$>$}\par
+{\tt \#include $<$curl/curl.h$>$}\par
+{\tt \#include $<$curl/types.h$>$}\par
+{\tt \#include $<$curl/easy.h$>$}\par
+{\tt \#include $<$glib.h$>$}\par
+{\tt \#include \char`\"{}ftp.h\char`\"{}}\par
+{\tt \#include \char`\"{}util.h\char`\"{}}\par
+{\tt \#include \char`\"{}error.h\char`\"{}}\par
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct {\bf AData}
+\begin{CompactList}\small\item\em Describe a chunk of data. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+size\_\-t {\bf callback} (void $\ast$ptr, size\_\-t size, size\_\-t nmemb, void $\ast$data)
+\item 
+gboolean {\bf lutil\_\-ftp\_\-download\-To\-File} (const char $\ast$url, const char $\ast$download\-To, GError $\ast$$\ast$err)
+\item 
+GString $\ast$ {\bf lutil\_\-ftp\_\-get\-URL} (const char $\ast$url, GError $\ast$$\ast$err)
+\item 
+void {\bf lutil\_\-ftp\_\-set\-Callback\-Func} ({\bf UProgress\-Callback} callback)
+\item 
+void {\bf lutil\_\-ftp\_\-reset\-Callback\-Func} (void)
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+{\bf UProgress\-Callback} {\bf download\-Callback\_\-global} = NULL
+\end{CompactItemize}
+
+
+\subsection{Function Documentation}
+\index{ftp.c@{ftp.c}!callback@{callback}}
+\index{callback@{callback}!ftp.c@{ftp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}size\_\-t callback (void $\ast$ {\em ptr}, size\_\-t {\em size}, size\_\-t {\em nmemb}, void $\ast$ {\em data})\hspace{0.3cm}{\tt  [static]}}\label{ftp_8c_a1}
+
+
+
+
+Definition at line 153 of file ftp.c.
+
+References AData::data, and AData::size.
+
+Referenced by lutil\_\-ftp\_\-get\-URL(), and lutil\_\-ftp\_\-set\-Callback\-Func().\index{ftp.c@{ftp.c}!lutil_ftp_downloadToFile@{lutil\_\-ftp\_\-downloadToFile}}
+\index{lutil_ftp_downloadToFile@{lutil\_\-ftp\_\-downloadToFile}!ftp.c@{ftp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean lutil\_\-ftp\_\-download\-To\-File (const char $\ast$ {\em url}, const char $\ast$ {\em download\-To}, GError $\ast$$\ast$ {\em err})}\label{ftp_8c_a2}
+
+
+
+
+Definition at line 55 of file ftp.c.
+
+References DBUGOUT, download\-Callback\_\-global, LUTIL\_\-BASE\_\-ERROR, and LUTIL\_\-BASE\_\-ERROR\_\-FAILED.
+
+Referenced by luau\_\-net\_\-download\-Update().\index{ftp.c@{ftp.c}!lutil_ftp_getURL@{lutil\_\-ftp\_\-getURL}}
+\index{lutil_ftp_getURL@{lutil\_\-ftp\_\-getURL}!ftp.c@{ftp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}GString$\ast$ lutil\_\-ftp\_\-get\-URL (const char $\ast$ {\em url}, GError $\ast$$\ast$ {\em err})}\label{ftp_8c_a3}
+
+
+
+
+Definition at line 98 of file ftp.c.
+
+References callback(), AData::data, DBUGOUT, LUTIL\_\-BASE\_\-ERROR, LUTIL\_\-BASE\_\-ERROR\_\-FAILED, and AData::size.
+
+Referenced by luau\_\-get\-Prog\-Info\-From\-XML\_\-url(), and luau\_\-net\_\-query\-Server().\index{ftp.c@{ftp.c}!lutil_ftp_resetCallbackFunc@{lutil\_\-ftp\_\-resetCallbackFunc}}
+\index{lutil_ftp_resetCallbackFunc@{lutil\_\-ftp\_\-resetCallbackFunc}!ftp.c@{ftp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void lutil\_\-ftp\_\-reset\-Callback\-Func (void)}\label{ftp_8c_a5}
+
+
+
+
+Definition at line 146 of file ftp.c.
+
+References download\-Callback\_\-global.
+
+Referenced by luau\_\-reset\-Progress\-Callback().\index{ftp.c@{ftp.c}!lutil_ftp_setCallbackFunc@{lutil\_\-ftp\_\-setCallbackFunc}}
+\index{lutil_ftp_setCallbackFunc@{lutil\_\-ftp\_\-setCallbackFunc}!ftp.c@{ftp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void lutil\_\-ftp\_\-set\-Callback\-Func ({\bf UProgress\-Callback} {\em callback})}\label{ftp_8c_a4}
+
+
+
+
+Definition at line 141 of file ftp.c.
+
+References callback(), and download\-Callback\_\-global.
+
+Referenced by luau\_\-register\-Progress\-Callback().
+
+\subsection{Variable Documentation}
+\index{ftp.c@{ftp.c}!downloadCallback_global@{downloadCallback\_\-global}}
+\index{downloadCallback_global@{downloadCallback\_\-global}!ftp.c@{ftp.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf UProgress\-Callback} {\bf download\-Callback\_\-global} = NULL\hspace{0.3cm}{\tt  [static]}}\label{ftp_8c_a0}
+
+
+
+
+Definition at line 50 of file ftp.c.
+
+Referenced by lutil\_\-ftp\_\-download\-To\-File(), lutil\_\-ftp\_\-reset\-Callback\-Func(), and lutil\_\-ftp\_\-set\-Callback\-Func().

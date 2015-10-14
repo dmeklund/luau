@@ -1,0 +1,64 @@
+\section{network.h File Reference}
+\label{network_8h}\index{network.h@{network.h}}
+Client/Server Functions and Networking Support.  
+
+
+{\tt \#include $<$glib.h$>$}\par
+{\tt \#include \char`\"{}libuau.h\char`\"{}}\par
+{\tt \#include \char`\"{}gcontainer.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+{\bf GContainer} $\ast$ {\bf luau\_\-net\_\-query\-Server} (const {\bf AProg\-Info} $\ast$info, GError $\ast$$\ast$err)
+\begin{CompactList}\small\item\em Query a luau server for a list of updates. \item\end{CompactList}\item 
+gboolean {\bf luau\_\-net\_\-download\-Update} (const {\bf AProg\-Info} $\ast$info, const {\bf AUpdate} $\ast$update, {\bf APkg\-Type} pkg\-Type, const char $\ast$download\-To, GError $\ast$$\ast$err)
+\begin{CompactList}\small\item\em Download the specified update to download\-To. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Client/Server Functions and Networking Support. 
+
+Query luau servers for new updates and download selected (software) updates.
+
+Definition in file {\bf network.h}.
+
+\subsection{Function Documentation}
+\index{network.h@{network.h}!luau_net_downloadUpdate@{luau\_\-net\_\-downloadUpdate}}
+\index{luau_net_downloadUpdate@{luau\_\-net\_\-downloadUpdate}!network.h@{network.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-net\_\-download\-Update (const {\bf AProg\-Info} $\ast$ {\em info}, const {\bf AUpdate} $\ast$ {\em update}, {\bf APkg\-Type} {\em pkg\-Type}, const char $\ast$ {\em download\-To}, GError $\ast$$\ast$ {\em err})}\label{network_8h_a1}
+
+
+Download the specified update to download\-To. 
+
+Download the specified update to {\tt download\-To}, or do a temporary location if {\tt download\-To == NULL} \begin{Desc}
+\item[Warning:]Even if download\-To is specified, this function returns a newly allocated string that must be {\tt free}'d!\end{Desc}
+\begin{itemize}
+\item {\em info\/} describes the program we're downloading updates for. \item {\em update\/} describes the update we're downloading. \item {\em pkg\-Type\/} is the package type we want (RPM, .deb, ...) \item {\em download\-To\/} is where we'd like to download the file, or NULL if a temporary location is desired. \begin{Desc}
+\item[Returns:]whether the download was successful \end{Desc}
+\end{itemize}
+
+
+Definition at line 99 of file network.c.
+
+References luau\_\-get\-Package\-URL(), LUAU\_\-NET\_\-ERROR, LUAU\_\-NET\_\-ERROR\_\-ABORTED, LUAU\_\-NET\_\-ERROR\_\-INVALID\_\-ARG, lutil\_\-error\_\-prompt(), lutil\_\-ftp\_\-download\-To\-File(), lutil\_\-md5\_\-file(), lutil\_\-streq(), APackage::md5sum, and APackage::mirrors.
+
+Referenced by luau\_\-download\-Update().\index{network.h@{network.h}!luau_net_queryServer@{luau\_\-net\_\-queryServer}}
+\index{luau_net_queryServer@{luau\_\-net\_\-queryServer}!network.h@{network.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf GContainer}$\ast$ luau\_\-net\_\-query\-Server (const {\bf AProg\-Info} $\ast$ {\em info}, GError $\ast$$\ast$ {\em err})}\label{network_8h_a0}
+
+
+Query a luau server for a list of updates. 
+
+Downloads the update file from the luau server for the given program and parses it to read in the updates listed. Note that it returns an array of {\bf all} the updates listed, including ones that have already been installed.
+
+\begin{itemize}
+\item {\em info\/} is a struct describing the program updates are wanted for. \begin{Desc}
+\item[Returns:]a GPtr\-Array of updates \end{Desc}
+\end{itemize}
+
+
+Definition at line 48 of file network.c.
+
+References DBUGOUT, LUAU\_\-NET\_\-ERROR, LUAU\_\-NET\_\-ERROR\_\-INVALID\_\-ARG, luau\_\-parse\-XML\_\-updates(), lutil\_\-ftp\_\-get\-URL(), lutil\_\-streq(), lutil\_\-uncompress(), and AProg\-Info::url.
+
+Referenced by luau\_\-check\-For\-Updates(), and luau\_\-get\-Update\-Info().

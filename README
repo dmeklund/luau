@@ -1,0 +1,86 @@
+Luau - The Lib Update/AutoUpdate Suite
+--------------------------------------
+Web Site: http://luau.sourceforge.net
+E-Mail:  <deklund@fastmail.fm>
+--------------------------------------
+
+Thank you for downloading Luau!  If you have any feedback, please contact me,
+David Eklund, at deklund@fastmail.fm.
+
+First of all, I highly suggest you peruse the Official Luau Whitepaper,
+distributed with this package under docs/whitepaper.pdf.  It will give you a
+much more thorough introduction to Luau than this document - however, if you
+just want a quick gaunt over the important stuff, read on:
+
+INSTALLATION
+------------
+Standard routine.  However, you will need a couple outside libraries -
+specifically:
+
+libcurl
+libdb
+glib
+readline
+
+Most of these are relatively ubiquitous, so hopefully there won't be a problem
+finding and installing them (you most likely have most if not all already
+installed).
+
+To get rolling, just follow the standard operating procedure:
+
+./configure [options...]
+make
+make install
+
+After that, you should be good to go.
+
+WHAT IS LUAU?
+-------------
+Luau is a framework for disseminating software and message updates for software
+packages through a decentralized approach.  Individual software developers
+provide publically accessible 'updates' files that describe currently available
+updates, which is then downloaded by the client software and interpreted to see
+if there's anything new the user should be interested in.
+
+An important caveat to note - since Luau works on a decentralized basis, updates
+and support for Luau -must- be provided by the individual package maintainer. 
+If this is your first time installing Luau, you will almost certainly find when
+you run 'luau' or 'luau-x' that there are no updates available because you don't
+have any Luau registered programs installed (except for Luau itself, which
+registers itself with itself as a Luau registered program - confusing, huh?). 
+However, as soon as you download and install any programs that support Luau,
+they should automatically become available in the list of registered programs -
+and therefore the list of updates which Luau is now capable of receiving.
+
+As the number of project maintainers who support Luau increases, the list of
+Luau registered and supported programs will also increase.  At the time of this
+release, however, there are very few .  If you like the idea of Luau, I highly 
+recommend you ask the maintainers of software projects you use to adopt it.
+
+USING LUAU
+----------
+There are two utilities provided to you, the user, in order to retrieve these
+updates.  The first - and the one you will most likely be most interested in -
+is luau-x, which is not provided with this package and must be downloaded
+separately (see http://luau.sourceforge.net).  luau-x is the graphical front-end
+to Luau and provides the simplest and most fully-featured interface for working
+with.  There is also however the simple console-based application - named simply
+'luau' - that will provide you with all the basic functionality you need, if not
+the same level of usability.  Execute 'luau -h' to see the full spectrum of
+options available to you.
+
+Should you ever need to mess with the internal databases of Luau itself,
+'luau-register' will provide you with all the utility you need.  It's a
+relatively simple application (mirroring the relatively simple layout of the
+databases Luau uses) - simply call 'luau-register -h' for more information.
+
+CONTACT INFORMATION
+-------------------
+Project Maintainer and Head Developer
+David Eklund
+<deklund@fastmail.fm>
+
+Please e-mail me with any bug reports, feature suggestions, or just general
+comments you have.  I'm always open to correspondence.
+
+

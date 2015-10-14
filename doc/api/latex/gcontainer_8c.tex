@@ -1,0 +1,337 @@
+\section{gcontainer.c File Reference}
+\label{gcontainer_8c}\index{gcontainer.c@{gcontainer.c}}
+{\tt \#include $<$glib.h$>$}\par
+{\tt \#include \char`\"{}gcontainer.h\char`\"{}}\par
+{\tt \#include \char`\"{}error.h\char`\"{}}\par
+{\tt \#include \char`\"{}util.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void {\bf iter\-Next} ({\bf GIterator} $\ast$iter)
+\item 
+void {\bf iter\-Prev} ({\bf GIterator} $\ast$iter)
+\item 
+{\bf GContainer} $\ast$ {\bf g\_\-container\_\-new} ({\bf GCont\-Type} type)
+\item 
+{\bf GContainer} $\ast$ {\bf g\_\-container\_\-new\_\-from\_\-data} ({\bf GCont\-Type} type, void $\ast$data)
+\item 
+{\bf GContainer} $\ast$ {\bf g\_\-container\_\-dup} (const {\bf GContainer} $\ast$container)
+\begin{CompactList}\small\item\em Performs a shallow copy and returns a new {\bf GContainer}{\rm (p.\,\pageref{structGContainer})} object. \item\end{CompactList}\item 
+void {\bf g\_\-container\_\-add} ({\bf GContainer} $\ast$container, const gpointer data)
+\item 
+void {\bf g\_\-container\_\-concat} ({\bf GContainer} $\ast$container, const {\bf GContainer} $\ast$new\_\-items)
+\item 
+gboolean {\bf g\_\-container\_\-remove} ({\bf GContainer} $\ast$container, const gpointer data)
+\item 
+gboolean {\bf g\_\-container\_\-remove\_\-fast} ({\bf GContainer} $\ast$container, const gpointer data)
+\item 
+gpointer {\bf g\_\-container\_\-remove\_\-index} ({\bf GContainer} $\ast$container, guint index)
+\item 
+gpointer {\bf g\_\-container\_\-remove\_\-index\_\-fast} ({\bf GContainer} $\ast$container, guint index)
+\item 
+gpointer {\bf g\_\-container\_\-index} (const {\bf GContainer} $\ast$container, guint index)
+\item 
+gboolean {\bf g\_\-container\_\-get\_\-iter} ({\bf GIterator} $\ast$iter, const {\bf GContainer} $\ast$container)
+\item 
+gboolean {\bf g\_\-container\_\-get\_\-iter\_\-last} ({\bf GIterator} $\ast$iter, const {\bf GContainer} $\ast$container)
+\item 
+gpointer {\bf g\_\-iterator\_\-get} (const {\bf GIterator} $\ast$iter)
+\item 
+gpointer {\bf g\_\-iterator\_\-next} ({\bf GIterator} $\ast$iter)
+\item 
+gpointer {\bf g\_\-iterator\_\-prev} ({\bf GIterator} $\ast$iter)
+\item 
+gboolean {\bf g\_\-iterator\_\-has\-Next} (const {\bf GIterator} $\ast$iter)
+\item 
+gboolean {\bf g\_\-iterator\_\-has\-Prev} (const {\bf GIterator} $\ast$iter)
+\item 
+void $\ast$ {\bf g\_\-container\_\-free} ({\bf GContainer} $\ast$container, gboolean free\-Assoc)
+\begin{CompactList}\small\item\em Free the memory allocated to a {\bf GContainer}{\rm (p.\,\pageref{structGContainer})}. \item\end{CompactList}\item 
+void $\ast$ {\bf g\_\-container\_\-convert} ({\bf GCont\-Type} type, {\bf GContainer} $\ast$container)
+\begin{CompactList}\small\item\em Convert the underlying container type of a {\bf GContainer}{\rm (p.\,\pageref{structGContainer})}. \item\end{CompactList}\item 
+void {\bf g\_\-container\_\-copy} ({\bf GContainer} $\ast$dest, const {\bf GContainer} $\ast$src)
+\begin{CompactList}\small\item\em Copy the contents of one {\bf GContainer}{\rm (p.\,\pageref{structGContainer})} into another ({\bf not} overwriting). \item\end{CompactList}\item 
+void {\bf g\_\-container\_\-destroy} ({\bf GContainer} $\ast$array)
+\begin{CompactList}\small\item\em Free a {\bf GContainer}{\rm (p.\,\pageref{structGContainer})} and all the pointers it stores. \item\end{CompactList}\item 
+void {\bf g\_\-container\_\-destroy\_\-type} ({\bf GCont\-Type} type, void $\ast$array)
+\begin{CompactList}\small\item\em Free an array of specified type and all the pointers it stores. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Function Documentation}
+\index{gcontainer.c@{gcontainer.c}!g_container_add@{g\_\-container\_\-add}}
+\index{g_container_add@{g\_\-container\_\-add}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void g\_\-container\_\-add ({\bf GContainer} $\ast$ {\em container}, const gpointer {\em data})}\label{gcontainer_8c_a5}
+
+
+
+
+Definition at line 88 of file gcontainer.c.
+
+References GContainer::data, ERROR, GCONT\_\-LIST, GCONT\_\-PTR\_\-ARRAY, GCONT\_\-SLIST, GContainer::len, and GContainer::type.
+
+Referenced by add\-To\-Mirror\-List(), append\-String\-To\-Attribute\-List(), g\_\-container\_\-concat(), g\_\-container\_\-convert(), g\_\-container\_\-copy(), lutil\_\-gsplit(), parse\-Mirror\-Def(), parse\-Mirror\-IDs(), parse\-Package\-Properties(), parse\-Pkg\-Group(), parse\-Update(), and set\-Attribute\-Value().\index{gcontainer.c@{gcontainer.c}!g_container_concat@{g\_\-container\_\-concat}}
+\index{g_container_concat@{g\_\-container\_\-concat}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void g\_\-container\_\-concat ({\bf GContainer} $\ast$ {\em container}, const {\bf GContainer} $\ast$ {\em new\_\-items})}\label{gcontainer_8c_a6}
+
+
+
+
+Definition at line 102 of file gcontainer.c.
+
+References g\_\-container\_\-add(), g\_\-container\_\-get\_\-iter(), g\_\-iterator\_\-has\-Next(), and g\_\-iterator\_\-next().
+
+Referenced by get\-Attribute\-List(), parse\-Mirror\-IDs(), parse\-Package\-Attr\-Mirrors(), and parse\-Package\-Properties().\index{gcontainer.c@{gcontainer.c}!g_container_convert@{g\_\-container\_\-convert}}
+\index{g_container_convert@{g\_\-container\_\-convert}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ g\_\-container\_\-convert ({\bf GCont\-Type} {\em type}, {\bf GContainer} $\ast$ {\em container})}\label{gcontainer_8c_a20}
+
+
+Convert the underlying container type of a {\bf GContainer}{\rm (p.\,\pageref{structGContainer})}. 
+
+
+
+Definition at line 347 of file gcontainer.c.
+
+References GContainer::data, ERROR, g\_\-container\_\-add(), g\_\-container\_\-free(), g\_\-container\_\-get\_\-iter(), g\_\-container\_\-new(), g\_\-iterator\_\-has\-Next(), g\_\-iterator\_\-next(), GCONT\_\-LIST, GCONT\_\-PTR\_\-ARRAY, GCONT\_\-SLIST, and GContainer::type.\index{gcontainer.c@{gcontainer.c}!g_container_copy@{g\_\-container\_\-copy}}
+\index{g_container_copy@{g\_\-container\_\-copy}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void g\_\-container\_\-copy ({\bf GContainer} $\ast$ {\em dest}, const {\bf GContainer} $\ast$ {\em src})}\label{gcontainer_8c_a21}
+
+
+Copy the contents of one {\bf GContainer}{\rm (p.\,\pageref{structGContainer})} into another ({\bf not} overwriting). 
+
+Copy the contents of one {\bf GContainer}{\rm (p.\,\pageref{structGContainer})} into another. Note that this function will {\bf not} overwrite any other data in {\tt dest} - instead, it will simply append the contents of {\tt src} onto {\tt dest}.
+
+\begin{itemize}
+\item dest is the {\bf GContainer}{\rm (p.\,\pageref{structGContainer})} to copy data into \item src is the {\bf GContainer}{\rm (p.\,\pageref{structGContainer})} to copy data from \end{itemize}
+
+
+Definition at line 394 of file gcontainer.c.
+
+References ERROR, g\_\-container\_\-add(), g\_\-container\_\-get\_\-iter(), g\_\-iterator\_\-has\-Next(), and g\_\-iterator\_\-next().
+
+Referenced by g\_\-container\_\-dup(), luau\_\-copy\-Prog\-Info(), and luau\_\-copy\-Update().\index{gcontainer.c@{gcontainer.c}!g_container_destroy@{g\_\-container\_\-destroy}}
+\index{g_container_destroy@{g\_\-container\_\-destroy}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void g\_\-container\_\-destroy ({\bf GContainer} $\ast$ {\em array})}\label{gcontainer_8c_a22}
+
+
+Free a {\bf GContainer}{\rm (p.\,\pageref{structGContainer})} and all the pointers it stores. 
+
+Free both a {\bf GContainer}{\rm (p.\,\pageref{structGContainer})} and all the data stored within it. Convenient to use on the GPtr\-Array returned from luau\_\-get\-All\-Programs.
+
+\begin{itemize}
+\item array is the array to destroy \end{itemize}
+
+
+Definition at line 416 of file gcontainer.c.
+
+References ERROR, g\_\-container\_\-free(), g\_\-container\_\-get\_\-iter(), g\_\-iterator\_\-has\-Next(), and g\_\-iterator\_\-next().
+
+Referenced by free\-Mult\-Attribute(), g\_\-container\_\-destroy\_\-type(), luau\_\-versioncmp(), and parse\-Package().\index{gcontainer.c@{gcontainer.c}!g_container_destroy_type@{g\_\-container\_\-destroy\_\-type}}
+\index{g_container_destroy_type@{g\_\-container\_\-destroy\_\-type}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void g\_\-container\_\-destroy\_\-type ({\bf GCont\-Type} {\em type}, void $\ast$ {\em array})}\label{gcontainer_8c_a23}
+
+
+Free an array of specified type and all the pointers it stores. 
+
+
+
+Definition at line 435 of file gcontainer.c.
+
+References ERROR, g\_\-container\_\-destroy(), and g\_\-container\_\-new\_\-from\_\-data().\index{gcontainer.c@{gcontainer.c}!g_container_dup@{g\_\-container\_\-dup}}
+\index{g_container_dup@{g\_\-container\_\-dup}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf GContainer}$\ast$ g\_\-container\_\-dup (const {\bf GContainer} $\ast$ {\em container})}\label{gcontainer_8c_a4}
+
+
+Performs a shallow copy and returns a new {\bf GContainer}{\rm (p.\,\pageref{structGContainer})} object. 
+
+
+
+Definition at line 80 of file gcontainer.c.
+
+References g\_\-container\_\-copy(), g\_\-container\_\-new(), and GContainer::type.
+
+Referenced by copy\-Set\-Attributes().\index{gcontainer.c@{gcontainer.c}!g_container_free@{g\_\-container\_\-free}}
+\index{g_container_free@{g\_\-container\_\-free}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ g\_\-container\_\-free ({\bf GContainer} $\ast$ {\em container}, gboolean {\em free\-Assoc})}\label{gcontainer_8c_a19}
+
+
+Free the memory allocated to a {\bf GContainer}{\rm (p.\,\pageref{structGContainer})}. 
+
+
+
+Definition at line 321 of file gcontainer.c.
+
+References GContainer::data, ERROR, GCONT\_\-LIST, GCONT\_\-PTR\_\-ARRAY, GCONT\_\-SLIST, and GContainer::type.
+
+Referenced by free\-Set\-Attributes(), g\_\-container\_\-convert(), g\_\-container\_\-destroy(), luau\_\-check\-For\-Updates(), luau\_\-check\-Keyword(), luau\_\-copy\-Prog\-Info(), luau\_\-copy\-Update(), luau\_\-get\-Update\-Info(), luau\_\-keywords\-String(), parse\-Mirror\-IDs(), parse\-Package\-Attr\-Mirrors(), and parse\-Pkg\-Group().\index{gcontainer.c@{gcontainer.c}!g_container_get_iter@{g\_\-container\_\-get\_\-iter}}
+\index{g_container_get_iter@{g\_\-container\_\-get\_\-iter}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean g\_\-container\_\-get\_\-iter ({\bf GIterator} $\ast$ {\em iter}, const {\bf GContainer} $\ast$ {\em container})}\label{gcontainer_8c_a12}
+
+
+
+
+Definition at line 221 of file gcontainer.c.
+
+References GIterator::data, GContainer::data, ERROR, GCONT\_\-LIST, GCONT\_\-PTR\_\-ARRAY, GCONT\_\-SLIST, GIterator::index, GIterator::type, and GContainer::type.
+
+Referenced by add\-To\-Mirror\-List(), free\-Set\-Attributes(), g\_\-container\_\-concat(), g\_\-container\_\-convert(), g\_\-container\_\-copy(), g\_\-container\_\-destroy(), get\-Attribute\-List(), luau\_\-get\-Update\-Info(), lutil\_\-find\-String(), lutil\_\-strjoin(), parse\-Mirror\-IDs(), parse\-Package\-Attr\-Mirrors(), and parse\-Pkg\-Group().\index{gcontainer.c@{gcontainer.c}!g_container_get_iter_last@{g\_\-container\_\-get\_\-iter\_\-last}}
+\index{g_container_get_iter_last@{g\_\-container\_\-get\_\-iter\_\-last}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean g\_\-container\_\-get\_\-iter\_\-last ({\bf GIterator} $\ast$ {\em iter}, const {\bf GContainer} $\ast$ {\em container})}\label{gcontainer_8c_a13}
+
+
+
+
+Definition at line 241 of file gcontainer.c.
+
+References GIterator::data, GContainer::data, ERROR, GCONT\_\-LIST, GCONT\_\-PTR\_\-ARRAY, GCONT\_\-SLIST, GIterator::index, GContainer::len, GIterator::type, and GContainer::type.
+
+Referenced by get\-Attribute\-String().\index{gcontainer.c@{gcontainer.c}!g_container_index@{g\_\-container\_\-index}}
+\index{g_container_index@{g\_\-container\_\-index}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gpointer g\_\-container\_\-index (const {\bf GContainer} $\ast$ {\em container}, guint {\em index})}\label{gcontainer_8c_a11}
+
+
+
+
+Definition at line 202 of file gcontainer.c.
+
+References GContainer::data, ERROR, GCONT\_\-LIST, GCONT\_\-PTR\_\-ARRAY, GCONT\_\-SLIST, GContainer::len, and GContainer::type.
+
+Referenced by luau\_\-versioncmp(), and lutil\_\-strjoin().\index{gcontainer.c@{gcontainer.c}!g_container_new@{g\_\-container\_\-new}}
+\index{g_container_new@{g\_\-container\_\-new}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf GContainer}$\ast$ g\_\-container\_\-new ({\bf GCont\-Type} {\em type})}\label{gcontainer_8c_a2}
+
+
+
+
+Definition at line 34 of file gcontainer.c.
+
+References GContainer::data, ERROR, GCONT\_\-LIST, GCONT\_\-PTR\_\-ARRAY, GCONT\_\-SLIST, GContainer::len, and GContainer::type.
+
+Referenced by add\-To\-Mirror\-List(), g\_\-container\_\-convert(), g\_\-container\_\-dup(), get\-Attribute\-List(), initialize\-Set\-Attributes(), luau\_\-parse\-XML\_\-updates(), lutil\_\-gsplit(), parse\-Mirror\-IDs(), parse\-Package\-Properties(), and parse\-Pkg\-Group().\index{gcontainer.c@{gcontainer.c}!g_container_new_from_data@{g\_\-container\_\-new\_\-from\_\-data}}
+\index{g_container_new_from_data@{g\_\-container\_\-new\_\-from\_\-data}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf GContainer}$\ast$ g\_\-container\_\-new\_\-from\_\-data ({\bf GCont\-Type} {\em type}, void $\ast$ {\em data})}\label{gcontainer_8c_a3}
+
+
+
+
+Definition at line 55 of file gcontainer.c.
+
+References GContainer::data, ERROR, GCONT\_\-LIST, GCONT\_\-PTR\_\-ARRAY, GCONT\_\-SLIST, GContainer::len, and GContainer::type.
+
+Referenced by g\_\-container\_\-destroy\_\-type(), luau\_\-check\-Keyword(), luau\_\-copy\-Prog\-Info(), luau\_\-copy\-Update(), and luau\_\-keywords\-String().\index{gcontainer.c@{gcontainer.c}!g_container_remove@{g\_\-container\_\-remove}}
+\index{g_container_remove@{g\_\-container\_\-remove}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean g\_\-container\_\-remove ({\bf GContainer} $\ast$ {\em container}, const gpointer {\em data})}\label{gcontainer_8c_a7}
+
+
+
+
+Definition at line 118 of file gcontainer.c.
+
+References GContainer::data, ERROR, GCONT\_\-LIST, GCONT\_\-PTR\_\-ARRAY, GCONT\_\-SLIST, GContainer::len, and GContainer::type.
+
+Referenced by g\_\-container\_\-remove\_\-fast().\index{gcontainer.c@{gcontainer.c}!g_container_remove_fast@{g\_\-container\_\-remove\_\-fast}}
+\index{g_container_remove_fast@{g\_\-container\_\-remove\_\-fast}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean g\_\-container\_\-remove\_\-fast ({\bf GContainer} $\ast$ {\em container}, const gpointer {\em data})}\label{gcontainer_8c_a8}
+
+
+
+
+Definition at line 147 of file gcontainer.c.
+
+References GContainer::data, g\_\-container\_\-remove(), GCONT\_\-PTR\_\-ARRAY, GContainer::len, and GContainer::type.\index{gcontainer.c@{gcontainer.c}!g_container_remove_index@{g\_\-container\_\-remove\_\-index}}
+\index{g_container_remove_index@{g\_\-container\_\-remove\_\-index}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gpointer g\_\-container\_\-remove\_\-index ({\bf GContainer} $\ast$ {\em container}, guint {\em index})}\label{gcontainer_8c_a9}
+
+
+
+
+Definition at line 161 of file gcontainer.c.
+
+References GContainer::data, ERROR, GCONT\_\-LIST, GCONT\_\-PTR\_\-ARRAY, GCONT\_\-SLIST, GContainer::len, and GContainer::type.
+
+Referenced by g\_\-container\_\-remove\_\-index\_\-fast().\index{gcontainer.c@{gcontainer.c}!g_container_remove_index_fast@{g\_\-container\_\-remove\_\-index\_\-fast}}
+\index{g_container_remove_index_fast@{g\_\-container\_\-remove\_\-index\_\-fast}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gpointer g\_\-container\_\-remove\_\-index\_\-fast ({\bf GContainer} $\ast$ {\em container}, guint {\em index})}\label{gcontainer_8c_a10}
+
+
+
+
+Definition at line 188 of file gcontainer.c.
+
+References GContainer::data, ERROR, g\_\-container\_\-remove\_\-index(), GCONT\_\-PTR\_\-ARRAY, GContainer::len, and GContainer::type.\index{gcontainer.c@{gcontainer.c}!g_iterator_get@{g\_\-iterator\_\-get}}
+\index{g_iterator_get@{g\_\-iterator\_\-get}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gpointer g\_\-iterator\_\-get (const {\bf GIterator} $\ast$ {\em iter})}\label{gcontainer_8c_a14}
+
+
+
+
+Definition at line 262 of file gcontainer.c.
+
+References GIterator::data, ERROR, GCONT\_\-LIST, GCONT\_\-PTR\_\-ARRAY, GCONT\_\-SLIST, GIterator::index, and GIterator::type.
+
+Referenced by g\_\-iterator\_\-next(), and g\_\-iterator\_\-prev().\index{gcontainer.c@{gcontainer.c}!g_iterator_hasNext@{g\_\-iterator\_\-hasNext}}
+\index{g_iterator_hasNext@{g\_\-iterator\_\-hasNext}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean g\_\-iterator\_\-has\-Next (const {\bf GIterator} $\ast$ {\em iter})}\label{gcontainer_8c_a17}
+
+
+
+
+Definition at line 292 of file gcontainer.c.
+
+References GIterator::data, ERROR, GCONT\_\-LIST, GCONT\_\-PTR\_\-ARRAY, GCONT\_\-SLIST, GIterator::index, and GIterator::type.
+
+Referenced by add\-To\-Mirror\-List(), free\-Set\-Attributes(), g\_\-container\_\-concat(), g\_\-container\_\-convert(), g\_\-container\_\-copy(), g\_\-container\_\-destroy(), get\-Attribute\-List(), luau\_\-get\-Update\-Info(), lutil\_\-find\-String(), lutil\_\-strjoin(), parse\-Mirror\-IDs(), parse\-Package\-Attr\-Mirrors(), and parse\-Pkg\-Group().\index{gcontainer.c@{gcontainer.c}!g_iterator_hasPrev@{g\_\-iterator\_\-hasPrev}}
+\index{g_iterator_hasPrev@{g\_\-iterator\_\-hasPrev}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean g\_\-iterator\_\-has\-Prev (const {\bf GIterator} $\ast$ {\em iter})}\label{gcontainer_8c_a18}
+
+
+
+
+Definition at line 306 of file gcontainer.c.
+
+References GIterator::data, ERROR, GCONT\_\-LIST, GCONT\_\-PTR\_\-ARRAY, GCONT\_\-SLIST, GIterator::index, and GIterator::type.
+
+Referenced by get\-Attribute\-String().\index{gcontainer.c@{gcontainer.c}!g_iterator_next@{g\_\-iterator\_\-next}}
+\index{g_iterator_next@{g\_\-iterator\_\-next}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gpointer g\_\-iterator\_\-next ({\bf GIterator} $\ast$ {\em iter})}\label{gcontainer_8c_a15}
+
+
+
+
+Definition at line 276 of file gcontainer.c.
+
+References g\_\-iterator\_\-get(), and iter\-Next().
+
+Referenced by add\-To\-Mirror\-List(), free\-Set\-Attributes(), g\_\-container\_\-concat(), g\_\-container\_\-convert(), g\_\-container\_\-copy(), g\_\-container\_\-destroy(), get\-Attribute\-List(), luau\_\-get\-Update\-Info(), lutil\_\-find\-String(), lutil\_\-strjoin(), parse\-Mirror\-IDs(), parse\-Package\-Attr\-Mirrors(), and parse\-Pkg\-Group().\index{gcontainer.c@{gcontainer.c}!g_iterator_prev@{g\_\-iterator\_\-prev}}
+\index{g_iterator_prev@{g\_\-iterator\_\-prev}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gpointer g\_\-iterator\_\-prev ({\bf GIterator} $\ast$ {\em iter})}\label{gcontainer_8c_a16}
+
+
+
+
+Definition at line 285 of file gcontainer.c.
+
+References g\_\-iterator\_\-get(), and iter\-Prev().
+
+Referenced by get\-Attribute\-String().\index{gcontainer.c@{gcontainer.c}!iterNext@{iterNext}}
+\index{iterNext@{iterNext}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void iter\-Next ({\bf GIterator} $\ast$ {\em iter})\hspace{0.3cm}{\tt  [static]}}\label{gcontainer_8c_a0}
+
+
+
+
+Definition at line 451 of file gcontainer.c.
+
+References GIterator::data, ERROR, GCONT\_\-LIST, GCONT\_\-PTR\_\-ARRAY, GCONT\_\-SLIST, GIterator::index, and GIterator::type.
+
+Referenced by g\_\-iterator\_\-next().\index{gcontainer.c@{gcontainer.c}!iterPrev@{iterPrev}}
+\index{iterPrev@{iterPrev}!gcontainer.c@{gcontainer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void iter\-Prev ({\bf GIterator} $\ast$ {\em iter})\hspace{0.3cm}{\tt  [static]}}\label{gcontainer_8c_a1}
+
+
+
+
+Definition at line 465 of file gcontainer.c.
+
+References GIterator::data, ERROR, GCONT\_\-LIST, GCONT\_\-PTR\_\-ARRAY, GCONT\_\-SLIST, GIterator::index, and GIterator::type.
+
+Referenced by g\_\-iterator\_\-prev().

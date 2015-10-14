@@ -1,0 +1,278 @@
+\section{database.c File Reference}
+\label{database_8c}\index{database.c@{database.c}}
+{\tt \#include $<$sys/types.h$>$}\par
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include $<$db.h$>$}\par
+{\tt \#include $<$glib.h$>$}\par
+{\tt \#include \char`\"{}database.h\char`\"{}}\par
+{\tt \#include \char`\"{}util.h\char`\"{}}\par
+{\tt \#include \char`\"{}error.h\char`\"{}}\par
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct {\bf ADatabase\-Handle}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+DB $\ast$ {\bf get\-Database\-P} (const char $\ast$category, const char $\ast$subcategory, gboolean writeable)
+\item 
+DB $\ast$ {\bf open\-Database} (const char $\ast$category, const char $\ast$subcategory, gboolean need\-Write)
+\begin{CompactList}\small\item\em Open a database. \item\end{CompactList}\item 
+void $\ast$ {\bf luau\_\-db\_\-query\-Database} (const char $\ast$category, const char $\ast$subcategory, const char $\ast$key)
+\begin{CompactList}\small\item\em Database query. \item\end{CompactList}\item 
+gboolean {\bf luau\_\-db\_\-key\-Exists} (const char $\ast$category, const char $\ast$subcategory, const char $\ast$key)
+\begin{CompactList}\small\item\em Check for key existence. \item\end{CompactList}\item 
+gboolean {\bf luau\_\-db\_\-create} (const char $\ast$category, const char $\ast$subcategory)
+\item 
+GPtr\-Array $\ast$ {\bf luau\_\-db\_\-get\-All\-DBKeys} (const char $\ast$category, const char $\ast$subcategory)
+\begin{CompactList}\small\item\em Get an array of all keys in the database. \item\end{CompactList}\item 
+gboolean {\bf luau\_\-db\_\-set\-Value} (const char $\ast$category, const char $\ast$subcategory, const char $\ast$key, const void $\ast$value, size\_\-t {\bf size})
+\begin{CompactList}\small\item\em Set a key/value pair in the database. \item\end{CompactList}\item 
+gboolean {\bf luau\_\-db\_\-set\-Value\-String} (const char $\ast$category, const char $\ast$subcategory, const char $\ast$key, const char $\ast$string)
+\begin{CompactList}\small\item\em Set a key/value pair where the value is a string. \item\end{CompactList}\item 
+gboolean {\bf luau\_\-db\_\-set\-Value\-Int} (const char $\ast$category, const char $\ast$subcategory, const char $\ast$key, int value)
+\begin{CompactList}\small\item\em Set a key/value pair where the value is an integer. \item\end{CompactList}\item 
+gboolean {\bf luau\_\-db\_\-delete\-Key} (const char $\ast$category, const char $\ast$subcategory, const char $\ast$key)
+\begin{CompactList}\small\item\em Delete a key/value pair in the specified database. \item\end{CompactList}\item 
+gboolean {\bf luau\_\-db\_\-clear} (const char $\ast$category, const char $\ast$subcategory)
+\begin{CompactList}\small\item\em Clear a database of all keys. \item\end{CompactList}\item 
+void {\bf luau\_\-db\_\-keep\-Open} (gboolean yes\-Or\-No)
+\begin{CompactList}\small\item\em Keep all opened databases open to speed up multiple database operations. \item\end{CompactList}\item 
+void {\bf luau\_\-db\_\-close\-All} (void)
+\begin{CompactList}\small\item\em Close all open databases. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+gboolean {\bf keep\-Open} = FALSE
+\item 
+GPtr\-Array $\ast$ {\bf db\-Ps} = NULL
+\end{CompactItemize}
+
+
+\subsection{Function Documentation}
+\index{database.c@{database.c}!getDatabaseP@{getDatabaseP}}
+\index{getDatabaseP@{getDatabaseP}!database.c@{database.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}DB $\ast$ get\-Database\-P (const char $\ast$ {\em category}, const char $\ast$ {\em subcategory}, gboolean {\em writeable})\hspace{0.3cm}{\tt  [static]}}\label{database_8c_a2}
+
+
+
+
+Definition at line 326 of file database.c.
+
+References curr, db\-Ps, DBUGOUT, AUpdate::id, keep\-Open, lutil\_\-streq(), lutil\_\-vstrcreate(), and open\-Database().
+
+Referenced by luau\_\-db\_\-clear(), luau\_\-db\_\-create(), luau\_\-db\_\-delete\-Key(), luau\_\-db\_\-get\-All\-DBKeys(), luau\_\-db\_\-query\-Database(), and luau\_\-db\_\-set\-Value().\index{database.c@{database.c}!luau_db_clear@{luau\_\-db\_\-clear}}
+\index{luau_db_clear@{luau\_\-db\_\-clear}!database.c@{database.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-db\_\-clear (const char $\ast$ {\em category}, const char $\ast$ {\em subcategory})}\label{database_8c_a12}
+
+
+Clear a database of all keys. 
+
+
+
+Definition at line 278 of file database.c.
+
+References DB\_\-DIR, ERROR, get\-Database\-P(), and lutil\_\-vstrcreate().\index{database.c@{database.c}!luau_db_closeAll@{luau\_\-db\_\-closeAll}}
+\index{luau_db_closeAll@{luau\_\-db\_\-closeAll}!database.c@{database.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void luau\_\-db\_\-close\-All (void)}\label{database_8c_a14}
+
+
+Close all open databases. 
+
+
+
+Definition at line 300 of file database.c.
+
+References curr, db\-Ps, DBUGOUT, and AUpdate::id.
+
+Referenced by luau\_\-close\-All\-Databases().\index{database.c@{database.c}!luau_db_create@{luau\_\-db\_\-create}}
+\index{luau_db_create@{luau\_\-db\_\-create}!database.c@{database.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-db\_\-create (const char $\ast$ {\em category}, const char $\ast$ {\em subcategory})}\label{database_8c_a6}
+
+
+
+
+Definition at line 112 of file database.c.
+
+References get\-Database\-P(), and keep\-Open.
+
+Referenced by main().\index{database.c@{database.c}!luau_db_deleteKey@{luau\_\-db\_\-deleteKey}}
+\index{luau_db_deleteKey@{luau\_\-db\_\-deleteKey}!database.c@{database.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-db\_\-delete\-Key (const char $\ast$ {\em category}, const char $\ast$ {\em subcategory}, const char $\ast$ {\em key})}\label{database_8c_a11}
+
+
+Delete a key/value pair in the specified database. 
+
+
+
+Definition at line 259 of file database.c.
+
+References ERROR, and get\-Database\-P().
+
+Referenced by luau\_\-delete\-App().\index{database.c@{database.c}!luau_db_getAllDBKeys@{luau\_\-db\_\-getAllDBKeys}}
+\index{luau_db_getAllDBKeys@{luau\_\-db\_\-getAllDBKeys}!database.c@{database.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}GPtr\-Array$\ast$ luau\_\-db\_\-get\-All\-DBKeys (const char $\ast$ {\em category}, const char $\ast$ {\em subcategory})}\label{database_8c_a7}
+
+
+Get an array of all keys in the database. 
+
+Get all the keys in the specified database using libdb's 'cursor' interface. Returns NULL on error.
+
+\begin{itemize}
+\item {\em category\/} is the main category where the key is stored (actually the database filename) \item {\em subcategory\/} is the sub category where the key is stored (actually the database name) \begin{Desc}
+\item[Returns:]a GPtr\-Array of all the keys in specified database (must be {\tt free}'d), or NULL on failure. \end{Desc}
+\end{itemize}
+
+
+Definition at line 138 of file database.c.
+
+References ERROR, get\-Database\-P(), and keep\-Open.
+
+Referenced by luau\_\-get\-All\-Programs().\index{database.c@{database.c}!luau_db_keepOpen@{luau\_\-db\_\-keepOpen}}
+\index{luau_db_keepOpen@{luau\_\-db\_\-keepOpen}!database.c@{database.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void luau\_\-db\_\-keep\-Open (gboolean {\em yes\-Or\-No})}\label{database_8c_a13}
+
+
+Keep all opened databases open to speed up multiple database operations. 
+
+
+
+Definition at line 295 of file database.c.
+
+References keep\-Open.
+
+Referenced by luau\_\-keep\-Databases\-Open().\index{database.c@{database.c}!luau_db_keyExists@{luau\_\-db\_\-keyExists}}
+\index{luau_db_keyExists@{luau\_\-db\_\-keyExists}!database.c@{database.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-db\_\-key\-Exists (const char $\ast$ {\em category}, const char $\ast$ {\em subcategory}, const char $\ast$ {\em key})}\label{database_8c_a5}
+
+
+Check for key existence. 
+
+Find if a key exists in the specified database. Note that this will also return FALSE if the database doesn't exist, or there is an error in opening it.
+
+\begin{itemize}
+\item {\em category\/} is the main category where the key is stored (actually the database filename) \item {\em subcategory\/} is the sub category where the key is stored (actually the database name) \item {\em key\/} is the name of the key we want to see exists \begin{Desc}
+\item[Returns:]TRUE if the key exists, FALSE otherwise \end{Desc}
+\end{itemize}
+
+
+Definition at line 107 of file database.c.
+
+References luau\_\-db\_\-query\-Database().\index{database.c@{database.c}!luau_db_queryDatabase@{luau\_\-db\_\-queryDatabase}}
+\index{luau_db_queryDatabase@{luau\_\-db\_\-queryDatabase}!database.c@{database.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ luau\_\-db\_\-query\-Database (const char $\ast$ {\em category}, const char $\ast$ {\em subcategory}, const char $\ast$ {\em key})}\label{database_8c_a4}
+
+
+Database query. 
+
+Query for the value associated with the given key. Returns NULL if the query failed, or if there's no such key in the database.
+
+\begin{itemize}
+\item {\em category\/} is the main category where the key is stored (actually the database filename) \item {\em subcategory\/} is the sub category where the key is stored (actually the database name) \item {\em key\/} is the name of the key we want to find the data for (we only support strings as keys) \begin{Desc}
+\item[Returns:]the associated data (must be {\tt free}'d), or NULL otherwise \end{Desc}
+\end{itemize}
+
+
+Definition at line 65 of file database.c.
+
+References ERROR, get\-Database\-P(), and keep\-Open.
+
+Referenced by is\-Hidden(), luau\_\-db\_\-key\-Exists(), and luau\_\-get\-Prog\-Info().\index{database.c@{database.c}!luau_db_setValue@{luau\_\-db\_\-setValue}}
+\index{luau_db_setValue@{luau\_\-db\_\-setValue}!database.c@{database.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-db\_\-set\-Value (const char $\ast$ {\em category}, const char $\ast$ {\em subcategory}, const char $\ast$ {\em key}, const void $\ast$ {\em value}, size\_\-t {\em size})}\label{database_8c_a8}
+
+
+Set a key/value pair in the database. 
+
+Set the value of {\tt key} to {\tt value} in the {\tt category.subcategory} database. Overwrites previous value if one exists, or creates a new pair otherwise. {\tt size} must contain the size (in bytes) of {\tt value}.
+
+\begin{itemize}
+\item {\em category\/} is the main category where the key is stored (actually the database filename) \item {\em subcategory\/} is the sub category where the key is stored (actually the database name) \item {\em key\/} is the name of the key we want to set/change \item {\em value\/} is the new value \item {\em size\/} is the size of the new value (in bytes)\end{itemize}
+\begin{Desc}
+\item[See also:]{\bf luau\_\-db\_\-set\-Value\-String} 
+
+{\bf luau\_\-db\_\-set\-Value\-Int} \end{Desc}
+
+
+Definition at line 190 of file database.c.
+
+References ERROR, get\-Database\-P(), keep\-Open, and size.
+
+Referenced by luau\_\-db\_\-set\-Value\-Int(), and luau\_\-db\_\-set\-Value\-String().\index{database.c@{database.c}!luau_db_setValueInt@{luau\_\-db\_\-setValueInt}}
+\index{luau_db_setValueInt@{luau\_\-db\_\-setValueInt}!database.c@{database.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-db\_\-set\-Value\-Int (const char $\ast$ {\em category}, const char $\ast$ {\em subcategory}, const char $\ast$ {\em key}, int {\em value})}\label{database_8c_a10}
+
+
+Set a key/value pair where the value is an integer. 
+
+Front-end to luau\_\-db\_\-set\-Value for setting string values in the database. Otherwise works the same as luau\_\-db\_\-set\-Value.
+
+\begin{itemize}
+\item {\em category\/} is the main category where the key is stored (actually the database filename) \item {\em subcategory\/} is the sub category where the key is stored (actually the database name) \item {\em key\/} is the name of the key we want to set/change \item {\em value\/} is the new value\end{itemize}
+\begin{Desc}
+\item[See also:]{\bf luau\_\-db\_\-set\-Value} \end{Desc}
+
+
+Definition at line 253 of file database.c.
+
+References DBUGOUT, and luau\_\-db\_\-set\-Value().
+
+Referenced by luau\_\-hide\-Update(), luau\_\-register\-New\-App(), and luau\_\-unhide\-Update().\index{database.c@{database.c}!luau_db_setValueString@{luau\_\-db\_\-setValueString}}
+\index{luau_db_setValueString@{luau\_\-db\_\-setValueString}!database.c@{database.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-db\_\-set\-Value\-String (const char $\ast$ {\em category}, const char $\ast$ {\em subcategory}, const char $\ast$ {\em key}, const char $\ast$ {\em string})}\label{database_8c_a9}
+
+
+Set a key/value pair where the value is a string. 
+
+Front-end to luau\_\-db\_\-set\-Value for setting string values in the database. Otherwise works the same as luau\_\-db\_\-set\-Value.
+
+\begin{itemize}
+\item {\em category\/} is the main category where the key is stored (actually the database filename) \item {\em subcategory\/} is the sub category where the key is stored (actually the database name) \item {\em key\/} is the name of the key we want to set/change \item {\em value\/} is the new value\end{itemize}
+\begin{Desc}
+\item[See also:]{\bf luau\_\-db\_\-set\-Value} \end{Desc}
+
+
+Definition at line 233 of file database.c.
+
+References DBUGOUT, and luau\_\-db\_\-set\-Value().
+
+Referenced by luau\_\-register\-New\-App().\index{database.c@{database.c}!openDatabase@{openDatabase}}
+\index{openDatabase@{openDatabase}!database.c@{database.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}DB $\ast$ open\-Database (const char $\ast$ {\em category}, const char $\ast$ {\em subcategory}, gboolean {\em need\-Write})\hspace{0.3cm}{\tt  [static]}}\label{database_8c_a3}
+
+
+Open a database. 
+
+Open and return a DB pointer for the given database. Returns NULL on error. $\ast$ \begin{itemize}
+\item {\em category\/} is the main category where the key is stored (actually the database filename) \item {\em subcategory\/} is the sub category where the key is stored (actually the database name) \item {\em need\-Write\/} specifies whether we need write permissions \begin{Desc}
+\item[Returns:]a DB pointer for the database (must be closed when finished), or NULL if operation fails \end{Desc}
+\end{itemize}
+
+
+Definition at line 414 of file database.c.
+
+References DB\_\-DIR, DBUGOUT, ERROR, and lutil\_\-vstrcreate().
+
+Referenced by get\-Database\-P().
+
+\subsection{Variable Documentation}
+\index{database.c@{database.c}!dbPs@{dbPs}}
+\index{dbPs@{dbPs}!database.c@{database.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}GPtr\-Array$\ast$ {\bf db\-Ps} = NULL}\label{database_8c_a1}
+
+
+
+
+Definition at line 49 of file database.c.
+
+Referenced by get\-Database\-P(), and luau\_\-db\_\-close\-All().\index{database.c@{database.c}!keepOpen@{keepOpen}}
+\index{keepOpen@{keepOpen}!database.c@{database.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean {\bf keep\-Open} = FALSE}\label{database_8c_a0}
+
+
+
+
+Definition at line 48 of file database.c.
+
+Referenced by get\-Database\-P(), luau\_\-db\_\-create(), luau\_\-db\_\-get\-All\-DBKeys(), luau\_\-db\_\-keep\-Open(), luau\_\-db\_\-query\-Database(), and luau\_\-db\_\-set\-Value().

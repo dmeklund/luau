@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE luau-repository SYSTEM "http://luau.sourceforge.net/luau-repository-1.1.dtd">
+
+<!-- Updates file for myproject (id: "@ftp.example.com/myproject") -->
+
+  
+<luau-repository interface="1.0">
+	<program-info id="@example.com/myproject">
+		<shortname>myproject</shortname>
+		<fullname>MyProject Projector</fullname>
+		<desc>Projectilize projecting projectiles</desc>
+		<url>ftp://ftp.example.com/myproject/myproject.repository.xml</url>
+	</program-info>
+	
+	<software version="1.1.1">
+		<date>2003-04-12</date>
+		<keyword>UNSTABLE</keyword>
+		<short>Upgrade to myproject version 1.1.1</short>
+		
+		<long>
+Version 1.1.1 supports CoolStuff extensions and drops legacy support for pre-1.0 versions.
+Many bug fixes have also been made, including:
+  o Preventing myproject from crashing when user inputs curse words
+  o No more gamma radiation problems (hopefully)
+!!! NOTE !!!
+INSTALLING version 1.1.1 WILL DROP COMPATIBILITY WITH BINARIES COMPILED WITH PRE-1.0 versions!
+If this is a problem, please stick with the 1.0 branch
+		</long>
+		
+		<package type="RPM" size="1200144" md5="29168bed9cc7e04652e82bc09b3c7b98">ftp://ftp.example.com/pub/myproject-1.1.1/binaries/myproject-1.1.1.rpm</package>
+		<package type="DEB" size="1432534" md5="98336d9f8cb04bc909a9a2a13a9e893c">ftp://ftp.example.com/pub/myproject-1.1.1/binaries/myproject-1.1.1.deb</package>
+		<package type="SRC" size="6323511" md5="717ab9d5dfcb8900ca14182dc0a0dbb2">
+			<mirror weight="80%">ftp://ftp.example.com/pub/myproject-1.1.1/src/myproject-1.1.1.tar.gz</mirror>
+			<mirror weight="20%">http://www.example.com/myproject/myproject-1.1.1.tar.gz</mirror>
+		</package>
+		
+		<valid type="date" from="2003-05-02" to="2003-05-15"/>
+	</software>
+	
+	<update type="message">
+		<id>201</id>
+		<date>2003-04-14</date>
+		<short>Artists needed!</short>
+		<long>
+	myproject is looking for some talented artists to help with the newly planned action simulation adventure game, "MyProject: The GAME."  If you're interested, please contact jimbo@example.com
+		</long>
+	</update>
+	
+	<update type="luau-config">
+		<id>301</id>
+		<date>2003-04-14</date>
+		<keyword>IMPORTANT</keyword>
+		<short>New server</short>
+		<long>
+	We've got our own ftp server now, so we're trying to get everyone to switch over to using the example.com database.  Please accept this update, since the old ftp server will be unavailable in a month or so, and trying to autoupdate from it after that will fail.  Thanks. :)
+		</long>
+		<set url="ftp://ftp.example.com/pub/myproject/updates"/>
+	</update>
+</luau-repository>

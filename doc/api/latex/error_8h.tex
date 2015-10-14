@@ -1,0 +1,168 @@
+\section{error.h File Reference}
+\label{error_8h}\index{error.h@{error.h}}
+Standard error output methods.  
+
+
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define {\bf FATAL\_\-ERROR}(args...)\ lutil\_\-error\_\-fatal(\_\-\_\-FILE\_\-\_\-, \_\-\_\-FUNCTION\_\-\_\-, \_\-\_\-LINE\_\-\_\-, args)
+\begin{CompactList}\small\item\em Display error and die. \item\end{CompactList}\item 
+\#define {\bf ERROR}(args...)\ lutil\_\-error(\_\-\_\-FILE\_\-\_\-, \_\-\_\-FUNCTION\_\-\_\-, \_\-\_\-LINE\_\-\_\-, args)
+\begin{CompactList}\small\item\em Display error and continue. \item\end{CompactList}\item 
+\#define {\bf DBUGOUT}(args...)
+\end{CompactItemize}
+\subsection*{Typedefs}
+\begin{CompactItemize}
+\item 
+typedef void($\ast$ {\bf UError\-Func} )(const char $\ast$string, const char $\ast$filename, const char $\ast$function, int lineno)
+\item 
+typedef int($\ast$ {\bf UPrompt\-Func} )(const char $\ast$title, const char $\ast$msg, int n\-Total, int n\-Default, const char $\ast$choice1, va\_\-list args)
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void {\bf lutil\_\-error\_\-set\-Prompt\-Func} ({\bf UPrompt\-Func} prompt\-Func)
+\begin{CompactList}\small\item\em Set a new function to prompt the user with. \item\end{CompactList}\item 
+void {\bf lutil\_\-error\_\-reset\-Prompt\-Func} (void)
+\begin{CompactList}\small\item\em Reset the prompt function to the default prompt function. \item\end{CompactList}\item 
+void {\bf lutil\_\-error\_\-fatal} (const char $\ast$filename, const char $\ast$function, int lineno, const char $\ast$template,...) \_\-\_\-attribute\_\-\_\-((format(printf
+\begin{CompactList}\small\item\em Display an error and die. \item\end{CompactList}\item 
+int {\bf lutil\_\-error\_\-prompt} (const char $\ast$title, const char $\ast$msg, int n\-Total, int n\-Default, const char $\ast$choice1,...)
+\begin{CompactList}\small\item\em Prompt the user for input. \item\end{CompactList}\item 
+void {\bf lutil\_\-error} (const char $\ast$filename, const char $\ast$function, int lineno, const char $\ast$template,...) \_\-\_\-attribute\_\-\_\-((format(printf
+\begin{CompactList}\small\item\em Display an error message and continue. \item\end{CompactList}\item 
+void {\bf lutil\_\-debug} (const char $\ast$filename, const char $\ast$function, int lineno, const char $\ast$template,...) \_\-\_\-attribute\_\-\_\-((format(printf
+\begin{CompactList}\small\item\em Display a debugging message and continue. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Standard error output methods. 
+
+Standard interface for displaying errors and prompting the user for input. Allows the program developer to define how errors are displayed and how prompts are shown while also providing default functions.
+
+Definition in file {\bf error.h}.
+
+\subsection{Define Documentation}
+\index{error.h@{error.h}!DBUGOUT@{DBUGOUT}}
+\index{DBUGOUT@{DBUGOUT}!error.h@{error.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define DBUGOUT(args...)}\label{error_8h_a2}
+
+
+
+
+Definition at line 46 of file error.h.
+
+Referenced by luau\_\-check\-For\-Updates(), luau\_\-copy\-Date(), luau\_\-copy\-Interface(), luau\_\-copy\-Package(), luau\_\-copy\-Prog\-Info(), luau\_\-copy\-Update(), luau\_\-download\-Update(), luau\_\-get\-Package\-URL(), luau\_\-net\_\-query\-Server(), luau\_\-parse\-Date(), luau\_\-parse\-XML\_\-prog\-Info(), luau\_\-parse\-XML\_\-updates(), lutil\_\-ftp\_\-download\-To\-File(), lutil\_\-ftp\_\-get\-URL(), lutil\_\-gsplit(), parse\-Generic\-Info(), parse\-Mirror\-Def(), parse\-Mirror\-IDs(), parse\-Mirror\-List(), parse\-Package(), parse\-Package\-Child\-Mirrors(), parse\-Pkg\-Group(), parse\-Prog\-Info\-Tag(), parse\-Update(), and parse\-Updates().\index{error.h@{error.h}!ERROR@{ERROR}}
+\index{ERROR@{ERROR}!error.h@{error.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define ERROR(args...)\ lutil\_\-error(\_\-\_\-FILE\_\-\_\-, \_\-\_\-FUNCTION\_\-\_\-, \_\-\_\-LINE\_\-\_\-, args)}\label{error_8h_a1}
+
+
+Display error and continue. 
+
+
+
+Definition at line 41 of file error.h.
+
+Referenced by categorize\-Updates(), copy\-Set\-Attributes(), g\_\-container\_\-add(), g\_\-container\_\-convert(), g\_\-container\_\-copy(), g\_\-container\_\-destroy(), g\_\-container\_\-destroy\_\-type(), g\_\-container\_\-free(), g\_\-container\_\-get\_\-iter(), g\_\-container\_\-get\_\-iter\_\-last(), g\_\-container\_\-index(), g\_\-container\_\-new(), g\_\-container\_\-new\_\-from\_\-data(), g\_\-container\_\-remove(), g\_\-container\_\-remove\_\-index(), g\_\-container\_\-remove\_\-index\_\-fast(), g\_\-iterator\_\-get(), g\_\-iterator\_\-has\-Next(), g\_\-iterator\_\-has\-Prev(), iter\-Next(), iter\-Prev(), luau\_\-copy\-Quant(), luau\_\-mult\-Package\-Type\-String(), luau\_\-parse\-Date(), luau\_\-satisfies\-Quant(), lutil\_\-parse\_\-next\-Token\_\-r(), lutil\_\-vstrcreate(), and parse\-Quant\-Data().\index{error.h@{error.h}!FATAL_ERROR@{FATAL\_\-ERROR}}
+\index{FATAL_ERROR@{FATAL\_\-ERROR}!error.h@{error.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define FATAL\_\-ERROR(args...)\ lutil\_\-error\_\-fatal(\_\-\_\-FILE\_\-\_\-, \_\-\_\-FUNCTION\_\-\_\-, \_\-\_\-LINE\_\-\_\-, args)}\label{error_8h_a0}
+
+
+Display error and die. 
+
+
+
+Definition at line 37 of file error.h.
+
+\subsection{Typedef Documentation}
+\index{error.h@{error.h}!UErrorFunc@{UErrorFunc}}
+\index{UErrorFunc@{UErrorFunc}!error.h@{error.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}typedef void($\ast$ {\bf UError\-Func})(const char $\ast$string, const char $\ast$filename, const char $\ast$function, int lineno)}\label{error_8h_a3}
+
+
+
+
+Definition at line 49 of file error.h.\index{error.h@{error.h}!UPromptFunc@{UPromptFunc}}
+\index{UPromptFunc@{UPromptFunc}!error.h@{error.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}typedef int($\ast$ {\bf UPrompt\-Func})(const char $\ast$title, const char $\ast$msg, int n\-Total, int n\-Default, const char $\ast$choice1, va\_\-list args)}\label{error_8h_a4}
+
+
+
+
+Definition at line 50 of file error.h.
+
+\subsection{Function Documentation}
+\index{error.h@{error.h}!lutil_debug@{lutil\_\-debug}}
+\index{lutil_debug@{lutil\_\-debug}!error.h@{error.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void lutil\_\-debug (const char $\ast$ {\em filename}, const char $\ast$ {\em function}, int {\em lineno}, const char $\ast$ {\em template},  {\em ...})}\label{error_8h_a10}
+
+
+Display a debugging message and continue. 
+
+\index{error.h@{error.h}!lutil_error@{lutil\_\-error}}
+\index{lutil_error@{lutil\_\-error}!error.h@{error.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void lutil\_\-error (const char $\ast$ {\em filename}, const char $\ast$ {\em function}, int {\em lineno}, const char $\ast$ {\em template},  {\em ...})}\label{error_8h_a9}
+
+
+Display an error message and continue. 
+
+\index{error.h@{error.h}!lutil_error_fatal@{lutil\_\-error\_\-fatal}}
+\index{lutil_error_fatal@{lutil\_\-error\_\-fatal}!error.h@{error.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void lutil\_\-error\_\-fatal (const char $\ast$ {\em filename}, const char $\ast$ {\em function}, int {\em lineno}, const char $\ast$ {\em template},  {\em ...})}\label{error_8h_a7}
+
+
+Display an error and die. 
+
+\index{error.h@{error.h}!lutil_error_prompt@{lutil\_\-error\_\-prompt}}
+\index{lutil_error_prompt@{lutil\_\-error\_\-prompt}!error.h@{error.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int lutil\_\-error\_\-prompt (const char $\ast$ {\em title}, const char $\ast$ {\em msg}, int {\em n\-Total}, int {\em n\-Default}, const char $\ast$ {\em choice1},  {\em ...})}\label{error_8h_a8}
+
+
+Prompt the user for input. 
+
+Prompt the user for input, using the defined prompt function (or the default, if none is defined). Default behavior is not to prompt the user at all, but instead to return the default value.
+
+\begin{itemize}
+\item {\em title\/} is the name of the prompt \item {\em msg\/} is the prompt to ask the user \item {\em n\-Total\/} is the number of options given \item {\em n\-Default\/} is the id of the default option ({\bf must} be provided) \item {\em choice1\/} is the first choice \item {\em args\/} is the rest of the choices\end{itemize}
+\begin{Desc}
+\item[See also:]{\bf lutil\_\-error\_\-set\-Prompt\-Func}{\rm (p.\,\pageref{error_8h_a5})} \end{Desc}
+
+
+Definition at line 145 of file error.c.
+
+References prompt\-Func\_\-global.
+
+Referenced by luau\_\-download\-Update(), and luau\_\-net\_\-download\-Update().\index{error.h@{error.h}!lutil_error_resetPromptFunc@{lutil\_\-error\_\-resetPromptFunc}}
+\index{lutil_error_resetPromptFunc@{lutil\_\-error\_\-resetPromptFunc}!error.h@{error.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void lutil\_\-error\_\-reset\-Prompt\-Func (void)}\label{error_8h_a6}
+
+
+Reset the prompt function to the default prompt function. 
+
+
+
+Definition at line 100 of file error.c.
+
+References default\-Prompt\-Func(), and prompt\-Func\_\-global.
+
+Referenced by luau\_\-reset\-Prompt\-Func().\index{error.h@{error.h}!lutil_error_setPromptFunc@{lutil\_\-error\_\-setPromptFunc}}
+\index{lutil_error_setPromptFunc@{lutil\_\-error\_\-setPromptFunc}!error.h@{error.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void lutil\_\-error\_\-set\-Prompt\-Func ({\bf UPrompt\-Func} {\em prompt\-Func})}\label{error_8h_a5}
+
+
+Set a new function to prompt the user with. 
+
+Define a new function to be used for prompting the user for input. The default value, specified by {\tt n\-Default}, and the title ({\tt title}) may be ignored. The prompt function should return the id of the value picked (first = 1, second = 2, etc.). Default behavior is to not prompt the user at all, and simply return the default value.
+
+\begin{itemize}
+\item {\em prompt\-Func\/} is the new prompting function to use \item {\bf title} is the name of the prompt \item {\bf msg} is the prompt to ask the user \item {\bf n\-Total} is the number of options given \item {\bf n\-Default} is the id of the default option ({\bf must} be provided) \item {\bf choice1} is the first choice \item {\bf args} is the rest of the choices\end{itemize}
+\begin{Desc}
+\item[See also:]{\bf lutil\_\-error\_\-prompt}{\rm (p.\,\pageref{error_8h_a8})} \end{Desc}
+
+
+Definition at line 90 of file error.c.
+
+References prompt\-Func\_\-global.
+
+Referenced by luau\_\-register\-Prompt\-Func().

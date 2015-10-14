@@ -1,0 +1,52 @@
+\section{parseupdates.h File Reference}
+\label{parseupdates_8h}\index{parseupdates.h@{parseupdates.h}}
+Software repository parsing routines.  
+
+
+{\tt \#include $<$glib.h$>$}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+{\bf GContainer} $\ast$ {\bf luau\_\-parse\-XML\_\-updates} (char $\ast$contents, GError $\ast$$\ast$err)
+\item 
+gboolean {\bf luau\_\-parse\-XML\_\-prog\-Info} (GString $\ast$contents, {\bf AProg\-Info} $\ast$prog\-Info, GError $\ast$$\ast$err)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Software repository parsing routines. 
+
+Provides functionality to read in the Luau software repository file format and output a {\bf GContainer}{\rm (p.\,\pageref{structGContainer})} (type List) of all available software updates.
+
+Definition in file {\bf parseupdates.h}.
+
+\subsection{Function Documentation}
+\index{parseupdates.h@{parseupdates.h}!luau_parseXML_progInfo@{luau\_\-parseXML\_\-progInfo}}
+\index{luau_parseXML_progInfo@{luau\_\-parseXML\_\-progInfo}!parseupdates.h@{parseupdates.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-parse\-XML\_\-prog\-Info (GString $\ast$ {\em contents}, {\bf AProg\-Info} $\ast$ {\em prog\-Info}, GError $\ast$$\ast$ {\em err})}\label{parseupdates_8h_a1}
+
+
+
+
+Definition at line 178 of file parseupdatesxml.c.
+
+References DBUGOUT, G\_\-LOCK, G\_\-UNLOCK, LUAU\_\-BASE\_\-ERROR, LUAU\_\-BASE\_\-ERROR\_\-FAILED, luau\_\-parse\-Interface(), luau\_\-satisfies\-Interface(), LUAU\_\-XML\_\-INTERFACE\_\-MAJOR, LUAU\_\-XML\_\-INTERFACE\_\-MINOR, AInterface::major, AInterface::minor, and parse\-Prog\-Info().
+
+Referenced by luau\_\-get\-Prog\-Info\-From\-XML\_\-data(), and luau\_\-get\-Prog\-Info\-From\-XML\_\-url().\index{parseupdates.h@{parseupdates.h}!luau_parseXML_updates@{luau\_\-parseXML\_\-updates}}
+\index{luau_parseXML_updates@{luau\_\-parseXML\_\-updates}!parseupdates.h@{parseupdates.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf GContainer}$\ast$ luau\_\-parse\-XML\_\-updates (char $\ast$ {\em contents}, GError $\ast$$\ast$ {\em err})}\label{parseupdates_8h_a0}
+
+
+Given an Luau XML repository file in memory (ie., as a character string), read it in and parse it, returning the results (a list of updates) in a {\bf GContainer}{\rm (p.\,\pageref{structGContainer})} of type GCONT\_\-LIST.
+
+\begin{itemize}
+\item contents is a string representing a Luau XML repository file \item err is a GError which will store any recoverable run-time errors \begin{Desc}
+\item[Returns:]a {\bf GContainer}{\rm (p.\,\pageref{structGContainer})} of type GCONT\_\-LIST of updates. \end{Desc}
+\end{itemize}
+
+
+Definition at line 123 of file parseupdatesxml.c.
+
+References DBUGOUT, g\_\-container\_\-new(), G\_\-LOCK, G\_\-UNLOCK, GCONT\_\-LIST, LUAU\_\-BASE\_\-ERROR, LUAU\_\-BASE\_\-ERROR\_\-FAILED, luau\_\-parse\-Interface(), luau\_\-satisfies\-Interface(), LUAU\_\-XML\_\-INTERFACE\_\-MAJOR, LUAU\_\-XML\_\-INTERFACE\_\-MINOR, AInterface::major, AInterface::minor, parse\-Updates(), and updates.
+
+Referenced by luau\_\-net\_\-query\-Server().

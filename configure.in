@@ -1,0 +1,148 @@
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ(2.57)
+AC_INIT(luau, 0.1.9, deklund@fastmail.fm)
+AC_CONFIG_AUX_DIR([config])
+AC_CONFIG_SRCDIR([config.h.in])
+AC_CONFIG_HEADER([config.h])
+AM_INIT_AUTOMAKE(luau, 1.0)
+
+# Checks for programs.
+AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_LIBTOOL
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_RANLIB
+
+# Checks for libraries.
+AC_CHECK_LIB([xml2], [xmlParseMemory])
+AC_CHECK_LIB([readline], [readline])
+AC_CHECK_LIB([history], [add_history])
+
+# Checks for header files.
+AC_HEADER_STDC
+AC_HEADER_SYS_WAIT
+AC_CHECK_HEADERS([fcntl.h stdlib.h string.h unistd.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_C_INLINE
+AC_TYPE_SIZE_T
+
+# Checks for library functions.
+AC_FUNC_MALLOC
+AC_FUNC_REALLOC
+AC_FUNC_STAT
+AC_FUNC_VPRINTF
+AC_CHECK_FUNCS([memset strcasecmp strerror strchr pow mkdir get_current_dir_name])
+
+AC_ARG_ENABLE(debug, [  --enable-debug          enable debugging information default=no],
+              enable_debug="$enableval", enable_debug="no")
+	      
+AC_ARG_WITH(leakbug, [  --with-leakbug          use mem tracking through leakbug default=no],
+              with_leakbug="$withval", with_leakbug="no")
+
+# AC_ARG_WITH(dmalloc, [  --with-dmalloc          use mem tracking through dmalloc default=no],
+#              with_dmalloc="$withval", with_dmalloc="no")
+
+AC_ARG_WITH(gthread, [  --with-gthread          enable threading support with gthread default=yes],
+              with_gthread="$withval", with_gthread="no")
+
+AC_ARG_WITH(luau-db, [  --with-luau-db          compile with database support and utilites default=yes],
+              with_luau_db="$withval", with_luau_db="yes")
+
+			  
+# AM_WITH_DMALLOC
+# From GNU autoconf macro archive (http://www.gnu.org/software/ac-archive/)
+CHECK_ZLIB
+PETI_WITH_DMALLOC
+
+
+CFLAGS="${CFLAGS} -Wall -g -ggdb"
+AC_SUBST(EXTRA_DIRS)
+
+if test "x$enable_debug" = "xyes"; then
+	AC_DEFINE([DEBUG], [], [Enable debugging messages])
+fi
+
+#if test "x$with_dmalloc" = "xyes"; then
+#	AC_DEFINE([WITH_DMALLOC], [], [Enable dmalloc support])
+#	AC_CHECK_LIB([dmalloc], [dmalloc_malloc], [LIBS="-ldmalloc $LIBS"], [ echo "ERROR: --with-dmalloc specified, but not available"; exit 1; ])
+#fi
+
+if test "x$with_leakbug" = "xyes"; then
+	AC_DEFINE([WITH_LEAKBUG], [], [Compile with leakbug])
+	AC_CHECK_LIB([leakbug], [lbRegister], [LIBS="-lleakbug $LIBS"], [ echo "ERROR: --with-leakbug specified, but not available"; exit 1; ])
+fi
+
+if test "x$with_gthread" = "xyes"; then
+	AC_DEFINE([WITH_GTHREAD], [], [Compile with gthread])
+	CPPFLAGS="${CPPFLAGS} `pkg-config --cflags glib-2.0 gthread-2.0`"
+	LIBS="${LIBS} -lglib-2.0 -lgthread-2.0" # `pkg-config --libs glib-2.0 gthread-2.0`"
+else
+	CPPFLAGS="${CPPFLAGS} `pkg-config --cflags glib-2.0`"
+	LIBS="${LIBS} -lglib-2.0" # `pkg-config --libs glib-2.0`"
+fi
+
+if test "x$with_luau_db" = "xyes"; then
+	AC_CHECK_LIB([db], [db_create], [true], [ echo "ERROR: --with-luau-db specified, but libdb not available"; exit 1; ])
+	EXTRA_DIRS="luau-db"
+fi
+
+
+
+AC_CONFIG_FILES([Makefile
+                 src/Makefile
+                 luau-db/Makefile
+                 tests/Makefile
+                 util/Makefile])
+AC_OUTPUT
+
+echo
+echo "Options:"
+echo "  debugging support: $enable_debug"
+echo "  leakbug: $with_leakbug"
+echo "  dmalloc: $with_dmalloc"
+echo "  gthread: $with_gthread"
+echo "  zlib:    $with_zlib"
+echo
+
+#if test "x$with_gthread" = "xno"; then
+#	echo "WARNING: gthread support is not going to be included, meaning there will be no"
+#	echo "    support for threading.  This may break certain applications which depend on"
+#	echo "    threading support."
+#	echo
+#	echo "    To enable gthread support, re-run configure with '--with-gthread'"
+#	echo
+#fi
+
+if test "x$with_gthread" = "xyes"; then
+	echo "WARNING: you have asked to enable threading support.  This is currently unstable"
+	echo "   and known to cause problems.  If you'd like to disable threading support,"
+	echo "   re-run the configure script with --without-gthread; if you'd like to continue"
+	echo "   with threading support, please be aware that you will run into problems (and"
+	echo "   please file a bug report when you do)."
+	echo
+fi
+
+if test "x$with_luau_db" = "xno"; then
+	echo "WARNING: luau database support is not going to be included, meaning 1) none of"
+	echo "    the supporting applications (luau, luau-register) will be built, and 2) you"
+	echo "    won't be able to install luau-x or any other application depending on the"
+	echo "    databases."
+	echo
+	echo "    To enable luau database support, re-run configure with '--with-luau-db'"
+	echo
+fi
+
+if test "x$with_zlib" = "xno"; then
+	echo "WARNING: you have specified that zlib support will not be included.  This means"
+	echo "    you will not be able to read Luau repository files which have been"
+	echo "    compressed, meaning there may be many programs which your compiled version"
+	echo "    of Luau will not be able to support.  If you have zlib available, it is"
+	echo "    highly recommended that you include support for it.  To include support"
+	echo "    for zlib, rerun configure with '--with-zlib[=DIR]'."
+	echo
+fi

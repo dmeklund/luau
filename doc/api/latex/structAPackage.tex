@@ -1,0 +1,80 @@
+\section{APackage Struct Reference}
+\label{structAPackage}\index{APackage@{APackage}}
+Describe a specific package (ie, an RPM for an update).  
+
+
+{\tt \#include $<$libuau.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+{\bf APkg\-Type} {\bf type}
+\item 
+GPtr\-Array $\ast$ {\bf mirrors}
+\item 
+char {\bf md5sum} [33]
+\item 
+char $\ast$ {\bf version}
+\item 
+guint32 {\bf size}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Describe a specific package (ie, an RPM for an update). 
+
+
+
+Definition at line 120 of file libuau.h.
+
+\subsection{Field Documentation}
+\index{APackage@{APackage}!md5sum@{md5sum}}
+\index{md5sum@{md5sum}!APackage@{APackage}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char {\bf APackage::md5sum}[33]}\label{structAPackage_o2}
+
+
+Computed md5 sum of given package 
+
+Definition at line 123 of file libuau.h.
+
+Referenced by luau\_\-copy\-Package(), luau\_\-net\_\-download\-Update(), and parse\-Package\-Properties().\index{APackage@{APackage}!mirrors@{mirrors}}
+\index{mirrors@{mirrors}!APackage@{APackage}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}GPtr\-Array$\ast$ {\bf APackage::mirrors}}\label{structAPackage_o1}
+
+
+list of mirrors for given package 
+
+Definition at line 122 of file libuau.h.
+
+Referenced by luau\_\-copy\-Package(), luau\_\-free\-Pkg\-Info(), luau\_\-get\-Package\-URL(), luau\_\-net\_\-download\-Update(), parse\-Package(), parse\-Package\-Attr\-Mirrors(), parse\-Package\-Child\-Mirrors(), and parse\-Package\-Properties().\index{APackage@{APackage}!size@{size}}
+\index{size@{size}!APackage@{APackage}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}guint32 {\bf APackage::size}}\label{structAPackage_o4}
+
+
+Size (in bytes) of given package 
+
+Definition at line 125 of file libuau.h.
+
+Referenced by luau\_\-copy\-Package(), and parse\-Package\-Properties().\index{APackage@{APackage}!type@{type}}
+\index{type@{type}!APackage@{APackage}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf APkg\-Type} {\bf APackage::type}}\label{structAPackage_o0}
+
+
+Type of given package 
+
+Definition at line 121 of file libuau.h.
+
+Referenced by luau\_\-copy\-Package(), luau\_\-get\-Update\-Package(), and parse\-Package\-Properties().\index{APackage@{APackage}!version@{version}}
+\index{version@{version}!APackage@{APackage}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf APackage::version}}\label{structAPackage_o3}
+
+
+Version number of this package 
+
+Definition at line 124 of file libuau.h.
+
+Referenced by parse\-Package\-Properties().
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf libuau.h}\end{CompactItemize}

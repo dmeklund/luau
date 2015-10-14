@@ -1,0 +1,99 @@
+\section{GIterator Struct Reference}
+\label{structGIterator}\index{GIterator@{GIterator}}
+An Iterator over a {\bf GContainer}{\rm (p.\,\pageref{structGContainer})} object.  
+
+
+{\tt \#include $<$gcontainer.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+{\bf GCont\-Type} {\bf type}
+\item 
+int {\bf index}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>GPtrArray $\ast$ {\bf array}\\
+\>GSList $\ast$ {\bf slistPtr}\\
+\>struct \{\\
+\>\>GList $\ast$ {\bf curr}\\
+\>\>GList $\ast$ {\bf last}\\
+\>\} {\bf list}\\
+\} {\bf data}\\
+
+\end{tabbing}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+An Iterator over a {\bf GContainer}{\rm (p.\,\pageref{structGContainer})} object. 
+
+
+
+Definition at line 40 of file gcontainer.h.
+
+\subsection{Field Documentation}
+\index{GIterator@{GIterator}!array@{array}}
+\index{array@{array}!GIterator@{GIterator}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}GPtr\-Array$\ast$ {\bf GIterator::array}}\label{structGIterator_o2}
+
+
+
+
+Definition at line 44 of file gcontainer.h.\index{GIterator@{GIterator}!curr@{curr}}
+\index{curr@{curr}!GIterator@{GIterator}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}GList$\ast$ {\bf GIterator::curr}}\label{structGIterator_o4}
+
+
+
+
+Definition at line 47 of file gcontainer.h.\index{GIterator@{GIterator}!data@{data}}
+\index{data@{data}!GIterator@{GIterator}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}union \{ ... \}   {\bf GIterator::data}}\label{structGIterator_o7}
+
+
+
+
+Referenced by g\_\-container\_\-get\_\-iter(), g\_\-container\_\-get\_\-iter\_\-last(), g\_\-iterator\_\-get(), g\_\-iterator\_\-has\-Next(), g\_\-iterator\_\-has\-Prev(), iter\-Next(), and iter\-Prev().\index{GIterator@{GIterator}!index@{index}}
+\index{index@{index}!GIterator@{GIterator}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf GIterator::index}}\label{structGIterator_o1}
+
+
+
+
+Definition at line 42 of file gcontainer.h.
+
+Referenced by g\_\-container\_\-get\_\-iter(), g\_\-container\_\-get\_\-iter\_\-last(), g\_\-iterator\_\-get(), g\_\-iterator\_\-has\-Next(), g\_\-iterator\_\-has\-Prev(), iter\-Next(), and iter\-Prev().\index{GIterator@{GIterator}!last@{last}}
+\index{last@{last}!GIterator@{GIterator}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}GList$\ast$ {\bf GIterator::last}}\label{structGIterator_o5}
+
+
+
+
+Definition at line 48 of file gcontainer.h.\index{GIterator@{GIterator}!list@{list}}
+\index{list@{list}!GIterator@{GIterator}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}   {\bf GIterator::list}}\label{structGIterator_o6}
+
+
+\index{GIterator@{GIterator}!slistPtr@{slistPtr}}
+\index{slistPtr@{slistPtr}!GIterator@{GIterator}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}GSList$\ast$ {\bf GIterator::slist\-Ptr}}\label{structGIterator_o3}
+
+
+
+
+Definition at line 45 of file gcontainer.h.\index{GIterator@{GIterator}!type@{type}}
+\index{type@{type}!GIterator@{GIterator}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf GCont\-Type} {\bf GIterator::type}}\label{structGIterator_o0}
+
+
+
+
+Definition at line 41 of file gcontainer.h.
+
+Referenced by g\_\-container\_\-get\_\-iter(), g\_\-container\_\-get\_\-iter\_\-last(), g\_\-iterator\_\-get(), g\_\-iterator\_\-has\-Next(), g\_\-iterator\_\-has\-Prev(), iter\-Next(), and iter\-Prev().
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf gcontainer.h}\end{CompactItemize}

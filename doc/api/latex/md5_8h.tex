@@ -1,0 +1,85 @@
+\section{md5.h File Reference}
+\label{md5_8h}\index{md5.h@{md5.h}}
+Compute md5 sums.  
+
+
+{\tt \#include $<$sys/types.h$>$}\par
+{\tt \#include $<$glib.h$>$}\par
+{\tt \#include \char`\"{}util.h\char`\"{}}\par
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct {\bf MD5Context}
+\end{CompactItemize}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define {\bf MD5\_\-HASHBYTES}\ 16
+\end{CompactItemize}
+\subsection*{Typedefs}
+\begin{CompactItemize}
+\item 
+typedef {\bf MD5Context} {\bf MD5\_\-CTX}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+char $\ast$ {\bf lutil\_\-md5\_\-file} (const char $\ast$filename, char $\ast$buf, GError $\ast$$\ast$err)
+\begin{CompactList}\small\item\em Compute an md5sum of the given file. \item\end{CompactList}\item 
+char $\ast$ {\bf lutil\_\-md5\_\-data} (const unsigned char $\ast$data, unsigned int len, char $\ast$buf, GError $\ast$$\ast$err)
+\begin{CompactList}\small\item\em Compute an md5sum of the given data. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Compute md5 sums. 
+
+Compute the md5 sums of files or data, based off code from {\tt libmd}
+
+Definition in file {\bf md5.h}.
+
+\subsection{Define Documentation}
+\index{md5.h@{md5.h}!MD5_HASHBYTES@{MD5\_\-HASHBYTES}}
+\index{MD5_HASHBYTES@{MD5\_\-HASHBYTES}!md5.h@{md5.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define MD5\_\-HASHBYTES\ 16}\label{md5_8h_a0}
+
+
+
+
+Definition at line 67 of file md5.h.
+
+Referenced by MD5End().
+
+\subsection{Typedef Documentation}
+\index{md5.h@{md5.h}!MD5_CTX@{MD5\_\-CTX}}
+\index{MD5_CTX@{MD5\_\-CTX}!md5.h@{md5.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf MD5Context}  {\bf MD5\_\-CTX}}\label{md5_8h_a1}
+
+
+
+
+\subsection{Function Documentation}
+\index{md5.h@{md5.h}!lutil_md5_data@{lutil\_\-md5\_\-data}}
+\index{lutil_md5_data@{lutil\_\-md5\_\-data}!md5.h@{md5.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ lutil\_\-md5\_\-data (const unsigned char $\ast$ {\em data}, unsigned int {\em len}, char $\ast$ {\em buf}, GError $\ast$$\ast$ {\em err})}\label{md5_8h_a3}
+
+
+Compute an md5sum of the given data. 
+
+
+
+Definition at line 124 of file md5.c.
+
+References MD5End(), MD5Init(), and MD5Update().\index{md5.h@{md5.h}!lutil_md5_file@{lutil\_\-md5\_\-file}}
+\index{lutil_md5_file@{lutil\_\-md5\_\-file}!md5.h@{md5.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ lutil\_\-md5\_\-file (const char $\ast$ {\em filename}, char $\ast$ {\em buf}, GError $\ast$$\ast$ {\em err})}\label{md5_8h_a2}
+
+
+Compute an md5sum of the given file. 
+
+
+
+Definition at line 96 of file md5.c.
+
+References LUTIL\_\-BASE\_\-ERROR, LUTIL\_\-BASE\_\-ERROR\_\-FAILED, MD5End(), MD5Init(), and MD5Update().
+
+Referenced by luau\_\-net\_\-download\-Update().

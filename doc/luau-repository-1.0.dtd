@@ -1,0 +1,37 @@
+<!ELEMENT luau-repository (software | update)*>
+<!ATTLIST luau-repository interface  CDATA #REQUIRED
+                          program-id CDATA #REQUIRED>
+
+<!ELEMENT software (id, date?, display-version?, keyword*, short, long, package+, valid*)>
+<!ATTLIST software version CDATA #IMPLIED>
+
+<!ELEMENT update (id, date?, keyword*, short, long, valid*, set?)>
+<!ATTLIST update type (message | luau-config) #REQUIRED>
+
+<!ELEMENT id      (#PCDATA)>
+<!ELEMENT date    (#PCDATA)>
+<!ELEMENT keyword (#PCDATA)>
+<!ELEMENT short   (#PCDATA)>
+<!ELEMENT long    (#PCDATA)>
+
+<!ELEMENT display-version (#PCDATA)>
+
+<!ELEMENT package (#PCDATA | mirror*)>
+<!ATTLIST package type (RPM | DEB | SRC | AUTOPKG | EXEC) #REQUIRED
+                  size CDATA                              #IMPLIED
+                  md5  CDATA                              #IMPLIED>
+
+<!ELEMENT mirror (#PCDATA)>
+<!ATTLIST mirror weight CDATA #IMPLIED>
+
+<!ELEMENT valid EMPTY>
+<!ATTLIST valid type (date | interface | version) #REQUIRED
+                from CDATA                        #IMPLIED
+                to   CDATA                        #IMPLIED
+                for  CDATA                        #IMPLIED>
+
+<!ELEMENT set EMPTY>
+<!ATTLIST set version   CDATA #IMPLIED
+              date      CDATA #IMPLIED
+              interface CDATA #IMPLIED
+              url       CDATA #IMPLIED>

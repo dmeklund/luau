@@ -1,0 +1,242 @@
+\section{luau.c File Reference}
+\label{luau_8c}\index{luau.c@{luau.c}}
+Automatically update registered programs from the command line.  
+
+
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include $<$stdlib.h$>$}\par
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include $<$getopt.h$>$}\par
+{\tt \#include $<$unistd.h$>$}\par
+{\tt \#include $<$readline/readline.h$>$}\par
+{\tt \#include $<$readline/history.h$>$}\par
+{\tt \#include $<$glib.h$>$}\par
+{\tt \#include \char`\"{}libuau.h\char`\"{}}\par
+{\tt \#include \char`\"{}util.h\char`\"{}}\par
+{\tt \#include \char`\"{}error.h\char`\"{}}\par
+{\tt \#include \char`\"{}parse.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void {\bf MSG} (int level, const char $\ast$template,...) \_\-\_\-attribute\_\-\_\-((format(printf
+\item 
+void {\bf print\-Usage} (void)
+\item 
+option $\ast$ {\bf get\-Long\-Options} (void)
+\item 
+gboolean {\bf download\-Update} (const char $\ast$ID, const char $\ast$filename, const char $\ast$program, {\bf APkg\-Type} type)
+\item 
+gboolean {\bf install\-Update} (const char $\ast$ID, const char $\ast$program, {\bf APkg\-Type} type)
+\item 
+int {\bf get\-Updates} (const char $\ast$program, {\bf APkg\-Type} type)
+\item 
+void {\bf run\-Interactive} (void)
+\item 
+void {\bf print\-Interactive\-Help} (void)
+\item 
+int {\bf list} (const char $\ast$program)
+\item 
+gint {\bf compare\-Updates} (gconstpointer p1, gconstpointer p2, gpointer data)
+\item 
+int {\bf progress\-Callback} (void $\ast$clientp, double dltotal, double dlnow, double ultotal, double ulnow)
+\item 
+int {\bf prompt} (const char $\ast$title, const char $\ast$msg, int n\-Total, int n\-Default, const char $\ast$choice1, va\_\-list args)
+\item 
+void {\bf send\_\-email} (const char $\ast$to, const char $\ast$from, const char $\ast$subject, const char $\ast$message)
+\item 
+int {\bf main} (int argc, char $\ast$argv[$\,$])
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+int {\bf verbosity} = 1
+\item 
+gboolean {\bf output\-To\-String} = FALSE
+\item 
+GString $\ast$ {\bf output\-String} = NULL
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Automatically update registered programs from the command line. 
+
+Command line interface to use all the basic features of the luau library. Supports downloading, installing, and viewing updates, and listing and registering programs.
+
+Definition in file {\bf luau.c}.
+
+\subsection{Function Documentation}
+\index{luau.c@{luau.c}!compareUpdates@{compareUpdates}}
+\index{compareUpdates@{compareUpdates}!luau.c@{luau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gint compare\-Updates (gconstpointer {\em p1}, gconstpointer {\em p2}, gpointer {\em data})\hspace{0.3cm}{\tt  [static]}}\label{luau_8c_a12}
+
+
+
+
+Definition at line 727 of file luau.c.
+
+References AUpdate::date, ERROR, AUpdate::id, luau\_\-datecmp(), lutil\_\-intcmp(), lutil\_\-strcaseeq(), and AUpdate::type.\index{luau.c@{luau.c}!downloadUpdate@{downloadUpdate}}
+\index{downloadUpdate@{downloadUpdate}!luau.c@{luau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean download\-Update (const char $\ast$ {\em ID}, const char $\ast$ {\em filename}, const char $\ast$ {\em program}, {\bf APkg\-Type} {\em type})\hspace{0.3cm}{\tt  [static]}}\label{luau_8c_a6}
+
+
+
+
+Definition at line 225 of file luau.c.
+
+References DBUGOUT, ERROR, AUpdate::full\-Desc, luau\_\-download\-Update(), luau\_\-free\-Prog\-Info(), luau\_\-free\-Update\-Info(), luau\_\-get\-Prog\-Info(), luau\_\-get\-Update\-Info(), LUAU\_\-LIBUPDATE, LUAU\_\-MESSAGE, LUAU\_\-SOFTWARE, lutil\_\-print\-Indented(), MSG, AUpdate::new\-URL, AUpdate::short\-Desc, AUpdate::type, and verbosity.
+
+Referenced by main(), and run\-Interactive().\index{luau.c@{luau.c}!getLongOptions@{getLongOptions}}
+\index{getLongOptions@{getLongOptions}!luau.c@{luau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}struct option $\ast$ get\-Long\-Options (void)\hspace{0.3cm}{\tt  [static]}}\label{luau_8c_a5}
+
+
+
+
+Definition at line 657 of file luau.c.
+
+References get\-Long\-Options().
+
+Referenced by get\-Long\-Options().\index{luau.c@{luau.c}!getUpdates@{getUpdates}}
+\index{getUpdates@{getUpdates}!luau.c@{luau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int get\-Updates (const char $\ast$ {\em program}, {\bf APkg\-Type} {\em type})\hspace{0.3cm}{\tt  [static]}}\label{luau_8c_a8}
+
+
+
+
+Definition at line 322 of file luau.c.
+
+References AUpdate::available\-Formats, curr, ERROR, AUpdate::id, luau\_\-check\-For\-Updates(), luau\_\-free\-Prog\-Info(), luau\_\-free\-Update\-Array(), luau\_\-get\-All\-Programs(), luau\_\-get\-Prog\-Info(), luau\_\-is\-Hidden(), luau\_\-is\-Incompatible(), luau\_\-mult\-Package\-Type\-String(), LUAU\_\-SOFTWARE, luau\_\-update\-Type\-String(), MSG, output\-To\-String, AUpdate::short\-Desc, AUpdate::type, updates, and verbosity.
+
+Referenced by main(), and run\-Interactive().\index{luau.c@{luau.c}!installUpdate@{installUpdate}}
+\index{installUpdate@{installUpdate}!luau.c@{luau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean install\-Update (const char $\ast$ {\em ID}, const char $\ast$ {\em program}, {\bf APkg\-Type} {\em type})\hspace{0.3cm}{\tt  [static]}}\label{luau_8c_a7}
+
+
+
+
+Definition at line 281 of file luau.c.
+
+References ERROR, luau\_\-free\-Prog\-Info(), luau\_\-free\-Update\-Info(), luau\_\-get\-Prog\-Info(), luau\_\-get\-Update\-Info(), luau\_\-install\-Update(), luau\_\-register\-New\-App(), LUAU\_\-SOFTWARE, MSG, AUpdate::new\-URL, AUpdate::type, and AProg\-Info::url.
+
+Referenced by main(), and run\-Interactive().\index{luau.c@{luau.c}!list@{list}}
+\index{list@{list}!luau.c@{luau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int list (const char $\ast$ {\em program})\hspace{0.3cm}{\tt  [static]}}\label{luau_8c_a11}
+
+
+
+
+Definition at line 567 of file luau.c.
+
+References AProg\-Info::desc, FATAL\_\-ERROR, luau\_\-free\-Prog\-Info(), luau\_\-get\-All\-Programs(), luau\_\-get\-Prog\-Info(), lutil\_\-destroy\-Array(), lutil\_\-streq(), lutil\_\-vstrcreate(), MSG, AProg\-Info::shortname, AProg\-Info::url, verbosity, and AProg\-Info::version.
+
+Referenced by main(), MSG(), and run\-Interactive().\index{luau.c@{luau.c}!main@{main}}
+\index{main@{main}!luau.c@{luau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int main (int {\em argc}, char $\ast$ {\em argv}[$\,$])}\label{luau_8c_a16}
+
+
+
+
+Definition at line 72 of file luau.c.
+
+References APkg\-Type, download\-Update(), ERROR, file, get\-Long\-Options(), get\-Updates(), install\-Update(), list(), LUAU\_\-EMPTY, luau\_\-parse\-Pkg\-Type(), luau\_\-register\-Progress\-Callback(), luau\_\-register\-Prompt\-Func(), LUAU\_\-UNKNOWN, MSG, output\-String, output\-To\-String, print\-Usage(), progress\-Callback(), prompt(), run\-Interactive(), send\_\-email(), and verbosity.\index{luau.c@{luau.c}!MSG@{MSG}}
+\index{MSG@{MSG}!luau.c@{luau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void MSG (int {\em level}, const char $\ast$ {\em template}, ...)\hspace{0.3cm}{\tt  [static]}}\label{luau_8c_a3}
+
+
+
+
+Definition at line 834 of file luau.c.
+
+References list(), lutil\_\-valist\-To\-String(), output\-String, output\-To\-String, and verbosity.\index{luau.c@{luau.c}!printInteractiveHelp@{printInteractiveHelp}}
+\index{printInteractiveHelp@{printInteractiveHelp}!luau.c@{luau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void print\-Interactive\-Help (void)\hspace{0.3cm}{\tt  [static]}}\label{luau_8c_a10}
+
+
+
+
+Definition at line 546 of file luau.c.
+
+References MSG.
+
+Referenced by run\-Interactive().\index{luau.c@{luau.c}!printUsage@{printUsage}}
+\index{printUsage@{printUsage}!luau.c@{luau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void print\-Usage (void)\hspace{0.3cm}{\tt  [static]}}\label{luau_8c_a4}
+
+
+
+
+Definition at line 630 of file luau.c.
+
+References MSG.\index{luau.c@{luau.c}!progressCallback@{progressCallback}}
+\index{progressCallback@{progressCallback}!luau.c@{luau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int progress\-Callback (void $\ast$ {\em clientp}, double {\em dltotal}, double {\em dlnow}, double {\em ultotal}, double {\em ulnow})\hspace{0.3cm}{\tt  [static]}}\label{luau_8c_a13}
+
+
+
+
+Definition at line 745 of file luau.c.
+
+Referenced by main().\index{luau.c@{luau.c}!prompt@{prompt}}
+\index{prompt@{prompt}!luau.c@{luau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int prompt (const char $\ast$ {\em title}, const char $\ast$ {\em msg}, int {\em n\-Total}, int {\em n\-Default}, const char $\ast$ {\em choice1}, va\_\-list {\em args})\hspace{0.3cm}{\tt  [static]}}\label{luau_8c_a14}
+
+
+
+
+Definition at line 771 of file luau.c.
+
+References MSG, and prompt().
+
+Referenced by main(), and prompt().\index{luau.c@{luau.c}!runInteractive@{runInteractive}}
+\index{runInteractive@{runInteractive}!luau.c@{luau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void run\-Interactive (void)\hspace{0.3cm}{\tt  [static]}}\label{luau_8c_a9}
+
+
+
+
+Definition at line 432 of file luau.c.
+
+References APkg\-Type, LUAU\_\-parsed\-Line::args, download\-Update(), ERROR, get\-Updates(), install\-Update(), LUAU\_\-parsed\-Line::keyword, list(), LUAU\_\-EMPTY, luau\_\-parse\-Pkg\-Type(), LUAU\_\-VERSION\_\-MAJOR, LUAU\_\-VERSION\_\-MINOR, LUAU\_\-VERSION\_\-PATCH, lutil\_\-parse\_\-free\-Parsed\-Line(), lutil\_\-parse\_\-parse\-Line(), lutil\_\-parse\_\-parse\-Symbol(), MSG, and print\-Interactive\-Help().
+
+Referenced by main().\index{luau.c@{luau.c}!send_email@{send\_\-email}}
+\index{send_email@{send\_\-email}!luau.c@{luau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void send\_\-email (const char $\ast$ {\em to}, const char $\ast$ {\em from}, const char $\ast$ {\em subject}, const char $\ast$ {\em message})\hspace{0.3cm}{\tt  [static]}}\label{luau_8c_a15}
+
+
+
+
+Definition at line 803 of file luau.c.
+
+References len, and lutil\_\-create\-String().
+
+Referenced by main().
+
+\subsection{Variable Documentation}
+\index{luau.c@{luau.c}!outputString@{outputString}}
+\index{outputString@{outputString}!luau.c@{luau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}GString$\ast$ {\bf output\-String} = NULL\hspace{0.3cm}{\tt  [static]}}\label{luau_8c_a2}
+
+
+
+
+Definition at line 52 of file luau.c.
+
+Referenced by main(), and MSG().\index{luau.c@{luau.c}!outputToString@{outputToString}}
+\index{outputToString@{outputToString}!luau.c@{luau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean {\bf output\-To\-String} = FALSE\hspace{0.3cm}{\tt  [static]}}\label{luau_8c_a1}
+
+
+
+
+Definition at line 51 of file luau.c.
+
+Referenced by get\-Updates(), main(), and MSG().\index{luau.c@{luau.c}!verbosity@{verbosity}}
+\index{verbosity@{verbosity}!luau.c@{luau.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf verbosity} = 1\hspace{0.3cm}{\tt  [static]}}\label{luau_8c_a0}
+
+
+
+
+Definition at line 50 of file luau.c.
+
+Referenced by download\-Update(), get\-Updates(), list(), main(), and MSG().

@@ -1,0 +1,169 @@
+\section{error.c File Reference}
+\label{error_8c}\index{error.c@{error.c}}
+{\tt \#include $<$stdarg.h$>$}\par
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include $<$stdlib.h$>$}\par
+{\tt \#include $<$unistd.h$>$}\par
+{\tt \#include $<$glib.h$>$}\par
+{\tt \#include \char`\"{}util.h\char`\"{}}\par
+{\tt \#include \char`\"{}error.h\char`\"{}}\par
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define {\bf G\_\-LOG\_\-DOMAIN}\ \char`\"{}Luau\char`\"{}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int {\bf default\-Prompt\-Func} (const char $\ast$title, const char $\ast$msg, int n\-Total, int n\-Default, const char $\ast$choice1, va\_\-list args)
+\item 
+void {\bf lutil\_\-error\_\-set\-Prompt\-Func} ({\bf UPrompt\-Func} prompt\-Func)
+\begin{CompactList}\small\item\em Set a new function to prompt the user with. \item\end{CompactList}\item 
+void {\bf lutil\_\-error\_\-reset\-Prompt\-Func} (void)
+\begin{CompactList}\small\item\em Reset the prompt function to the default prompt function. \item\end{CompactList}\item 
+void {\bf lutil\_\-error\_\-fatal} (const char $\ast$filename, const char $\ast$function, int lineno, const char $\ast$template,...)
+\item 
+int {\bf lutil\_\-error\_\-prompt} (const char $\ast$title, const char $\ast$msg, int n\-Total, int n\-Default, const char $\ast$choice1,...)
+\begin{CompactList}\small\item\em Prompt the user for input. \item\end{CompactList}\item 
+void {\bf lutil\_\-error} (const char $\ast$filename, const char $\ast$function, int lineno, const char $\ast$template,...)
+\item 
+void {\bf lutil\_\-debug} (const char $\ast$filename, const char $\ast$function, int lineno, const char $\ast$template,...)
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+{\bf UPrompt\-Func} {\bf prompt\-Func\_\-global} = default\-Prompt\-Func
+\end{CompactItemize}
+
+
+\subsection{Define Documentation}
+\index{error.c@{error.c}!G_LOG_DOMAIN@{G\_\-LOG\_\-DOMAIN}}
+\index{G_LOG_DOMAIN@{G\_\-LOG\_\-DOMAIN}!error.c@{error.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define G\_\-LOG\_\-DOMAIN\ \char`\"{}Luau\char`\"{}}\label{error_8c_a0}
+
+
+
+
+Definition at line 42 of file error.c.
+
+Referenced by lutil\_\-debug().
+
+\subsection{Function Documentation}
+\index{error.c@{error.c}!defaultPromptFunc@{defaultPromptFunc}}
+\index{defaultPromptFunc@{defaultPromptFunc}!error.c@{error.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int default\-Prompt\-Func (const char $\ast$ {\em title}, const char $\ast$ {\em msg}, int {\em n\-Total}, int {\em n\-Default}, const char $\ast$ {\em choice1}, va\_\-list {\em args})\hspace{0.3cm}{\tt  [static]}}\label{error_8c_a2}
+
+
+
+
+Definition at line 216 of file error.c.
+
+Referenced by lutil\_\-error\_\-reset\-Prompt\-Func().\index{error.c@{error.c}!lutil_debug@{lutil\_\-debug}}
+\index{lutil_debug@{lutil\_\-debug}!error.c@{error.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void lutil\_\-debug (const char $\ast$ {\em filename}, const char $\ast$ {\em function}, int {\em lineno}, const char $\ast$ {\em template},  {\em ...})}\label{error_8c_a8}
+
+
+
+
+Definition at line 192 of file error.c.
+
+References G\_\-LOG\_\-DOMAIN, and lutil\_\-valist\-To\-String().\index{error.c@{error.c}!lutil_error@{lutil\_\-error}}
+\index{lutil_error@{lutil\_\-error}!error.c@{error.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void lutil\_\-error (const char $\ast$ {\em filename}, const char $\ast$ {\em function}, int {\em lineno}, const char $\ast$ {\em template},  {\em ...})}\label{error_8c_a7}
+
+
+Display an error using the defined error function (or the default, if none is defined). Default behavior (as defined by {\tt default\-Error\-Func}) is to simply display the error to STDERR in the following format:
+
+
+
+\footnotesize\begin{verbatim} *** ERROR ***
+ luau: FILENAME: FUNCTION: STRING
+\end{verbatim}
+\normalsize
+
+
+\begin{itemize}
+\item {\em filename\/} is the name of the source file where the error occured \item {\em function\/} is the name of the function where the error occured \item {\em lineno\/} is the line number where the error occured \item {\em template\/} is the (printf) template for the error string \item {\em \/}... is the arguments to the (printf) template. \end{itemize}
+
+
+Definition at line 173 of file error.c.
+
+References lutil\_\-valist\-To\-String().\index{error.c@{error.c}!lutil_error_fatal@{lutil\_\-error\_\-fatal}}
+\index{lutil_error_fatal@{lutil\_\-error\_\-fatal}!error.c@{error.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void lutil\_\-error\_\-fatal (const char $\ast$ {\em filename}, const char $\ast$ {\em function}, int {\em lineno}, const char $\ast$ {\em template},  {\em ...})}\label{error_8c_a5}
+
+
+Display a fatal error message and die. Cannot be overridden. Only called internally when there is a memory failure.
+
+\begin{itemize}
+\item {\em string\/} is the error string \item {\em filename\/} is the name of the source file where the error occured \item {\em function\/} is the name of the function where the error occured \item {\em lineno\/} is the line number where the error occured \begin{Desc}
+\item[Returns:]... Never. \end{Desc}
+\end{itemize}
+
+
+Definition at line 115 of file error.c.
+
+References lutil\_\-valist\-To\-String().\index{error.c@{error.c}!lutil_error_prompt@{lutil\_\-error\_\-prompt}}
+\index{lutil_error_prompt@{lutil\_\-error\_\-prompt}!error.c@{error.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int lutil\_\-error\_\-prompt (const char $\ast$ {\em title}, const char $\ast$ {\em msg}, int {\em n\-Total}, int {\em n\-Default}, const char $\ast$ {\em choice1},  {\em ...})}\label{error_8c_a6}
+
+
+Prompt the user for input. 
+
+Prompt the user for input, using the defined prompt function (or the default, if none is defined). Default behavior is not to prompt the user at all, but instead to return the default value.
+
+\begin{itemize}
+\item {\em title\/} is the name of the prompt \item {\em msg\/} is the prompt to ask the user \item {\em n\-Total\/} is the number of options given \item {\em n\-Default\/} is the id of the default option ({\bf must} be provided) \item {\em choice1\/} is the first choice \item {\em args\/} is the rest of the choices\end{itemize}
+\begin{Desc}
+\item[See also:]{\bf lutil\_\-error\_\-set\-Prompt\-Func}{\rm (p.\,\pageref{error_8h_a5})} \end{Desc}
+
+
+Definition at line 145 of file error.c.
+
+References prompt\-Func\_\-global.
+
+Referenced by luau\_\-download\-Update(), and luau\_\-net\_\-download\-Update().\index{error.c@{error.c}!lutil_error_resetPromptFunc@{lutil\_\-error\_\-resetPromptFunc}}
+\index{lutil_error_resetPromptFunc@{lutil\_\-error\_\-resetPromptFunc}!error.c@{error.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void lutil\_\-error\_\-reset\-Prompt\-Func (void)}\label{error_8c_a4}
+
+
+Reset the prompt function to the default prompt function. 
+
+
+
+Definition at line 100 of file error.c.
+
+References default\-Prompt\-Func(), and prompt\-Func\_\-global.
+
+Referenced by luau\_\-reset\-Prompt\-Func().\index{error.c@{error.c}!lutil_error_setPromptFunc@{lutil\_\-error\_\-setPromptFunc}}
+\index{lutil_error_setPromptFunc@{lutil\_\-error\_\-setPromptFunc}!error.c@{error.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void lutil\_\-error\_\-set\-Prompt\-Func ({\bf UPrompt\-Func} {\em prompt\-Func})}\label{error_8c_a3}
+
+
+Set a new function to prompt the user with. 
+
+Define a new function to be used for prompting the user for input. The default value, specified by {\tt n\-Default}, and the title ({\tt title}) may be ignored. The prompt function should return the id of the value picked (first = 1, second = 2, etc.). Default behavior is to not prompt the user at all, and simply return the default value.
+
+\begin{itemize}
+\item {\em prompt\-Func\/} is the new prompting function to use \item {\bf title} is the name of the prompt \item {\bf msg} is the prompt to ask the user \item {\bf n\-Total} is the number of options given \item {\bf n\-Default} is the id of the default option ({\bf must} be provided) \item {\bf choice1} is the first choice \item {\bf args} is the rest of the choices\end{itemize}
+\begin{Desc}
+\item[See also:]{\bf lutil\_\-error\_\-prompt}{\rm (p.\,\pageref{error_8h_a8})} \end{Desc}
+
+
+Definition at line 90 of file error.c.
+
+References prompt\-Func\_\-global.
+
+Referenced by luau\_\-register\-Prompt\-Func().
+
+\subsection{Variable Documentation}
+\index{error.c@{error.c}!promptFunc_global@{promptFunc\_\-global}}
+\index{promptFunc_global@{promptFunc\_\-global}!error.c@{error.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf UPrompt\-Func} {\bf prompt\-Func\_\-global} = default\-Prompt\-Func\hspace{0.3cm}{\tt  [static]}}\label{error_8c_a1}
+
+
+
+
+Definition at line 48 of file error.c.
+
+Referenced by lutil\_\-error\_\-prompt(), lutil\_\-error\_\-reset\-Prompt\-Func(), and lutil\_\-error\_\-set\-Prompt\-Func().

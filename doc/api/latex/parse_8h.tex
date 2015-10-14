@@ -1,0 +1,180 @@
+\section{parse.h File Reference}
+\label{parse_8h}\index{parse.h@{parse.h}}
+Simple functions commonly needed in parsing files.  
+
+
+{\tt \#include $<$glib.h$>$}\par
+\subsection*{Data Structures}
+\begin{CompactItemize}
+\item 
+struct {\bf LUAU\_\-parsed\-Line}
+\begin{CompactList}\small\item\em A line of input sorted into its identifier and its arguments. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+{\bf LUAU\_\-parsed\-Line} $\ast$ {\bf lutil\_\-parse\_\-parse\-Line} (char $\ast$input)
+\begin{CompactList}\small\item\em Parse a line of input. \item\end{CompactList}\item 
+char {\bf lutil\_\-parse\_\-parse\-Symbol} (const char $\ast$input, const GPtr\-Array $\ast$symbols)
+\begin{CompactList}\small\item\em Compare a keyword to a list of valid symbols. \item\end{CompactList}\item 
+char {\bf lutil\_\-parse\_\-parse\-Symbol\-Array} (const char $\ast$input, const char $\ast$symbols[$\,$])
+\begin{CompactList}\small\item\em Compare a keyword to a list of valid symbols. \item\end{CompactList}\item 
+void {\bf lutil\_\-parse\_\-free\-Parsed\-Line} ({\bf LUAU\_\-parsed\-Line} $\ast$line)
+\begin{CompactList}\small\item\em Free a {\bf LUAU\_\-parsed\-Line}{\rm (p.\,\pageref{structLUAU__parsedLine})} pointer. \item\end{CompactList}\item 
+char $\ast$ {\bf lutil\_\-parse\_\-next\-Token} (char $\ast$input)
+\begin{CompactList}\small\item\em Find the next token in a given line of input. \item\end{CompactList}\item 
+char $\ast$ {\bf lutil\_\-parse\_\-next\-Token\_\-r} (char $\ast$input, char $\ast$$\ast$ptrptr)
+\item 
+char $\ast$ {\bf lutil\_\-parse\_\-delete\-Whitespace} (char $\ast$string)
+\begin{CompactList}\small\item\em Skip leading whitespace and delete trailing whitespace. \item\end{CompactList}\item 
+char $\ast$ {\bf lutil\_\-parse\_\-skip\-String} (char $\ast$input, char $\ast$string)
+\begin{CompactList}\small\item\em Skip a string in the given line of input. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Simple functions commonly needed in parsing files. 
+
+These are used by lutil\_\-parse\-Update\-File in parsing downloaded update files, and also by the command-line utility {\tt luau} in parsing user input during interactive mode.
+
+Definition in file {\bf parse.h}.
+
+\subsection{Function Documentation}
+\index{parse.h@{parse.h}!lutil_parse_deleteWhitespace@{lutil\_\-parse\_\-deleteWhitespace}}
+\index{lutil_parse_deleteWhitespace@{lutil\_\-parse\_\-deleteWhitespace}!parse.h@{parse.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ lutil\_\-parse\_\-delete\-Whitespace (char $\ast$ {\em string})}\label{parse_8h_a6}
+
+
+Skip leading whitespace and delete trailing whitespace. 
+
+Note that this \char`\"{}skips\char`\"{} leading whitespace by just returning a pointer to where the actual text in the string begins - nothing is actually deleted. Trailing whitespace is \char`\"{}deleted\char`\"{} by overwriting it with the null character ('$\backslash$0').
+
+\begin{itemize}
+\item {\em string\/} is the string to modify \begin{Desc}
+\item[Returns:]a pointer to the same string with white-space removed. \end{Desc}
+\end{itemize}
+
+
+Definition at line 238 of file parse.c.
+
+Referenced by parse\-Generic\-Info(), parse\-Mirror\-Def(), parse\-Package(), parse\-Package\-Child\-Mirrors(), parse\-Prog\-Info\-Tag(), and parse\-Software().\index{parse.h@{parse.h}!lutil_parse_freeParsedLine@{lutil\_\-parse\_\-freeParsedLine}}
+\index{lutil_parse_freeParsedLine@{lutil\_\-parse\_\-freeParsedLine}!parse.h@{parse.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void lutil\_\-parse\_\-free\-Parsed\-Line ({\bf LUAU\_\-parsed\-Line} $\ast$ {\em line})}\label{parse_8h_a3}
+
+
+Free a {\bf LUAU\_\-parsed\-Line}{\rm (p.\,\pageref{structLUAU__parsedLine})} pointer. 
+
+Free the memory allocated for a {\bf LUAU\_\-parsed\-Line}{\rm (p.\,\pageref{structLUAU__parsedLine})}. Note that this function also frees the structure pointer itself.
+
+\begin{itemize}
+\item line is the {\bf LUAU\_\-parsed\-Line}{\rm (p.\,\pageref{structLUAU__parsedLine})} to free. \end{itemize}
+
+
+Definition at line 126 of file parse.c.
+
+References LUAU\_\-parsed\-Line::args, and LUAU\_\-parsed\-Line::keyword.\index{parse.h@{parse.h}!lutil_parse_nextToken@{lutil\_\-parse\_\-nextToken}}
+\index{lutil_parse_nextToken@{lutil\_\-parse\_\-nextToken}!parse.h@{parse.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ lutil\_\-parse\_\-next\-Token (char $\ast$ {\em input})}\label{parse_8h_a4}
+
+
+Find the next token in a given line of input. 
+
+Tokens are separated by whitespace. Tokens can have whitespace in them through the use of escaping (this$\backslash$ is$\backslash$ one$\backslash$ token) or quoting (\char`\"{}this is one token\char`\"{}). Multi-line quotes or even multi-line input is not allowed.
+
+To use: Call lutil\_\-parse\_\-next\-Token {\bf once} with the line of input to parse to get the first token.. Then call repeatedly with a NULL argument to retrieve any additional arguments. Returns null when end of line is reached.
+
+\begin{itemize}
+\item {\em input\/} is the line of input to parse (or NULL to continue parsing last line given). \begin{Desc}
+\item[Returns:]the next token found \end{Desc}
+\end{itemize}
+
+
+Definition at line 154 of file parse.c.
+
+References lutil\_\-parse\_\-next\-Token\_\-r().\index{parse.h@{parse.h}!lutil_parse_nextToken_r@{lutil\_\-parse\_\-nextToken\_\-r}}
+\index{lutil_parse_nextToken_r@{lutil\_\-parse\_\-nextToken\_\-r}!parse.h@{parse.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ lutil\_\-parse\_\-next\-Token\_\-r (char $\ast$ {\em input}, char $\ast$$\ast$ {\em ptrptr})}\label{parse_8h_a5}
+
+
+
+
+Definition at line 161 of file parse.c.
+
+References ERROR.
+
+Referenced by lutil\_\-parse\_\-next\-Token(), and lutil\_\-parse\_\-parse\-Line().\index{parse.h@{parse.h}!lutil_parse_parseLine@{lutil\_\-parse\_\-parseLine}}
+\index{lutil_parse_parseLine@{lutil\_\-parse\_\-parseLine}!parse.h@{parse.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf LUAU\_\-parsed\-Line}$\ast$ lutil\_\-parse\_\-parse\-Line (char $\ast$ {\em input})}\label{parse_8h_a0}
+
+
+Parse a line of input. 
+
+lutil\_\-parse\_\-parse\-Line is really a front-end for using lutil\_\-parse\_\-next\-Token, which is calls and places the output into a nicely structured {\bf LUAU\_\-parsed\-Line}{\rm (p.\,\pageref{structLUAU__parsedLine})}. {\tt keyword} is simply the first token of the input, and {\tt args} is just an array of the rest of the tokens.
+
+\begin{itemize}
+\item {\em input\/} is the line of input to parse \begin{Desc}
+\item[Returns:]input parsed into a {\bf LUAU\_\-parsed\-Line}{\rm (p.\,\pageref{structLUAU__parsedLine})} object \end{Desc}
+\end{itemize}
+
+
+Definition at line 46 of file parse.c.
+
+References LUAU\_\-parsed\-Line::args, LUAU\_\-parsed\-Line::keyword, and lutil\_\-parse\_\-next\-Token\_\-r().\index{parse.h@{parse.h}!lutil_parse_parseSymbol@{lutil\_\-parse\_\-parseSymbol}}
+\index{lutil_parse_parseSymbol@{lutil\_\-parse\_\-parseSymbol}!parse.h@{parse.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char lutil\_\-parse\_\-parse\-Symbol (const char $\ast$ {\em input}, const GPtr\-Array $\ast$ {\em symbols})}\label{parse_8h_a1}
+
+
+Compare a keyword to a list of valid symbols. 
+
+Take a symbol and translate it into its corresponding character as defined by the {\tt symbols} array. The structure of the {\tt symbols} array looks as follows: 
+
+\footnotesize\begin{verbatim} symbols[0] => "symbol1"
+ symbols[1] => 'a'
+ symbols[2] => "symbol2"
+ symbols[3] => 'b'
+ ...
+\end{verbatim}
+\normalsize
+where \char`\"{}symbol1\char`\"{} =$>$ 'a' and \char`\"{}symbol2\char`\"{} =$>$ 'b'.
+
+\begin{itemize}
+\item input is the symbol to parse \item symbols is the symbols array to check against \begin{Desc}
+\item[Returns:]the character corresponding to the given symbol \end{Desc}
+\end{itemize}
+
+
+Definition at line 76 of file parse.c.
+
+References lutil\_\-streq().\index{parse.h@{parse.h}!lutil_parse_parseSymbolArray@{lutil\_\-parse\_\-parseSymbolArray}}
+\index{lutil_parse_parseSymbolArray@{lutil\_\-parse\_\-parseSymbolArray}!parse.h@{parse.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char lutil\_\-parse\_\-parse\-Symbol\-Array (const char $\ast$ {\em input}, const char $\ast$ {\em symbols}[$\,$])}\label{parse_8h_a2}
+
+
+Compare a keyword to a list of valid symbols. 
+
+Like {\bf lutil\_\-parse\_\-parse\-Symbol}{\rm (p.\,\pageref{parse_8h_a1})} but using a two dimensional array instead of a GPtr\-Array
+
+\begin{itemize}
+\item input is the symbol to parse \item symbols is the symbols array to check against \begin{Desc}
+\item[Returns:]the character corresponding to the given symbol\end{Desc}
+\begin{Desc}
+\item[See also:]{\bf lutil\_\-parse\_\-parse\-Symbol}{\rm (p.\,\pageref{parse_8h_a1})} \end{Desc}
+\end{itemize}
+
+
+Definition at line 103 of file parse.c.
+
+References lutil\_\-streq().
+
+Referenced by parse\-Generic\-Info(), parse\-Libupdate(), parse\-Pkg\-Group(), parse\-Prog\-Info\-Tag(), and parse\-Software().\index{parse.h@{parse.h}!lutil_parse_skipString@{lutil\_\-parse\_\-skipString}}
+\index{lutil_parse_skipString@{lutil\_\-parse\_\-skipString}!parse.h@{parse.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ lutil\_\-parse\_\-skip\-String (char $\ast$ {\em input}, char $\ast$ {\em string})}\label{parse_8h_a7}
+
+
+Skip a string in the given line of input. 
+
+Simply returns a pointer that skips the first {\tt strlen(string)} characters of {\tt input}.
+
+\begin{itemize}
+\item {\em input\/} is the line of input to skip over \item {\em string\/} is the string to skip ({\bf must} be at beginning of {\tt string} to work properly) \end{itemize}
+
+
+Definition at line 259 of file parse.c.

@@ -1,0 +1,10 @@
+To-Do List
+In rough order of priority (important first)
+
+Fix up autoconf/automake macros for better cross-platform support
+Add support for "subpackages" in updates files and internally
+Revamp package recognition apparatus so that new package formats can be
+  accomodated without having to recompile 
+Support more versioning/compatibility schemes (ie, based on version, keywords,
+  etc.)
+

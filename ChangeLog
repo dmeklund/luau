@@ -1,0 +1,277 @@
+2005-01-15  David Eklund  <deklund@fastmail.fm>
+	* Fixed several memory leaks in luau.c, parseupdatesxml.c, and libuau.c
+	* Added mirror-id attribute to <package> tag
+	* Fixed bug in parsing <package> tags not encapsulated by a <package-group>
+	* Updated defined constants to reflect new XML interface, Luau version
+	* RELEASE 0.1.9
+
+2005-01-14  David Eklund  <deklund@fastmail.fm>
+	* Added the functions g_container_dup and g_container_concat to
+	  gcontainer.[ch]
+	* Updated parseupdatesxml.c to support luau-repository interface 1.2
+	* Fixed several double-free errors and memory leaks in luau.c and
+	  parseupdatesxml.c.
+
+2005-01-09  David Eklund  <deklund@fastmail.fm>
+	* Fixed lutil_streq to accept NULL values
+	* g_container_convert now returns inner data structure
+	* lutil_gsplit returns GContainer list instead of GContainer pointer
+	  array
+
+2005-01-08  David Eklund  <deklund@fastmail.fm>
+	* Fixed segmentation violation error in luau.c
+	* Fixed luau_db_getUpdateInfo to only call luau_db_categorizeUpdate if
+	  an valid update was found
+	* Fixed luau_getUpdateInfo to return set a valid GError if the operation
+	  fails.
+	* Fixed install procedure to run ldconfig before trying to run
+	  luau-register.
+
+2005-01-06  David Eklund  <deklund@fastmail.fm>
+	* Fixed parseupdatesxml.c to recognize comments
+	* Changed behavior of parseupdates to output a debugging message rather
+	  than an error message if an unrecognized tag is found
+	* RELEASE 0.1.8
+
+2004-07-23  David Eklund  <deklund@fastmail.fm>
+	* Modified database.c to work with libdb 3.x and 4.x
+	* Changed tests/Makefile.am to use pkg-config instead of glib-config
+	* Added support for systems not implementing GNU extension 
+	  "get_current_dir_name"
+
+2004-06-12  David Eklund  <deklund@fastmail.fm>
+	* Changed luau-register command line opts from "--fromfile" and "--fromurl"''
+	  to "--from-file" and "--from-url"
+	* Generated new documentation via doxygen
+	* Removed dependence of ftp.[ch] on libuau.h
+	* RELEASE 0.1.7
+
+2004-06-06  David Eklund  <deklund@fastmail.fm>
+	* Added support to luau-register for registering new programs by feeding in
+	  a Luau repository XML file
+	* Disabled gthread support by default
+	* Changed date format from MM/DD/YYYY to YYYY-MM-DD (as specified by ISO-8601)
+	* Amended autoconf scripts to allow zlib to be disabled and to produce
+	  more informative output
+
+2004-05-11  David Eklund  <deklund@fastmail.fm>
+	* Moved to using GLib's logging framework for outputting warning and
+	  debugging messages
+
+2004-05-06  David Eklund  <deklund@fastmail.fm>
+	* Fixed console clients to work with new GLists instead of GPtrArrays
+
+2004-05-02  David Eklund  <deklund@fastmail.fm>
+	* Added luau_checkForUpdatesURL to libuau.[ch]
+	* Changed "checkForUpdates" functions to return more appropriate GList
+	  object (rather than GPtrArray)
+	* Generalized several internal functions to work on GContainer object instead
+	  of GPtrArray
+
+2004-05-01  David Eklund  <deklund@fastmail.fm>
+	* Completed implementation of GError framework.  Fixed console clients
+	  to deal with new interface.
+	* Added more error checking and more useful error output.
+
+2004-04-28  David Eklund  <deklund@fastmail.fm>
+	* Moved error reporting system to using GError framework
+	* Fixed lutil_getTempFilename to never return the name of a file which
+	  already exists.
+
+2004-04-12  David Eklund  <deklund@fastmail.fm>
+	* Fixed luau_freeUpdateInfo (was mostly commented out)
+	* Generated new documentation via doxygen
+
+2004-03-14  David Eklund  <deklund@fastmail.fm>
+	* Fixed network retrieval to fail on 404 (or any HTTP error code)
+	* RELEASE 0.1.6
+
+2004-03-11  David Eklund  <deklund@fastmail.fm>
+	* Fixed NULL pointer bug in g_container_free
+	* Changed XML parsing code to read new format
+
+2004-02-20  David Eklund  <deklund@fastmail.fm>
+	* Fixed bugs in configure.in/Makefile.am
+	* Changed lutil_ftp_getURL to return a sized GString instead of a char*
+	* RELEASE 0.1.5
+
+2004-02-10  David Eklund  <deklund@fastmail.fm>
+	* Added --with-luau-db option to configure.in, along with other minor
+	  autoconf/automake related changes
+
+2004-02-01  David Eklund  <deklund@fastmail.fm>
+	* Added threading support to libuau/libuau-db
+
+2004-01-24  David Eklund  <deklund@fastmail.fm>
+	* Split libuau into core libuau library and wrapping libuau-db library
+	* Fixed 'luau' interactive mode to allow 'updates' to be called with
+	  no arguments
+	* Added luau_copyQuant and luau_copyQuants to libuau.[ch]
+	* Fixed luau_copyUpdate to use luau_copyQuants
+	* Changed luau interactive mode to show help when '?' is entered
+
+2004-01-20  David Eklund  <deklund@fastmail.fm>
+	* Fixed serious keyword freeing bug in libuau.c.  luau_setKeyword now
+	  strdup's the keyword before adding it.
+	* Added luau_isVisible to libuau.[ch]
+	* Fixed getUpdates in luau.c not to count hidden updates.
+
+2004-01-08  David Eklund  <deklund@fastmail.fm>
+	* Added support for the keyword quantifier type
+	* RELEASE 0.1.4
+
+2004-01-07  David Eklund  <deklund@fastmail.fm>
+	* Added automatic labeling of _old for updates with version numbers
+	  less than the currently installed version
+	* Added support for _old keyword to luau.c
+
+2004-01-06  David Eklund  <deklund@fastmail.fm>
+	* Fixed lutil_error to not have a fixed length limit
+	* Added --with-leakbug and --with-dmalloc options to configure script
+	* Fixed various memory leaks
+
+2004-01-03  David Eklund  <deklund@fastmail.fm>
+	* Added more GContainer tests
+	* Added installation support for autopackage packages
+	* Fixed various memory leaks
+	* Added --enable-debug option to configure script
+
+2004-01-02  David Eklund  <deklund@fastmail.fm>
+	* Changed database.c to work with locally stored databases (stored in
+	  ~/.luau/) when not running as super-user
+	* Fixed memory leak in luau_db_keyExists and luau_db_create
+	* Edited many internal functions to use the new GContainer data type
+	* Added "len" (length) attribute to GContainer and modified methods
+	  accordingly
+	* Fixed off-by-one error in g_container_hasNext
+	* Changed GIterator methods so that the GContDirection enum was no longer
+	  needed
+
+2004-01-01  David Eklund  <deklund@fastmail.fm>
+	* Changed name of lutil_compareVersions to luau_versioncmp and
+	  moved to libuau.[ch]
+	* Added AQuantType and AQuantDataType enums and AQuantifier struct to
+	  libuau.[ch]
+	* Modified parseupdatesxml.c and libuau.c to work with new quantifier model
+	* Fixed lutil_parse_deleteWhitespace to not croak when passed NULL
+	* Fixed parsePackage in parseupdatesxml.c not to croak when the "md5" or
+	  "size" parameters aren't specified in the XML file
+	* Fixed luau_net_downloadUpdate to not perform an md5 check on a downloaded
+	  file if none was specified in the XML file
+	* Added 'categorize' bool flag to luau_checkForUpdates to specify whether
+	  to categorize updates as hidden/incompatible
+	* Added gcontainer.[ch] and all its methods
+	* Supplemented test suite with tests for to-and-from-string conversion,
+	  GContainer tests, date comparison tests, and interface satisfaction tests
+
+2003-12-31  David Eklund  <deklund@fastmail.fm>
+	* Added lutil_compareVersions to util.[ch] (adapted from autopackage's
+	  "compareVersions")
+	* Began work on test suite in tests/
+	* Added version comparison tests to test suite
+
+2003-12-27  David Eklund  <deklund@fastmail.fm>
+	* Fixed memory allocation bug in lutil_strjoin that would later cause
+	  segmentation fault
+	* Fixed bug in luau-register that attempted to free an AProgInfo struct when
+	  it had not been initialized
+	* Changed luau_interfaceString to return an empty string "" instead of NULL
+	  if passed an "empty" (major = minor = -1) AInterface struct
+	* Fixed luau_registerNewApp not to overwrite fullname/shortname if they
+	  are already specified in the database and the user passed in NULL values
+	  for them
+	* Added lutil_isCompletelyBlank to util.[ch]
+	* Changed luau_parseInterface to return TRUE when a completely blank string
+	  is passed in (e.g. "", "  ", "\n\t", etc.)
+
+2003-12-23  David Eklund  <deklund@fastmail.fm>
+	* Fixed error in luau_registerNewApp that would set the fullname field to
+	  the shortname field even if a fullname was specified
+
+2003-12-23  David Eklund  <deklund@fastmail.fm>
+	* Fixed mirror code to copy from one APackage struct to another correctly
+	* Fixed luau_downloadUpdate to check before overwriting a file when specified
+	  location is a directory
+	* RELEASE 0.1.3
+
+2003-12-21  David Eklund  <deklund@fastmail.fm>
+	* Added support for multiple mirrors in software repository file
+	* Fixed some miscellaneous minor bugs
+	* Added luau_copyPackage to libuau.[ch]
+	* Fixed sharing bug in copying AUpdate structs
+	
+2003-12-20  David Eklund  <deklund@fastmail.fm> 
+	* Fixed some bugs in retrieving and installing updates in luau
+
+2003-12-19  David Eklund  <deklund@fastmail.fm>
+	* Added lutil_printIndented to util.[ch]
+	* Fixed luau_registerNewApp and luau_deleteApp to deal with new
+	  AProgInfo fields
+	* Fixed luau_db_deleteKey to return successfully even if the specified
+	  key did not exist
+	* Added luau_interfaceString to libuau.[ch]
+	* Updated documentation for changed interface functions
+	* Documented all new and undocumented functions
+	* Categorized large header files to make them more readable
+	* Fixed console client 'luau' to correctly deal with message and libupdate updates
+
+2003-12-13  David Eklund  <deklund@fastmail.fm>
+	* Edited some main interfaces to avoid unnecessary dynamic memory allocation
+	* Fixed supporting utilities to use new interfaces
+
+2003-10-30  David Eklund  <deklund@fastmail.fm>
+	* Added preliminary autopackage support
+	* Added --fullname, --desc, and --remove options to luau-register
+	* Changed luau_registerNewApp to take an AProgInfo struct pointer
+	* Added luau_mprintf to util.[ch]
+	* Added more helpful debugging output
+
+2003-10-21  David Eklund  <deklund@fastmail.fm>
+	* Fixed premature exit in 'luau' interactive mode
+	* Minor bug fixes
+	* RELEASE 0.1.2
+
+2003-10-18  David Eklund  <deklund@fastmail.fm>
+	* Edited configure files to support libxml2
+	* Fixed --output option for 'luau'
+	* Added --email option to 'luau'
+	* Fixed segfault in luau_getProgInfo
+
+2003-10-17  David Eklund  <deklund@fastmail.fm>
+	* Added support for XML updates files
+
+2003-10-11  David Eklund  <deklund@fastmail.fm>
+	* Fixed g_ptr_array_free(NULL) error in luau_register.c
+
+2003-10-11  David Eklund  <deklund@fastmail.fm>
+	* Added support for program keywords
+	* Fixed duplication bug in luau_strjoin
+	* Added --keywords command line opt to luau_register
+	* Fixed erroneous "Couldn't download" error in luau.c
+	* Added support for "interactive mode" in luau.c
+	* RELEASE version 0.1.1
+
+2003-10-05  David Eklund  <deklund@fastmail.fm>
+	* Added program deletion functionality
+	* Fixed memory leak in luau_strjoin
+	* Fixed memory overflow in luau_strjoin
+	* Generalized VALIDFROM and VALIDTO directives to apply to any kind of
+	  update (not just software updates).
+	* Fixed luau_register to appropriately register an empty list of
+	  keywords (instead of a NULL value)
+	* Fixed a missing file handle close statement (fclose) in
+	  luau_ftp_downloadToFile (fixing MD5 problem)
+	* Added package installation functionality for RPM, DEB, and EXEC type
+	  packages
+	* RELEASE version 0.1.0 (hurrah)
+
+2003-10-03  David Eklund  <deklund@fastmail.fm>
+	* Added basic documentation files (README, NEWS, etc.)
+	* Modified luau_unsetKeyword to return a gboolean signifying whether
+	  the keyword in question existed in the first place.
+	* Added more doxygen code comments to libuau.h
+	* Fixed Makefile.am to automatically install libuau.h globally
+	* RELEASE version 0.1.0pre2
+
+2003-09-03  David Eklund  <deklund@fastmail.fm>
+	* Initial release

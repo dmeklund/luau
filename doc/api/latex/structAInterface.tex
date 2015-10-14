@@ -1,0 +1,47 @@
+\section{AInterface Struct Reference}
+\label{structAInterface}\index{AInterface@{AInterface}}
+Describe the interface of a program. Only really relevant for libraries.  
+
+
+{\tt \#include $<$libuau.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+int {\bf major}
+\item 
+int {\bf minor}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Describe the interface of a program. Only really relevant for libraries. 
+
+
+
+Definition at line 129 of file libuau.h.
+
+\subsection{Field Documentation}
+\index{AInterface@{AInterface}!major@{major}}
+\index{major@{major}!AInterface@{AInterface}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf AInterface::major}}\label{structAInterface_o0}
+
+
+Specifies the major interface revision - will only work with other versions of the same major revision. 
+
+Definition at line 130 of file libuau.h.
+
+Referenced by luau\_\-copy\-Interface(), luau\_\-interface\-String(), luau\_\-parse\-Interface(), luau\_\-parse\-XML\_\-prog\-Info(), luau\_\-parse\-XML\_\-updates(), luau\_\-satisfies\-Interface(), and parse\-Prog\-Info\-Tag().\index{AInterface@{AInterface}!minor@{minor}}
+\index{minor@{minor}!AInterface@{AInterface}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf AInterface::minor}}\label{structAInterface_o1}
+
+
+Specifies a \char`\"{}patch\char`\"{} version - is compatible with all packages with lower minor number 
+
+Definition at line 131 of file libuau.h.
+
+Referenced by luau\_\-copy\-Interface(), luau\_\-interface\-String(), luau\_\-parse\-Interface(), luau\_\-parse\-XML\_\-prog\-Info(), luau\_\-parse\-XML\_\-updates(), luau\_\-satisfies\-Interface(), and parse\-Prog\-Info\-Tag().
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf libuau.h}\end{CompactItemize}

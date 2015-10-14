@@ -1,0 +1,168 @@
+\section{AUpdate Struct Reference}
+\label{structAUpdate}\index{AUpdate@{AUpdate}}
+Describe all aspects of any type of update (software, message, etc.).  
+
+
+{\tt \#include $<$libuau.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+char $\ast$ {\bf id}
+\item 
+GPtr\-Array $\ast$ {\bf keywords}
+\item 
+{\bf AUpdate\-Type} {\bf type}
+\item 
+{\bf ADate} $\ast$ {\bf date}
+\item 
+char $\ast$ {\bf short\-Desc}
+\item 
+char $\ast$ {\bf full\-Desc}
+\item 
+GPtr\-Array $\ast$ {\bf quantifiers}
+\item 
+{\bf APkg\-Type} {\bf available\-Formats}
+\item 
+GPtr\-Array $\ast$ {\bf packages}
+\item 
+char $\ast$ {\bf new\-Version}
+\item 
+char $\ast$ {\bf new\-Display\-Version}
+\item 
+{\bf AInterface} {\bf interface}
+\item 
+char $\ast$ {\bf new\-URL}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Describe all aspects of any type of update (software, message, etc.). 
+
+
+
+Definition at line 135 of file libuau.h.
+
+\subsection{Field Documentation}
+\index{AUpdate@{AUpdate}!availableFormats@{availableFormats}}
+\index{availableFormats@{availableFormats}!AUpdate@{AUpdate}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf APkg\-Type} {\bf AUpdate::available\-Formats}}\label{structAUpdate_o7}
+
+
+Software formats in which this update is available (RPM, DEB, etc.) 
+
+Definition at line 147 of file libuau.h.
+
+Referenced by luau\_\-copy\-Update(), and parse\-Package\-Properties().\index{AUpdate@{AUpdate}!date@{date}}
+\index{date@{date}!AUpdate@{AUpdate}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf ADate}$\ast$ {\bf AUpdate::date}}\label{structAUpdate_o3}
+
+
+Date this update was issued. 
+
+Definition at line 140 of file libuau.h.
+
+Referenced by luau\_\-copy\-Update(), luau\_\-free\-Update\-Info(), and parse\-Generic\-Info().\index{AUpdate@{AUpdate}!fullDesc@{fullDesc}}
+\index{fullDesc@{fullDesc}!AUpdate@{AUpdate}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf AUpdate::full\-Desc}}\label{structAUpdate_o5}
+
+
+Longer description (several sentences). 
+
+Definition at line 142 of file libuau.h.
+
+Referenced by luau\_\-copy\-Update(), luau\_\-free\-Update\-Info(), and parse\-Generic\-Info().\index{AUpdate@{AUpdate}!id@{id}}
+\index{id@{id}!AUpdate@{AUpdate}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf AUpdate::id}}\label{structAUpdate_o0}
+
+
+Update ID 
+
+Definition at line 137 of file libuau.h.
+
+Referenced by luau\_\-copy\-Update(), luau\_\-free\-Update\-Info(), luau\_\-get\-Update\-Info(), parse\-Generic\-Info(), and parse\-Updates().\index{AUpdate@{AUpdate}!interface@{interface}}
+\index{interface@{interface}!AUpdate@{AUpdate}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf AInterface} {\bf AUpdate::interface}}\label{structAUpdate_o11}
+
+
+Interface version of this update 
+
+Definition at line 151 of file libuau.h.
+
+Referenced by luau\_\-copy\-Update(), and parse\-Software().\index{AUpdate@{AUpdate}!keywords@{keywords}}
+\index{keywords@{keywords}!AUpdate@{AUpdate}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}GPtr\-Array$\ast$ {\bf AUpdate::keywords}}\label{structAUpdate_o1}
+
+
+Array of all keywords assoc. with this update. May be NULL. 
+
+Definition at line 138 of file libuau.h.
+
+Referenced by luau\_\-copy\-Update(), luau\_\-free\-Update\-Info(), luau\_\-is\-Hidden(), luau\_\-is\-Incompatible(), luau\_\-is\-Old(), parse\-Generic\-Info(), and parse\-Update().\index{AUpdate@{AUpdate}!newDisplayVersion@{newDisplayVersion}}
+\index{newDisplayVersion@{newDisplayVersion}!AUpdate@{AUpdate}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf AUpdate::new\-Display\-Version}}\label{structAUpdate_o10}
+
+
+New version to display for this update. 
+
+Definition at line 150 of file libuau.h.
+
+Referenced by parse\-Software().\index{AUpdate@{AUpdate}!newURL@{newURL}}
+\index{newURL@{newURL}!AUpdate@{AUpdate}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf AUpdate::new\-URL}}\label{structAUpdate_o12}
+
+
+New location of Luau XML file. 
+
+Definition at line 156 of file libuau.h.
+
+Referenced by luau\_\-copy\-Update(), luau\_\-free\-Update\-Info(), and parse\-Libupdate().\index{AUpdate@{AUpdate}!newVersion@{newVersion}}
+\index{newVersion@{newVersion}!AUpdate@{AUpdate}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf AUpdate::new\-Version}}\label{structAUpdate_o9}
+
+
+New version of this update 
+
+Definition at line 149 of file libuau.h.
+
+Referenced by is\-Old(), luau\_\-copy\-Update(), luau\_\-free\-Update\-Info(), and parse\-Updates().\index{AUpdate@{AUpdate}!packages@{packages}}
+\index{packages@{packages}!AUpdate@{AUpdate}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}GPtr\-Array$\ast$ {\bf AUpdate::packages}}\label{structAUpdate_o8}
+
+
+Array of all available packages ({\bf APackage}{\rm (p.\,\pageref{structAPackage})} structs) 
+
+Definition at line 148 of file libuau.h.
+
+Referenced by luau\_\-copy\-Update(), luau\_\-free\-Update\-Info(), luau\_\-get\-Update\-Package(), parse\-Package(), and parse\-Update().\index{AUpdate@{AUpdate}!quantifiers@{quantifiers}}
+\index{quantifiers@{quantifiers}!AUpdate@{AUpdate}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}GPtr\-Array$\ast$ {\bf AUpdate::quantifiers}}\label{structAUpdate_o6}
+
+
+Specify when and for what program versions this update is valid. 
+
+Definition at line 144 of file libuau.h.
+
+Referenced by is\-Incompatible(), luau\_\-copy\-Update(), luau\_\-free\-Update\-Info(), parse\-Generic\-Info(), and parse\-Update().\index{AUpdate@{AUpdate}!shortDesc@{shortDesc}}
+\index{shortDesc@{shortDesc}!AUpdate@{AUpdate}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf AUpdate::short\-Desc}}\label{structAUpdate_o4}
+
+
+Short description of this update (one-line). 
+
+Definition at line 141 of file libuau.h.
+
+Referenced by luau\_\-copy\-Update(), luau\_\-free\-Update\-Info(), and parse\-Generic\-Info().\index{AUpdate@{AUpdate}!type@{type}}
+\index{type@{type}!AUpdate@{AUpdate}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf AUpdate\-Type} {\bf AUpdate::type}}\label{structAUpdate_o2}
+
+
+Type of this update (software, message, luau-config) 
+
+Definition at line 139 of file libuau.h.
+
+Referenced by luau\_\-copy\-Update(), and parse\-Update().
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf libuau.h}\end{CompactItemize}

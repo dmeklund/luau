@@ -1,0 +1,85 @@
+\section{install.h File Reference}
+\label{install_8h}\index{install.h@{install.h}}
+Package nstallation methods.  
+
+
+{\tt \#include $<$glib.h$>$}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+gboolean {\bf luau\_\-install\_\-rpm} (const char $\ast$filename, GError $\ast$$\ast$err)
+\item 
+gboolean {\bf luau\_\-install\_\-deb} (const char $\ast$filename, GError $\ast$$\ast$err)
+\item 
+gboolean {\bf luau\_\-install\_\-src} (const char $\ast$filename, GError $\ast$$\ast$err)
+\item 
+gboolean {\bf luau\_\-install\_\-exec} (const char $\ast$filename, GError $\ast$$\ast$err)
+\item 
+gboolean {\bf luau\_\-install\_\-autopkg} (const char $\ast$filename, GError $\ast$$\ast$err)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Package nstallation methods. 
+
+Allows Luau to automatically install supported package files (RPMs, DEBs, self-executing files, and autopackage files). May be preferable to override these functions and provide your own installation routines.
+
+Definition in file {\bf install.h}.
+
+\subsection{Function Documentation}
+\index{install.h@{install.h}!luau_install_autopkg@{luau\_\-install\_\-autopkg}}
+\index{luau_install_autopkg@{luau\_\-install\_\-autopkg}!install.h@{install.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-install\_\-autopkg (const char $\ast$ {\em filename}, GError $\ast$$\ast$ {\em err})}\label{install_8h_a4}
+
+
+
+
+Definition at line 128 of file install.c.
+
+References luau\_\-install\_\-exec().
+
+Referenced by luau\_\-install\-Package().\index{install.h@{install.h}!luau_install_deb@{luau\_\-install\_\-deb}}
+\index{luau_install_deb@{luau\_\-install\_\-deb}!install.h@{install.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-install\_\-deb (const char $\ast$ {\em filename}, GError $\ast$$\ast$ {\em err})}\label{install_8h_a1}
+
+
+
+
+Definition at line 70 of file install.c.
+
+References LUAU\_\-INSTALL\_\-ERROR, LUAU\_\-INSTALL\_\-ERROR\_\-FAILED, and lutil\_\-mprintf().
+
+Referenced by luau\_\-install\-Package().\index{install.h@{install.h}!luau_install_exec@{luau\_\-install\_\-exec}}
+\index{luau_install_exec@{luau\_\-install\_\-exec}!install.h@{install.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-install\_\-exec (const char $\ast$ {\em filename}, GError $\ast$$\ast$ {\em err})}\label{install_8h_a3}
+
+
+
+
+Definition at line 104 of file install.c.
+
+References LUAU\_\-INSTALL\_\-ERROR, LUAU\_\-INSTALL\_\-ERROR\_\-FAILED, and LUAU\_\-INSTALL\_\-ERROR\_\-INVALID\_\-ARG.
+
+Referenced by luau\_\-install\_\-autopkg(), and luau\_\-install\-Package().\index{install.h@{install.h}!luau_install_rpm@{luau\_\-install\_\-rpm}}
+\index{luau_install_rpm@{luau\_\-install\_\-rpm}!install.h@{install.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-install\_\-rpm (const char $\ast$ {\em filename}, GError $\ast$$\ast$ {\em err})}\label{install_8h_a0}
+
+
+
+
+Definition at line 41 of file install.c.
+
+References LUAU\_\-INSTALL\_\-ERROR, LUAU\_\-INSTALL\_\-ERROR\_\-FAILED, and lutil\_\-mprintf().
+
+Referenced by luau\_\-install\-Package().\index{install.h@{install.h}!luau_install_src@{luau\_\-install\_\-src}}
+\index{luau_install_src@{luau\_\-install\_\-src}!install.h@{install.h}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}gboolean luau\_\-install\_\-src (const char $\ast$ {\em filename}, GError $\ast$$\ast$ {\em err})}\label{install_8h_a2}
+
+
+
+
+Definition at line 99 of file install.c.
+
+References LUAU\_\-INSTALL\_\-ERROR, and LUAU\_\-INSTALL\_\-ERROR\_\-INVALID\_\-ARG.
+
+Referenced by luau\_\-install\-Package().

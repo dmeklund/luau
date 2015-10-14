@@ -1,0 +1,55 @@
+\section{luau-register.c File Reference}
+\label{luau-register_8c}\index{luau-register.c@{luau-register.c}}
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include $<$unistd.h$>$}\par
+{\tt \#include $<$getopt.h$>$}\par
+{\tt \#include $<$malloc.h$>$}\par
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include $<$glib.h$>$}\par
+{\tt \#include \char`\"{}libuau.h\char`\"{}}\par
+{\tt \#include \char`\"{}database.h\char`\"{}}\par
+{\tt \#include \char`\"{}util.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void {\bf print\-Usage} (void)
+\item 
+option $\ast$ {\bf get\-Long\-Options} ()
+\item 
+int {\bf main} (int argc, char $\ast$argv[$\,$])
+\end{CompactItemize}
+
+
+\subsection{Function Documentation}
+\index{luau-register.c@{luau-register.c}!getLongOptions@{getLongOptions}}
+\index{getLongOptions@{getLongOptions}!luau-register.c@{luau-register.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}struct option $\ast$ get\-Long\-Options ()\hspace{0.3cm}{\tt  [static]}}\label{luau-register_8c_a1}
+
+
+
+
+Definition at line 191 of file luau-register.c.
+
+References get\-Long\-Options().
+
+Referenced by get\-Long\-Options(), and main().\index{luau-register.c@{luau-register.c}!main@{main}}
+\index{main@{main}!luau-register.c@{luau-register.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int main (int {\em argc}, char $\ast$ {\em argv}[$\,$])}\label{luau-register_8c_a2}
+
+
+
+
+Definition at line 41 of file luau-register.c.
+
+References AProg\-Info::date, AProg\-Info::desc, AProg\-Info::fullname, get\-Long\-Options(), AProg\-Info::id, AProg\-Info::interface, AProg\-Info::keywords, luau\_\-copy\-Interface(), luau\_\-db\_\-create(), luau\_\-delete\-App(), luau\_\-free\-Prog\-Info(), luau\_\-get\-Prog\-Info(), luau\_\-parse\-Date(), luau\_\-parse\-Interface(), luau\_\-register\-New\-App(), lutil\_\-gsplit(), print\-Usage(), AProg\-Info::shortname, AProg\-Info::url, and AProg\-Info::version.\index{luau-register.c@{luau-register.c}!printUsage@{printUsage}}
+\index{printUsage@{printUsage}!luau-register.c@{luau-register.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void print\-Usage (void)\hspace{0.3cm}{\tt  [static]}}\label{luau-register_8c_a0}
+
+
+
+
+Definition at line 169 of file luau-register.c.
+
+References lutil\_\-print\-Indented().
+
+Referenced by main().

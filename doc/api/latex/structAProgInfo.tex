@@ -1,0 +1,135 @@
+\section{AProg\-Info Struct Reference}
+\label{structAProgInfo}\index{AProgInfo@{AProgInfo}}
+Describe an installed (and registered) program.  
+
+
+{\tt \#include $<$libuau.h$>$}
+
+\subsection*{Data Fields}
+\begin{CompactItemize}
+\item 
+char $\ast$ {\bf id}
+\item 
+char $\ast$ {\bf shortname}
+\item 
+char $\ast$ {\bf fullname}
+\item 
+char $\ast$ {\bf desc}
+\item 
+char $\ast$ {\bf url}
+\item 
+char $\ast$ {\bf version}
+\item 
+char $\ast$ {\bf display\-Version}
+\item 
+{\bf ADate} $\ast$ {\bf date}
+\item 
+{\bf AInterface} {\bf interface}
+\item 
+GPtr\-Array $\ast$ {\bf keywords}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Describe an installed (and registered) program. 
+
+
+
+Definition at line 166 of file libuau.h.
+
+\subsection{Field Documentation}
+\index{AProgInfo@{AProg\-Info}!date@{date}}
+\index{date@{date}!AProgInfo@{AProg\-Info}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf ADate}$\ast$ {\bf AProg\-Info::date}}\label{structAProgInfo_o7}
+
+
+
+
+Definition at line 174 of file libuau.h.
+
+Referenced by luau\_\-copy\-Prog\-Info(), luau\_\-free\-Prog\-Info(), luau\_\-prog\-Info\-String(), and luau\_\-satisfies\-Quant().\index{AProgInfo@{AProg\-Info}!desc@{desc}}
+\index{desc@{desc}!AProgInfo@{AProg\-Info}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf AProg\-Info::desc}}\label{structAProgInfo_o3}
+
+
+
+
+Definition at line 170 of file libuau.h.
+
+Referenced by luau\_\-copy\-Prog\-Info(), luau\_\-free\-Prog\-Info(), luau\_\-prog\-Info\-String(), and parse\-Prog\-Info\-Tag().\index{AProgInfo@{AProg\-Info}!displayVersion@{displayVersion}}
+\index{displayVersion@{displayVersion}!AProgInfo@{AProg\-Info}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf AProg\-Info::display\-Version}}\label{structAProgInfo_o6}
+
+
+
+
+Definition at line 173 of file libuau.h.
+
+Referenced by luau\_\-free\-Prog\-Info().\index{AProgInfo@{AProg\-Info}!fullname@{fullname}}
+\index{fullname@{fullname}!AProgInfo@{AProg\-Info}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf AProg\-Info::fullname}}\label{structAProgInfo_o2}
+
+
+
+
+Definition at line 169 of file libuau.h.
+
+Referenced by luau\_\-copy\-Prog\-Info(), luau\_\-free\-Prog\-Info(), luau\_\-prog\-Info\-String(), and parse\-Prog\-Info\-Tag().\index{AProgInfo@{AProg\-Info}!id@{id}}
+\index{id@{id}!AProgInfo@{AProg\-Info}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf AProg\-Info::id}}\label{structAProgInfo_o0}
+
+
+
+
+Definition at line 167 of file libuau.h.
+
+Referenced by luau\_\-check\-For\-Updates(), luau\_\-check\-For\-Updates\_\-url(), luau\_\-copy\-Prog\-Info(), luau\_\-free\-Prog\-Info(), luau\_\-get\-Update\-Info(), luau\_\-prog\-Info\-String(), and parse\-Prog\-Info\-Tag().\index{AProgInfo@{AProg\-Info}!interface@{interface}}
+\index{interface@{interface}!AProgInfo@{AProg\-Info}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf AInterface} {\bf AProg\-Info::interface}}\label{structAProgInfo_o8}
+
+
+
+
+Definition at line 175 of file libuau.h.
+
+Referenced by luau\_\-copy\-Prog\-Info(), luau\_\-satisfies\-Quant(), and parse\-Prog\-Info\-Tag().\index{AProgInfo@{AProg\-Info}!keywords@{keywords}}
+\index{keywords@{keywords}!AProgInfo@{AProg\-Info}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}GPtr\-Array$\ast$ {\bf AProg\-Info::keywords}}\label{structAProgInfo_o9}
+
+
+
+
+Definition at line 176 of file libuau.h.
+
+Referenced by luau\_\-copy\-Prog\-Info(), luau\_\-free\-Prog\-Info(), luau\_\-prog\-Info\-String(), luau\_\-satisfies\-Quant(), and parse\-Prog\-Info\-Tag().\index{AProgInfo@{AProg\-Info}!shortname@{shortname}}
+\index{shortname@{shortname}!AProgInfo@{AProg\-Info}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf AProg\-Info::shortname}}\label{structAProgInfo_o1}
+
+
+
+
+Definition at line 168 of file libuau.h.
+
+Referenced by luau\_\-copy\-Prog\-Info(), luau\_\-free\-Prog\-Info(), and parse\-Prog\-Info\-Tag().\index{AProgInfo@{AProg\-Info}!url@{url}}
+\index{url@{url}!AProgInfo@{AProg\-Info}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf AProg\-Info::url}}\label{structAProgInfo_o4}
+
+
+
+
+Definition at line 171 of file libuau.h.
+
+Referenced by luau\_\-check\-For\-Updates(), luau\_\-check\-For\-Updates\_\-url(), luau\_\-copy\-Prog\-Info(), luau\_\-free\-Prog\-Info(), luau\_\-net\_\-query\-Server(), luau\_\-prog\-Info\-String(), and parse\-Prog\-Info\-Tag().\index{AProgInfo@{AProg\-Info}!version@{version}}
+\index{version@{version}!AProgInfo@{AProg\-Info}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf AProg\-Info::version}}\label{structAProgInfo_o5}
+
+
+
+
+Definition at line 172 of file libuau.h.
+
+Referenced by is\-Old(), luau\_\-copy\-Prog\-Info(), luau\_\-free\-Prog\-Info(), luau\_\-prog\-Info\-String(), and luau\_\-satisfies\-Quant().
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf libuau.h}\end{CompactItemize}
